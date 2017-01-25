@@ -30,7 +30,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     static double screenX = 0;
     static double screenY = 0;
 
-    public static String data = "";
+    public static String data = "Drawing";
 
     static double mouseX= 0;
     static double mouseY= 0;
@@ -67,6 +67,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             screenWidth = getWidth();
             screenHeight = getHeight();
         }
+        try {Thread.sleep(300);}
+            catch(InterruptedException ex) {}
 
         actions[0] = new WDown();
         this.getInputMap().put( KeyStroke.getKeyStroke( "W" ), "doWDown" );
@@ -123,6 +125,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         actions[17] = new DUp();
         this.getInputMap().put( KeyStroke.getKeyStroke( "released RIGHT" ), "doDUp" );
         this.getActionMap().put( "doDUp", actions[17] );
+
+        screenWidth = getWidth();
+        screenHeight = getHeight();
+        System.out.println(screenWidth);
 
         animate();
     }
