@@ -8,3 +8,8 @@ Destroyable blocks?
 
 Multiplayer?
 
+World Gen or hand crafted levels?
+
+PvP, PvE, Player just has to survive?
+
+Vertical top down or side view?
