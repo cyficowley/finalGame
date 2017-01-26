@@ -4,8 +4,8 @@ Game Ideas
 
 In  order to create ideas for a game, we have to set basic parameters for what the world/environment and mechanics will be like.
 For the benifit of simplicity:
--the game will have components of an endless side scroller 
--the game will be 2D(obviously), but could possible have game mechanics or a map in a top down 2d 
+-the game will have components of an endless side scroller
+-the game will be 2D(obviously), but could possible have game mechanics or a map in a top down 2d
  prespective rather than a full 2d side prespective
 -will obey 2d physics and mechanical laws
 //more ideas for basic commandments/laws are welcome
@@ -14,13 +14,17 @@ In the intrest of having a lot of expandability into different functions and a s
 we could allow for the character to advance enough in the game to leave their starting world, and travel to other planets.
 -by allowing travel to different planets, we open up the door to a lot of programmable gameplay:
 	-adding mechanics for travel to new planets would be an intresting challenge to code, and add
-	 reason for a player to "conquor" or advance through our challenges and objectives we set 
+	 reason for a player to "conquor" or advance through our challenges and objectives we set
 	-this mechanic would add variation to the playable world
 		-we could randomly generate planets with different graity, asthetics, o2 levels, etc
 
 
 Can we destroy blocks
+  -yes
 Is this a mining game or an exploration and conquering dungeons game
+  -yes
 are we finding items to create stuff? like are we gonna be straight up terraria basically?
+  -yes
+  -kind of
 
 ########
