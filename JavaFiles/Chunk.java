@@ -28,4 +28,13 @@ public class Chunk extends MainObject// this will be like a chunk in minecraft s
 			}
 		}
 	}
+	public void setUp()
+	{
+		for (int i = 0; i < chunkSize; i ++) {
+			for(int j = 0; j < chunkSize;  j ++)
+			{
+				blocks[i][j].setUp();
+			}
+		}
+	}
 }

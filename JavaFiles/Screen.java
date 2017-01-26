@@ -55,8 +55,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
 
-    int currentXChunks = 10; //the current number of chunks in the x direction
-    int currentYChunks = 10; //the current number of chunks in the y direction
+    public static int currentXChunks = 10; //the current number of chunks in the x direction
+    public static int currentYChunks = 10; //the current number of chunks in the y direction
 
     public Screen()
     {
@@ -149,6 +149,15 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         screenHeight = getHeight();
         System.out.println(screenWidth);
         started = true;
+        chunks.get(0).get(0).blocks[5][5].rebuild(0);
+
+        for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0;  j < chunks.get(i).size(); j ++)
+            {
+                chunks.get(i).get(j).setUp();
+            }
+        }
         animate();
     }
 
@@ -173,7 +182,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             data = (Integer.toString(yolo));
             g.setColor(Color.red);
             g.setFont(ariel);
-            data += (" " + Long.toString(System.currentTimeMillis() - time));
+            data += (" " + Long.toString(System.currentTimeMillis() - time)); // this will draw the chunks active and the time taken to draw it
             g.drawString(data,(int)screenWidth - 100,50);
         }    
     }

@@ -15,4 +15,10 @@ public class StoneCharacteristic extends BlockCharacteristic
 		g.setColor(color);
 		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
 	}
+	@Override
+	public void drawMe(Graphics g, Color color)
+	{
+		g.setColor(color);
+		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
+	}
 }
