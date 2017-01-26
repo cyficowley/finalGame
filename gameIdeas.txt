@@ -2,4 +2,12 @@
 
 Game Ideas
 
+In  order to create ideas for a game, we have to set basic parameters for what the world/environment and mechanics will be like.
+For the benifit of simplicity:
+-the game will have components of an endless side scroller 
+-the game will be 2D(obviously), but could possible have game mechanics or a map in a top down 2d 
+ prespective rather than a full 2d side prespective
+-will obey 2d physics and mechanical laws
+
+
 ########
