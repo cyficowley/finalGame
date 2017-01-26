@@ -171,19 +171,19 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         {
         	time = System.currentTimeMillis();
             super.paintComponent(g);
-            int yolo = 0;
+            int chunksDrawn = 0;
             for(int i = 0; i < chunks.size(); i ++)
             {
                 for(int j = 0;  j < chunks.get(i).size(); j ++)
                 {
-                	if(chunks.get(i).get(j).chunkActive)
+                	if(chunks.get(i).get(j).active)
                 	{
-                		yolo ++;
+                		chunksDrawn ++;
                 		chunks.get(i).get(j).drawMe(g);
                 	}
                 }
             }
-            data = (Integer.toString(yolo));
+            data = (Integer.toString(chunksDrawn));
             g.setColor(Color.red);
             g.setFont(ariel);
             data += (" " + Long.toString(System.currentTimeMillis() - time)); // this will draw the chunks active and the time taken to draw it
@@ -200,11 +200,11 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             {
                 if(tempScreen.collision(chunks.get(i).get(j)))
                 {
-                    chunks.get(i).get(j).chunkActive = true;
+                    chunks.get(i).get(j).active = true;
                 }
                 else
                 {
-                    chunks.get(i).get(j).chunkActive = false;
+                    chunks.get(i).get(j).active = false;
                 }
             }
         }
@@ -236,9 +236,48 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public void sort()
     {
+    	for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0; j < chunks.get(i).size(); j ++)
+            {
+                chunks.get(i).get(j).containedObjects.clear();
+            }
+        }
     	for(MovingObject each : movingObjects)
         {
         	each.moveMe();
+        }
+        for(MovingObject each: movingObjects)
+        {
+            int startXIndex = (int)((each.x -startX)/(blockWidth * blockWidth));
+            int startYIndex = (int)((each.y -startY)/(blockWidth * blockWidth));
+            if(startXIndex >= 0 && startYIndex >= 0)
+            {
+                for(int i = 0; i * (blockWidth* blockWidth) < each.width + each.x %(blockWidth* blockWidth) && startXIndex + i <chunks.size(); i ++)
+                {
+                    for(int j = 0; j * (blockWidth* blockWidth) < each.height + each.y %(blockWidth* blockWidth) && startYIndex + j < chunks.get(i).size(); j ++)
+                    {
+                        chunks.get(i).get(j).containedObjects.add(each);
+                    }
+                }
+            }
+        }
+    }
+
+    public void collisionController()
+    {
+    	for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0; j < chunks.get(i).size(); j ++)
+            {
+                if(chunks.get(i).get(j).active)
+                {
+                	for(MovingObject each : chunks.get(i).get(j).containedObjects)
+                	{
+                		each.collision(chunks.get(i).get(j));
+                	}
+                }
+            }
         }
     }
 

@@ -16,7 +16,7 @@ public class MovingObject extends MainObject
 		y += yVelocity;
 		yVelocity += Screen.gravity;
 	}
-	public void collision()
+	public void collision(Chunk chunk)
 	{
 		
 	}
