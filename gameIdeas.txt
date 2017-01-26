@@ -38,7 +38,7 @@ Can we destroy blocks
   -yes
 Is this a mining game or an exploration and conquering dungeons game
   -yes
-are we finding items to create stuff? like are we gonna be straight up terraria basically?
+are we finding items to create stuff? like are we gonna be straight up teraria basically?
   -yes
   -kind of
 
