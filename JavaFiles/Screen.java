@@ -51,9 +51,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static boolean keyControl = false;
 
+    public static double gravity = 0.004;
+
     long time;
 
     public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
+
+    public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>();
 
     public static int currentXChunks = 10; //the current number of chunks in the x direction
     public static int currentYChunks = 10; //the current number of chunks in the y direction
@@ -223,6 +227,18 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         if(w)
         {
             screenY -= 5;
+        }
+        for(MovingObject each : movingObjects)
+        {
+        	each.moveMe();
+        }
+    }
+
+    public void sort()
+    {
+    	for(MovingObject each : movingObjects)
+        {
+        	each.moveMe();
         }
     }
 

@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-public class StoneCharacteristic extends BlockCharacteristic
+public class StoneCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
 	public StoneCharacteristic(Block block)
