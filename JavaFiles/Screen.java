@@ -50,12 +50,25 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     static double blockWidth = 20;
 
     static boolean keyControl = false;
+    
+    static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
+
+    int currentXChunks = 10; //the current number of chunks in the x direction
+    int currentYChunks = 10; //the current number of chunks in the y direction
 
     public Screen()
     {
         setFocusable(true);
         addMouseListener(this);
         addMouseMotionListener(this);
+        for(int i = 0; i < currentXChunks; i ++)
+        {
+            chunks.add(new ArrayList<Chunk>());
+            for(int j = 0; j < currentYChunks; j ++)
+            {
+                chunks.get(i).add(new Chunk(i,j));
+            }
+        }
     }
     public Dimension getPreferredSize()
     {

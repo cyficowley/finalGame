@@ -1,6 +1,6 @@
 public class MainObject //everything must be a main object so we can put everything in a giant arraylist and access everything easily
 {
-	double x;
+	double x; // also it will make it easy to do collision between anything
 	double y;
 	double width;
 	double height;
@@ -10,7 +10,6 @@ public class MainObject //everything must be a main object so we can put everyth
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.number = number;
 	}
 	public boolean collision(MainObject one)
 	{
