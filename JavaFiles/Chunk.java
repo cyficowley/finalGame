@@ -12,7 +12,7 @@ public class Chunk // this will be like a chunk in minecraft so we can generate 
 		for (int i = 0; i < chunkSize; i ++) {
 			for(int j = 0; j < chunkSize;  j ++)
 			{
-				blocks[i][j] = new Block(0, xIndex * chunkSize + i, yIndex * chunkSize + j, i, j);
+				blocks[i][j] = new Block(0, xIndex * chunkSize + i, yIndex * chunkSize + j, i, j, this);
 			}
 		}
 	}

@@ -50,7 +50,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     static double blockWidth = 20;
 
     static boolean keyControl = false;
-    
+
     static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
 
     int currentXChunks = 10; //the current number of chunks in the x direction
@@ -146,7 +146,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         screenWidth = getWidth();
         screenHeight = getHeight();
         System.out.println(screenWidth);
-
+        started = true;
         animate();
     }
 
@@ -157,6 +157,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             super.paintComponent(g);
             g.setColor(Color.black);
             g.drawString(data,(int)screenWidth - 100,50);
+            System.out.println(chunks.get(9).get(9).blocks[19][19].type);
         }
             
     }
