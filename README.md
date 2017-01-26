@@ -1,3 +1,2 @@
 # finalGame
-boi
-is a real crownpiece
+Cyris us a UUUUGUEEEE nerdo
