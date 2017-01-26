@@ -36,7 +36,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static double mouseY= 0;
     public static boolean mouseDown= false;
 
-    Font ariel;
+    Font ariel = new Font("Ariel", Font.PLAIN, 20);
     boolean started = false;
 
     public static boolean a;
@@ -50,6 +50,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static double blockWidth = 20;
 
     public static boolean keyControl = false;
+
+    long time;
 
     public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
 
@@ -154,6 +156,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     {
         if(started)
         {
+        	time = System.currentTimeMillis();
             super.paintComponent(g);
             int yolo = 0;
             for(int i = 0; i < chunks.size(); i ++)
@@ -169,6 +172,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }
             data = (Integer.toString(yolo));
             g.setColor(Color.red);
+            g.setFont(ariel);
+            data += (" " + Long.toString(System.currentTimeMillis() - time));
             g.drawString(data,(int)screenWidth - 100,50);
         }    
     }
@@ -196,19 +201,19 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     {
         if(a)
         {
-            screenX -= 2;
+            screenX -= 5;
         }
         if(d)
         {
-            screenX += 2;
+            screenX += 5;
         }
         if(s)
         {
-            screenY += 2;
+            screenY += 5;
         }
         if(w)
         {
-            screenY -= 2;
+            screenY -= 5;
         }
     }
 
