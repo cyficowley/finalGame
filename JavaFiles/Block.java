@@ -10,5 +10,4 @@ public class Block //this is going to be the base block of the worlds, a crap to
 		this.xIndex = xIndex;
 		this.yIndex = yIndex;
 	}
-	
 }
