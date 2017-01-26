@@ -45,6 +45,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     static boolean w;
     static boolean space;
 
+    static int startX = -1000;
+    static int startY = -1000; 
+    static double blockWidth = 20;
+
     static boolean keyControl = false;
 
     public Screen()
