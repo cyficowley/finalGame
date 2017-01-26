@@ -155,16 +155,41 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         if(started)
         {
             super.paintComponent(g);
-            g.setColor(Color.black);
-            g.drawString(data,(int)screenWidth - 100,50);
+            int yolo = 0;
             for(int i = 0; i < chunks.size(); i ++)
             {
                 for(int j = 0;  j < chunks.get(i).size(); j ++)
                 {
-                    chunks.get(i).get(j).drawMe(g);
+                	if(chunks.get(i).get(j).chunkActive)
+                	{
+                		yolo ++;
+                		chunks.get(i).get(j).drawMe(g);
+                	}
                 }
             }
+            data = (Integer.toString(yolo));
+            g.setColor(Color.red);
+            g.drawString(data,(int)screenWidth - 100,50);
         }    
+    }
+
+    public void gridActive()
+    {
+    	MainObject tempScreen = new MainObject(screenX-screenWidth*.2, screenY-screenHeight*.2,screenWidth*1.4,screenHeight*1.4);
+    	for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0;  j < chunks.get(i).size(); j ++)
+            {
+                if(tempScreen.collision(chunks.get(i).get(j)))
+                {
+                    chunks.get(i).get(j).chunkActive = true;
+                }
+                else
+                {
+                    chunks.get(i).get(j).chunkActive = false;
+                }
+            }
+        }
     }
 
     public void move()
@@ -193,6 +218,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         {
             repaint();
             move();
+            gridActive();
             try 
             {
                 Thread.sleep(16);
