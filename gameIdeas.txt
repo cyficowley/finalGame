@@ -18,4 +18,9 @@ we could allow for the character to advance enough in the game to leave their st
 	-this mechanic would add variation to the playable world
 		-we could randomly generate planets with different graity, asthetics, o2 levels, etc
 
+
+Can we destroy blocks
+Is this a mining game or an exploration and conquering dungeons game
+are we finding items to create stuff? like are we gonna be straight up terraria basically?
+
 ########
