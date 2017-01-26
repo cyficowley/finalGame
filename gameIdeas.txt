@@ -31,7 +31,8 @@ We are creating a universe of generated planets
   -caverns, chasms, and dungeons
   -npcs throughout the world
     -some will join you, some wont
-      -this will be based on a random value assigned to each npc
+      -this chance that they will join you will be based on a random value assigned to each npc
+        -the more resources you have collected/energy generated, the higher your 'reputation'
 
 
 Can we destroy blocks
