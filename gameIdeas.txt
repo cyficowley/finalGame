@@ -18,6 +18,21 @@ we could allow for the character to advance enough in the game to leave their st
 	-this mechanic would add variation to the playable world
 		-we could randomly generate planets with different graity, asthetics, o2 levels, etc
 
+ESSENTIALLY:
+We are creating a universe of generated planets
+  -the player will start on one of these planets
+    -in order to not kill the fps, only the planet they are on will be generated at the start
+  -this planet will be like a mix of terraria but instead of blocks of minerals, we will
+   use elements in the ground/environment that can be mined and refined
+    -these elements can come in stores or caches(kind of like blocks), could hold a random range
+     of the mass of the element
+      -essentially, this system would incorperate more science
+  -oceans will be explorable via submarines and boats
+  -caverns, chasms, and dungeons
+  -npcs throughout the world
+    -some will join you, some wont
+      -this will be based on a random value assigned to each npc
+
 
 Can we destroy blocks
   -yes
