@@ -1,0 +1,10 @@
+Notes::
+
+Game Type: blocky side scroller
+
+Movable x and y camera point? 
+
+Destroyable blocks?
+
+Multiplayer?
+
