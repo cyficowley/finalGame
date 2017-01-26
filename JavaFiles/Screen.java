@@ -25,33 +25,33 @@ import java.awt.event.MouseEvent;
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
 {
     Action[] actions = new Action[18];
-    static double screenWidth;
-    static double screenHeight;
-    static double screenX = 0;
-    static double screenY = 0;
+    public static double screenWidth;
+    public static double screenHeight;
+    public static double screenX = 0;
+    public static double screenY = 0;
 
     public static String data = "Drawing";
 
-    static double mouseX= 0;
-    static double mouseY= 0;
-    static boolean mouseDown= false;
+    public static double mouseX= 0;
+    public static double mouseY= 0;
+    public static boolean mouseDown= false;
 
     Font ariel;
     boolean started = false;
 
-    static boolean a;
-    static boolean s;
-    static boolean d;
-    static boolean w;
-    static boolean space;
+    public static boolean a;
+    public static boolean s;
+    public static boolean d;
+    public static boolean w;
+    public static boolean space;
 
-    static int startX = -1000;
-    static int startY = -1000; 
-    static double blockWidth = 20;
+    public static int startX = -1000;
+    public static int startY = -1000; 
+    public static double blockWidth = 20;
 
-    static boolean keyControl = false;
+    public static boolean keyControl = false;
 
-    static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
+    public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
 
     int currentXChunks = 10; //the current number of chunks in the x direction
     int currentYChunks = 10; //the current number of chunks in the y direction
@@ -155,11 +155,61 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         if(started)
         {
             super.paintComponent(g);
-            g.setColor(Color.black);
+            int yolo = 0;
+            for(int i = 0; i < chunks.size(); i ++)
+            {
+                for(int j = 0;  j < chunks.get(i).size(); j ++)
+                {
+                	if(chunks.get(i).get(j).chunkActive)
+                	{
+                		yolo ++;
+                		chunks.get(i).get(j).drawMe(g);
+                	}
+                }
+            }
+            data = (Integer.toString(yolo));
+            g.setColor(Color.red);
             g.drawString(data,(int)screenWidth - 100,50);
-            System.out.println(chunks.get(9).get(9).blocks[19][19].type);
+        }    
+    }
+
+    public void gridActive()
+    {
+    	MainObject tempScreen = new MainObject(screenX-screenWidth*.2, screenY-screenHeight*.2,screenWidth*1.4,screenHeight*1.4);
+    	for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0;  j < chunks.get(i).size(); j ++)
+            {
+                if(tempScreen.collision(chunks.get(i).get(j)))
+                {
+                    chunks.get(i).get(j).chunkActive = true;
+                }
+                else
+                {
+                    chunks.get(i).get(j).chunkActive = false;
+                }
+            }
         }
-            
+    }
+
+    public void move()
+    {
+        if(a)
+        {
+            screenX -= 2;
+        }
+        if(d)
+        {
+            screenX += 2;
+        }
+        if(s)
+        {
+            screenY += 2;
+        }
+        if(w)
+        {
+            screenY -= 2;
+        }
     }
 
     public void animate()
@@ -167,6 +217,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     	while(true)
         {
             repaint();
+            move();
+            gridActive();
             try 
             {
                 Thread.sleep(16);
