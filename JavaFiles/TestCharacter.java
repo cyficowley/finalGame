@@ -18,7 +18,6 @@ public class TestCharacter extends MovingObject
 					if(touched.get(0).touched.fixed == true &&touched.get(0).direction == 1)
 					{
 						yVelocity -= 3;
-						System.out.println("swegArrific");
 					}
 				}
 			}
