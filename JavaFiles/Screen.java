@@ -45,13 +45,15 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static boolean w;
     public static boolean space;
 
-    public static int startX = -1000;
-    public static int startY = -1000; 
+    public static int startX = 0;
+    public static int startY = 0; 
     public static double blockWidth = 20;
 
     public static boolean keyControl = false;
 
     public static double gravity = 0.004;
+
+    public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>();
 
     long time;
 
@@ -153,13 +155,19 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         screenHeight = getHeight();
         System.out.println(screenWidth);
         started = true;
-        chunks.get(0).get(0).blocks[5][5].rebuild(0);
 
         for(int i = 0; i < chunks.size(); i ++)
         {
             for(int j = 0;  j < chunks.get(i).size(); j ++)
             {
                 chunks.get(i).get(j).setUp();
+            }
+        }
+        for(int i = 0; i < 20; i ++)
+        {
+            for(int j = 0;  j < 20; j ++)
+            {
+                chunks.get(1).get(1).blocks[i][j].rebuild(0);
             }
         }
         animate();
