@@ -41,7 +41,7 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 	{
 		//g.setColor(color); // make this not fill a rect but draw the image
 		//g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
-		g.drawImage(img, (int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY),20,20, null);
+		g.drawImage(img, (int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY),(int)(Screen.blockWidth),(int)(Screen.blockWidth), null);
 	}
 	@Override
 	public void drawMe(Graphics g, Color color)

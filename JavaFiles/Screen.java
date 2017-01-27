@@ -168,10 +168,17 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(1).get(1).blocks[i][j].rebuild(0); // makes the chunk in chunkindex 1,1 empty
             }
         }
+<<<<<<< Updated upstream
         movingObjects.add(new TestCharacter(401,401, 50,50)); // for testing
         movingObjects.add(new MovingObject(500,460, 50,50)); // adds 4 objects so that it does stuff and we can see stuff
         movingObjects.add(new MovingObject(500,520, 50,50));
         movingObjects.add(new MovingObject(500,580, 50,50));
+=======
+        movingObjects.add(new TestCharacter(2501,2501, 50,50)); // for testing
+        movingObjects.add(new MovingObject(2500,2560, 50,50)); // adds 4 objects so that it does stuff and we can see stuff 
+        movingObjects.add(new MovingObject(2500,2600, 50,50));
+        movingObjects.add(new MovingObject(2500,2700, 50,50));
+>>>>>>> Stashed changes
         animate();
     }
 
