@@ -3,11 +3,11 @@ import java.util.ArrayList;
 import java.awt.Color;
 public class MovingObject extends MainObject
 {
-	double xVelocity=0;
+	double xVelocity=0; // velocity
 	double yVelocity=0;
-	double pastX;
+	double pastX; // the previous x value
 	double pastY;
-	ArrayList<TouchData> touched= new ArrayList<TouchData>();
+	ArrayList<TouchData> touched= new ArrayList<TouchData>(); //  an array of all the mainobjects this one has touched
 	double mass;
 	boolean moved = false;
 	boolean drawn = false;
@@ -18,9 +18,9 @@ public class MovingObject extends MainObject
 	}
 	public void moveMe()
 	{
-		if(!moved)
+		if(!moved) // this makes it so that it will only move once if it is in multipl chunks at once
 		{
-			pastY = y;
+			pastY = y; 
 			pastX = x;
 			x += xVelocity;
 			y += yVelocity;
@@ -28,7 +28,7 @@ public class MovingObject extends MainObject
 			{
 				if(touched.get(0).touched.fixed == true &&touched.get(0).direction == 1)
 				{
-					xVelocity *= .9;
+					xVelocity *= .9; // slows it down if it is touching a fixed block from the bottom
 				}
 			}
 			yVelocity += Screen.gravity;
@@ -37,17 +37,16 @@ public class MovingObject extends MainObject
 	}
 	public void collision(Chunk chunk)
 	{
-		touched.clear();
+		touched.clear(); // removes all mainobjects from the arraylist
 		for(int i = 0; i < chunk.chunkSize; i ++)
 		{
 			for(int j = 0; j < chunk.chunkSize; j ++)
 			{
 				if(chunk.blocks[i][j].collisionActive)
 				{
-					//System.out.println(chunk.xIndex +"    " + chunk.yIndex);
 					if(collision(chunk.blocks[i][j]))
 					{
-						Screen.collisions.add(new CollisionContainer(this, chunk.blocks[i][j]));
+						Screen.collisions.add(new CollisionContainer(this, chunk.blocks[i][j])); // collides with all the active blocks (right now only red ones)
 					}
 				}
 			}
@@ -59,7 +58,7 @@ public class MovingObject extends MainObject
 		{
 			if(!each.equals(this) && collision(each))
 			{
-				Screen.collisions.add(new CollisionContainer(this, each));
+				Screen.collisions.add(new CollisionContainer(this, each)); //this does collisions with other movingobjects 
 			}
 		}
 	}

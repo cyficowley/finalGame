@@ -12,12 +12,12 @@ public class Block extends MainObject//this is going to be the base block of the
 	boolean collisionActive; // if it is possible for stuff to collide with this block;
 	Chunk containingChunk; // the chunk that contains this blocks
 	BlockCharacteristic characteristic;
-	ArrayList<TouchData> touched= new ArrayList<TouchData>();
+	ArrayList<TouchData> touched= new ArrayList<TouchData>(); // all the movingobjects touch
 	public Block(int type, int xIndex, int yIndex, int subXIndex, int subYIndex, Chunk chunk)
 	{
 		super(Screen.startX - xIndex * Screen.blockWidth,Screen.startY - yIndex * Screen.blockWidth, Screen.blockWidth, Screen.blockWidth, true); //sets it up as a main object
 		this.type = type;
-		containingChunk = chunk;
+		containingChunk = chunk; // the chunk this block is in
 		this.xIndex = xIndex;
 		this.yIndex = yIndex;
 		this.subXIndex = subXIndex;
@@ -28,7 +28,7 @@ public class Block extends MainObject//this is going to be the base block of the
 		}
 		else
 		{
-			characteristic = new BlockCharacteristic(this);
+			characteristic = new BlockCharacteristic(this); // any thing that is empty should make it just a plain block characteristic
 		}
 	}
 	public void drawMe(Graphics g)
@@ -53,13 +53,17 @@ public class Block extends MainObject//this is going to be the base block of the
 		}
 		touched.clear();
 	}
-	public void rebuild(int type)
-	{
+	public void rebuild(int type) 
+	{ // run this method if you are setting the block to a differnt type like empty or stone or something
 		this.type = type;
 		if(type == 1)
 		{
 			characteristic = new StoneCharacteristic(this);
 		}
+		// else if( type == 2)
+		// {
+		// 	bla bla bla this is where we would put dirt
+		// }
 		else // this sets all the ones next to it to collisionActive:true because it is now air
 		{
 			characteristic = new BlockCharacteristic(this);
