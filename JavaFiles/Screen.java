@@ -23,23 +23,23 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
-{
-    Action[] actions = new Action[18];
-    public static double screenWidth;
-    public static double screenHeight;
-    public static double screenX = 0;
+{ // STATIC STUFF YOU 
+    Action[] actions = new Action[18]; // for key bindings
+    public static double screenWidth; // the width of the screen
+    public static double screenHeight; // the hieght of the screen
+    public static double screenX = 0; //  the x and y of the viewpoint of the screen
     public static double screenY = 0;
 
-    public static String data = "Drawing";
+    public static String data = "Drawing"; // just some data that will display on the screen 
 
-    public static double mouseX= 0;
+    public static double mouseX= 0; // the x and y of the mouse, will get everytime the mouse is moved
     public static double mouseY= 0;
-    public static boolean mouseDown= false;
+    public static boolean mouseDown= false; // whether mouse is pressed
 
-    Font ariel = new Font("Ariel", Font.PLAIN, 20);
+    Font ariel = new Font("Ariel", Font.PLAIN, 20); // current font to draw on the screen
     boolean started = false;
 
-    public static boolean a;
+    public static boolean a; // if a is down and so down
     public static boolean s;
     public static boolean d;
     public static boolean w;
