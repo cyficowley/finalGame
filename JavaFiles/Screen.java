@@ -49,7 +49,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static int startY = 0; 
     public static double blockWidth = 20; // width in pixels of a block
 
-    public static double gravity = 0.08; // gravity
+    public static double gravity = 0.048; // gravity
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 

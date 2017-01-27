@@ -10,25 +10,27 @@ public class TestCharacter extends MovingObject
 	@Override
 	public void moveMe()
 	{
-		super.moveMe();
-		if(Screen.space || Screen.w)
-		{
-			if(touched.size() > 0)
+		if(!moved){
+			if(Screen.space || Screen.w)
 			{
-				if(touched.get(0).touched.fixed == true &&touched.get(0).direction == 1)
+				if(touched.size() > 0)
 				{
-					yVelocity -= 2;
-					System.out.println("swegArrific");
+					if(touched.get(0).touched.fixed == true &&touched.get(0).direction == 1)
+					{
+						yVelocity -= 3;
+						System.out.println("swegArrific");
+					}
 				}
 			}
+			if(Screen.d)
+			{
+				xVelocity = 3;
+			}
+			if(Screen.a)
+			{
+				xVelocity = -3;
+			}
 		}
-		if(Screen.d)
-		{
-			xVelocity = 3;
-		}
-		if(Screen.a)
-		{
-			xVelocity = -3;
-		}
+		super.moveMe();
 	}
 }
