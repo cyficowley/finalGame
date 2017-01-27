@@ -11,13 +11,13 @@ public class TestCharacter extends MovingObject
 	public void moveMe()
 	{
 		super.moveMe();
-		if(Screen.space)
+		if(Screen.space || Screen.w)
 		{
 			if(touched.size() > 0)
 			{
 				if(touched.get(0).touched.fixed == true &&touched.get(0).direction == 1)
 				{
-					yVelocity -= 3;
+					yVelocity -= 2;
 				}
 			}
 		}
@@ -29,7 +29,5 @@ public class TestCharacter extends MovingObject
 		{
 			xVelocity = -3;
 		}
-		Screen.screenX = x + width/2- Screen.screenWidth/2;
-		Screen.screenY = y + height/2 - Screen.screenHeight/2;
 	}
 }

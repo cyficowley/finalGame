@@ -8,10 +8,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 		this.block = block;
 	}
 	public void drawMe(Graphics g)
-	{
-
-	}
+	{}
 	public void drawMe(Graphics g, Color color)
-	{
-	}
+	{}
 }

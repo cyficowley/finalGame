@@ -44,11 +44,22 @@ public class MovingObject extends MainObject
 			{
 				if(chunk.blocks[i][j].collisionActive)
 				{
+					//System.out.println(chunk.xIndex +"    " + chunk.yIndex);
 					if(collision(chunk.blocks[i][j]))
 					{
 						Screen.collisions.add(new CollisionContainer(this, chunk.blocks[i][j]));
 					}
 				}
+			}
+		}
+	}
+	public void collision2(Chunk chunk)
+	{
+		for(MovingObject each : chunk.containedObjects)
+		{
+			if(!each.equals(this) && collision(each))
+			{
+				Screen.collisions.add(new CollisionContainer(this, each));
 			}
 		}
 	}

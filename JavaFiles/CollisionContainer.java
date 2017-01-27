@@ -101,7 +101,7 @@ public class CollisionContainer
 	    		two.pastY = two.y;
 	        	if(oneLesser)
 	        	{
-	        		double deltaY = one.y + one.height - two.y;
+	        		double deltaY =  one.y + one.height - two.y;
 	        		one.y -= deltaY * (Math.abs(one.yVelocity) / (Math.abs(one.yVelocity) + Math.abs(two.yVelocity)));
 	        		two.y += deltaY * (Math.abs(two.yVelocity) / (Math.abs(one.yVelocity) + Math.abs(two.yVelocity)));
 	        		touchedOne = new TouchData(1);
@@ -109,7 +109,7 @@ public class CollisionContainer
 	        	}
 	        	else
 	        	{
-	        		double deltaY = two.y + two.height - one.y;
+	        		double deltaY =  two.y + two.height - one.y;
 	        		one.y += deltaY * (Math.abs(one.yVelocity) / (Math.abs(one.yVelocity) + Math.abs(two.yVelocity)));
 	        		two.y -= deltaY * (Math.abs(two.yVelocity) / (Math.abs(one.yVelocity) + Math.abs(two.yVelocity)));
 	        		touchedOne = new TouchData(0);
