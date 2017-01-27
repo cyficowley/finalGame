@@ -23,7 +23,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
-{ // STATIC STUFF YOU 
+{ // STATIC STUFF YOU CAN ACCESS AT ANY TIME IN ANY CLASS BY SAYING SCREEN.VARIABLE
     Action[] actions = new Action[18]; // for key bindings
     public static double screenWidth; // the width of the screen
     public static double screenHeight; // the hieght of the screen
@@ -45,28 +45,26 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static boolean w;
     public static boolean space;
 
-    public static int startX = 0;
+    public static int startX = 0; // the starting x and y of the screen
     public static int startY = 0; 
-    public static double blockWidth = 20;
+    public static double blockWidth = 20; // width in pixels of a block
 
-    public static boolean keyControl = false;
+    public static double gravity = 0.08; // gravity
 
-    public static double gravity = 0.08;
-
-    public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>();
+    public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
     long time;
 
-    public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
+    public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks, in a 2d arraylist
 
-    public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>();
+    public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>(); //all the moving objects
 
     public static int currentXChunks = 10; //the current number of chunks in the x direction
     public static int currentYChunks = 10; //the current number of chunks in the y direction
 
     public Screen()
     {
-        setFocusable(true);
+        setFocusable(true); //setup stuff
         addMouseListener(this);
         addMouseMotionListener(this);
         for(int i = 0; i < currentXChunks; i ++)
@@ -74,17 +72,17 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             chunks.add(new ArrayList<Chunk>());
             for(int j = 0; j < currentYChunks; j ++)
             {
-                chunks.get(i).add(new Chunk(i,j));
+                chunks.get(i).add(new Chunk(i,j));//setting up and adding the chunks to the 2d arraylist
             }
         }
     }
     public Dimension getPreferredSize()
     {
-        return new Dimension(640,480);
+        return new Dimension(640,480); //settup for default so it expands
     }
     public void initialize()
     {
-        while(screenHeight < 600)
+        while(screenHeight < 600) // the while and try after it makes it so it expands and gets the screenwidth and height accuratly
         {
             try {Thread.sleep(10);}
             catch(InterruptedException ex) {}
@@ -149,29 +147,29 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         this.getActionMap().put( "doDDown", actions[16] );
         actions[17] = new DUp();
         this.getInputMap().put( KeyStroke.getKeyStroke( "released RIGHT" ), "doDUp" );
-        this.getActionMap().put( "doDUp", actions[17] );
+        this.getActionMap().put( "doDUp", actions[17] );  //Setting up all the classes for the keybindings
 
         screenWidth = getWidth();
         screenHeight = getHeight();
         System.out.println(screenWidth);
-        started = true;
+        started = true; //starts drawing
 
         for(int i = 0; i < chunks.size(); i ++)
         {
             for(int j = 0;  j < chunks.get(i).size(); j ++)
             {
-                chunks.get(i).get(j).setUp();
+                chunks.get(i).get(j).setUp(); // this sets up all the chunks
             }
         }
         for(int i = 0; i < 20; i ++)
         {
             for(int j = 0;  j < 20; j ++)
             {
-                chunks.get(1).get(1).blocks[i][j].rebuild(0);
+                chunks.get(1).get(1).blocks[i][j].rebuild(0); // makes the chunk in chunkindex 1,1 empty
             }
         }
         movingObjects.add(new TestCharacter(401,401, 50,50)); // for testing
-        movingObjects.add(new MovingObject(500,460, 50,50));
+        movingObjects.add(new MovingObject(500,460, 50,50)); // adds 4 objects so that it does stuff and we can see stuff 
         movingObjects.add(new MovingObject(500,520, 50,50));
         movingObjects.add(new MovingObject(500,580, 50,50));
         animate();
@@ -181,24 +179,34 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     {
         if(started)
         {
-        	time = System.currentTimeMillis();
+        	time = System.currentTimeMillis(); // gets time when started drawing
             super.paintComponent(g);
             int chunksDrawn = 0;
             for(int i = 0; i < chunks.size(); i ++)
             {
                 for(int j = 0;  j < chunks.get(i).size(); j ++)
                 {
-                	if(chunks.get(i).get(j).active)
+                	if(chunks.get(i).get(j).active) // draws only active chunks that are in or very near screen
                 	{
-                		chunksDrawn ++;
-                		chunks.get(i).get(j).drawMe(g);
+                		chunksDrawn ++; //adds a counter of how many chunks we are drawing
+                		chunks.get(i).get(j).drawMe(g); //draws the chunks
                 	}
                 }
             }
-            for(MovingObject each : movingObjects)
+            for(int i = 0; i < chunks.size(); i ++)
             {
-                each.drawMe(g);
+                for(int j = 0;  j < chunks.get(i).size(); j ++)
+                {
+                	if(chunks.get(i).get(j).active) // draws only active chunks that are in or very near screen
+                	{
+                		for(MovingObject each : chunks.get(i).get(j).containedObjects)
+			            {
+			                each.drawMe(g);
+			            }
+                	}
+                }
             }
+            
             data += (" " +(Integer.toString(chunksDrawn)));
             g.setColor(Color.red);
             g.setFont(ariel);
