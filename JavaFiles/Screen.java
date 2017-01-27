@@ -25,33 +25,56 @@ import java.awt.event.MouseEvent;
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
 {
     Action[] actions = new Action[18];
-    static double screenWidth;
-    static double screenHeight;
-    static double screenX = 0;
-    static double screenY = 0;
+    public static double screenWidth;
+    public static double screenHeight;
+    public static double screenX = 0;
+    public static double screenY = 0;
 
     public static String data = "Drawing";
 
-    static double mouseX= 0;
-    static double mouseY= 0;
-    static boolean mouseDown= false;
+    public static double mouseX= 0;
+    public static double mouseY= 0;
+    public static boolean mouseDown= false;
 
-    Font ariel;
+    Font ariel = new Font("Ariel", Font.PLAIN, 20);
     boolean started = false;
 
-    static boolean a;
-    static boolean s;
-    static boolean d;
-    static boolean w;
-    static boolean space;
+    public static boolean a;
+    public static boolean s;
+    public static boolean d;
+    public static boolean w;
+    public static boolean space;
 
-    static boolean keyControl = false;
+    public static int startX = -1000;
+    public static int startY = -1000; 
+    public static double blockWidth = 20;
+
+    public static boolean keyControl = false;
+
+    public static double gravity = 0.004;
+
+    long time;
+
+    public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks
+
+    public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>();
+
+    public static int currentXChunks = 10; //the current number of chunks in the x direction
+    public static int currentYChunks = 10; //the current number of chunks in the y direction
 
     public Screen()
     {
         setFocusable(true);
         addMouseListener(this);
         addMouseMotionListener(this);
+        for(int i = 0; i < currentXChunks; i ++)
+        {
+            chunks.add(new ArrayList<Chunk>());
+            for(int j = 0; j < currentYChunks; j ++)
+            {
+                chunks.get(i).add(new Chunk(i,j));
+            }
+        }
     }
     public Dimension getPreferredSize()
     {
@@ -129,7 +152,16 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         screenWidth = getWidth();
         screenHeight = getHeight();
         System.out.println(screenWidth);
+        started = true;
+        chunks.get(0).get(0).blocks[5][5].rebuild(0);
 
+        for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0;  j < chunks.get(i).size(); j ++)
+            {
+                chunks.get(i).get(j).setUp();
+            }
+        }
         animate();
     }
 
@@ -137,11 +169,116 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     {
         if(started)
         {
+        	time = System.currentTimeMillis();
             super.paintComponent(g);
-            g.setColor(Color.black);
+            int chunksDrawn = 0;
+            for(int i = 0; i < chunks.size(); i ++)
+            {
+                for(int j = 0;  j < chunks.get(i).size(); j ++)
+                {
+                	if(chunks.get(i).get(j).active)
+                	{
+                		chunksDrawn ++;
+                		chunks.get(i).get(j).drawMe(g);
+                	}
+                }
+            }
+            data = (Integer.toString(chunksDrawn));
+            g.setColor(Color.red);
+            g.setFont(ariel);
+            data += (" " + Long.toString(System.currentTimeMillis() - time)); // this will draw the chunks active and the time taken to draw it
             g.drawString(data,(int)screenWidth - 100,50);
+        }    
+    }
+
+    public void gridActive()
+    {
+    	MainObject tempScreen = new MainObject(screenX-screenWidth*.2, screenY-screenHeight*.2,screenWidth*1.4,screenHeight*1.4);
+    	for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0;  j < chunks.get(i).size(); j ++)
+            {
+                if(tempScreen.collision(chunks.get(i).get(j)))
+                {
+                    chunks.get(i).get(j).active = true;
+                }
+                else
+                {
+                    chunks.get(i).get(j).active = false;
+                }
+            }
         }
-            
+    }
+
+    public void move()
+    {
+        if(a)
+        {
+            screenX -= 5;
+        }
+        if(d)
+        {
+            screenX += 5;
+        }
+        if(s)
+        {
+            screenY += 5;
+        }
+        if(w)
+        {
+            screenY -= 5;
+        }
+        for(MovingObject each : movingObjects)
+        {
+        	each.moveMe();
+        }
+    }
+
+    public void sort()
+    {
+    	for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0; j < chunks.get(i).size(); j ++)
+            {
+                chunks.get(i).get(j).containedObjects.clear();
+            }
+        }
+    	for(MovingObject each : movingObjects)
+        {
+        	each.moveMe();
+        }
+        for(MovingObject each: movingObjects)
+        {
+            int startXIndex = (int)((each.x -startX)/(blockWidth * blockWidth));
+            int startYIndex = (int)((each.y -startY)/(blockWidth * blockWidth));
+            if(startXIndex >= 0 && startYIndex >= 0)
+            {
+                for(int i = 0; i * (blockWidth* blockWidth) < each.width + each.x %(blockWidth* blockWidth) && startXIndex + i <chunks.size(); i ++)
+                {
+                    for(int j = 0; j * (blockWidth* blockWidth) < each.height + each.y %(blockWidth* blockWidth) && startYIndex + j < chunks.get(i).size(); j ++)
+                    {
+                        chunks.get(i).get(j).containedObjects.add(each);
+                    }
+                }
+            }
+        }
+    }
+
+    public void collisionController()
+    {
+    	for(int i = 0; i < chunks.size(); i ++)
+        {
+            for(int j = 0; j < chunks.get(i).size(); j ++)
+            {
+                if(chunks.get(i).get(j).active)
+                {
+                	for(MovingObject each : chunks.get(i).get(j).containedObjects)
+                	{
+                		each.collision(chunks.get(i).get(j));
+                	}
+                }
+            }
+        }
     }
 
     public void animate()
@@ -149,6 +286,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     	while(true)
         {
             repaint();
+            move();
+            gridActive();
             try 
             {
                 Thread.sleep(16);
