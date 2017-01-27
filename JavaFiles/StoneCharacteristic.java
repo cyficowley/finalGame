@@ -9,32 +9,32 @@ import javax.imageio.ImageIO;
 public class StoneCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
-	BufferedImage img;
+	static BufferedImage img;
+	static BufferedImage img1;
+	static BufferedImage img2;
+	static BufferedImage img3;
+	public static boolean hasLoaded = false;
+	int rand;
 	public StoneCharacteristic(Block block)
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
 
-		int rand = 0 + (int)(Math.random() * ((2 - 0) + 1));
-		img = null;
+		rand = (int)(Math.random() * (3));
+
+		if(hasLoaded == false){
+			loadImg();
+			hasLoaded = true;
+		}
 
 		if(rand == 0){
-			try{
-				img = ImageIO.read(new File("images/stone_1.png"));
-			} catch (IOException e) {}
+			img = img1;
 		}
 		if(rand == 1){
-			try{
-				img = ImageIO.read(new File("images/stone_2.png"));
-			} catch (IOException e) {}
+			img = img2;
 		}
 		if(rand == 2){
-			try{
-				img = ImageIO.read(new File("images/stone_3.png"));
-			} catch (IOException e) {}
+			img = img3;
 		}
-
-		int rgb = (int)(Math.random() * 100 + 50);
-		color = new Color(rgb,rgb,rgb);
 	}
 	@Override
 	public void drawMe(Graphics g)
@@ -48,5 +48,21 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 	{
 		g.setColor(color); // leave this one
 		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
+	}
+
+	public void loadImg(){
+		img1 = null;
+		img2 = null;
+		img3 = null;
+
+		try{
+			img1 = ImageIO.read(new File("images/stone_1.png"));
+		} catch (IOException e) {}
+		try{
+			img2 = ImageIO.read(new File("images/stone_2.png"));
+		} catch (IOException e) {}
+		try{
+			img3 = ImageIO.read(new File("images/stone_3.png"));
+		} catch (IOException e) {}
 	}
 }

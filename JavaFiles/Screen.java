@@ -30,7 +30,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static double screenX = 0; //  the x and y of the viewpoint of the screen
     public static double screenY = 0;
 
-    public static String data = "Drawing"; // just some data that will display on the screen 
+    public static String data = "Drawing"; // just some data that will display on the screen
 
     public static double mouseX= 0; // the x and y of the mouse, will get everytime the mouse is moved
     public static double mouseY= 0;
@@ -46,7 +46,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static boolean space;
 
     public static int startX = 0; // the starting x and y of the screen
-    public static int startY = 0; 
+    public static int startY = 0;
     public static double blockWidth = 20; // width in pixels of a block
 
     public static double gravity = 0.048; // gravity
@@ -169,7 +169,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }
         }
         movingObjects.add(new TestCharacter(401,401, 50,50)); // for testing
-        movingObjects.add(new MovingObject(500,460, 50,50)); // adds 4 objects so that it does stuff and we can see stuff 
+        movingObjects.add(new MovingObject(500,460, 50,50)); // adds 4 objects so that it does stuff and we can see stuff
         movingObjects.add(new MovingObject(500,520, 50,50));
         movingObjects.add(new MovingObject(500,580, 50,50));
         animate();
@@ -201,22 +201,22 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	{
                 		for(MovingObject each : chunks.get(i).get(j).containedObjects)
 			            {
-			                each.drawMe(g); // draws everything within active range 
+			                each.drawMe(g); // draws everything within active range
 			            }
                 	}
                 }
             }
-            
+
             data += (" " +(Integer.toString(chunksDrawn)));
             g.setColor(Color.red);
             g.setFont(ariel);
             data += (" " + Long.toString(System.currentTimeMillis() - time)); // this will draw the chunks active and the time taken to draw it
             g.drawString(data,(int)screenWidth - 100,50);
             data = "";
-        }    
+        }
     }
 
-    public void gridActive() 
+    public void gridActive()
     { //						This method sets the chunks near the screen active so they move and draw
     	MainObject tempScreen = new MainObject(screenX-screenWidth*.2, screenY-screenHeight*.2,screenWidth*1.4,screenHeight*1.4);
     	for(int i = 0; i < chunks.size(); i ++)
@@ -261,12 +261,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
-                        each.moveMe(); 
+                        each.moveMe();
                     }
                 }
             }
         }
-            
+
     }
 
     public void sort()
@@ -349,11 +349,11 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			screenX = movingObjects.get(0).x + movingObjects.get(0).width/2- screenWidth/2; // sets screenx to the temporary main character
 			screenY = movingObjects.get(0).y + movingObjects.get(0).height/2 - screenHeight/2;
             repaint();
-            try 
+            try
             {
-                Thread.sleep(16);
+                Thread.sleep(33);
             } 
-            catch(InterruptedException ex) 
+            catch(InterruptedException ex)
             {
                 Thread.currentThread().interrupt();
             }
@@ -392,11 +392,11 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }}
 
 
-    public void mousePressed(MouseEvent e) 
+    public void mousePressed(MouseEvent e)
     {
         mouseDown = true;
     }
-    public void mouseReleased(MouseEvent e) 
+    public void mouseReleased(MouseEvent e)
     {
         mouseDown = false;
     }
