@@ -3,19 +3,21 @@ public class CollisionContainer
 	MovingObject one;
 	MovingObject two;
 	Block three;
+	boolean first;
 	public CollisionContainer(MovingObject one, MovingObject two)
 	{
 		this.one = one;
 		this.two = two;
+		first = true;
 	}
-	public CollisionContainer(MovingObject one, Block two)
+	public CollisionContainer(MovingObject one, Block three)
 	{
 		this.one = one;
 		this.three = three;
 	}
 	public void run()
 	{	
-		if(!two.equals(null))
+		if(first)
 		{
 			boolean oneLesser = false;
 			boolean xCollision = false;

@@ -33,6 +33,8 @@ public class Block extends MainObject//this is going to be the base block of the
 	}
 	public void drawMe(Graphics g)
 	{
+		x = xIndex * Screen.blockWidth;
+		y = yIndex * Screen.blockWidth;
 		if(type == 0)
 		{
 			collisionActive = false;

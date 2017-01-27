@@ -51,7 +51,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static boolean keyControl = false;
 
-    public static double gravity = 0.004;
+    public static double gravity = 0.015;
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>();
 
@@ -170,6 +170,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(1).get(1).blocks[i][j].rebuild(0);
             }
         }
+        movingObjects.add(new TestCharacter(401,401, 50,50)); // for testing
         animate();
     }
 
@@ -190,6 +191,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 		chunks.get(i).get(j).drawMe(g);
                 	}
                 }
+            }
+            for(MovingObject each : movingObjects)
+            {
+                each.drawMe(g);
             }
             data = (Integer.toString(chunksDrawn));
             g.setColor(Color.red);
@@ -220,26 +225,36 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public void move()
     {
-        if(a)
+        // if(a)
+        // {
+        //     screenX -= 5;
+        // }
+        // if(d)
+        // {
+        //     screenX += 5;
+        // }
+        // if(s)
+        // {
+        //     screenY += 5;
+        // }
+        // if(w)
+        // {
+        //     screenY -= 5;
+        // }
+        for(int i = 0; i < chunks.size(); i ++)
         {
-            screenX -= 5;
+            for(int j = 0;  j < chunks.get(i).size(); j ++)
+            {
+                if(chunks.get(i).get(j).active)
+                {
+                    for(MovingObject each : chunks.get(i).get(j).containedObjects)
+                    {
+                        each.moveMe();
+                    }
+                }
+            }
         }
-        if(d)
-        {
-            screenX += 5;
-        }
-        if(s)
-        {
-            screenY += 5;
-        }
-        if(w)
-        {
-            screenY -= 5;
-        }
-        for(MovingObject each : movingObjects)
-        {
-        	each.moveMe();
-        }
+            
     }
 
     public void sort()
@@ -265,7 +280,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(int j = 0; j * (blockWidth* blockWidth) < each.height + each.y %(blockWidth* blockWidth) && startYIndex + j < chunks.get(i).size(); j ++)
                     {
-                        chunks.get(i).get(j).containedObjects.add(each);
+                        chunks.get(i+ startXIndex).get(j +startXIndex).containedObjects.add(each);
+                        each.moved = false;
+                        each.drawn = false;
                     }
                 }
             }
@@ -287,6 +304,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 }
             }
         }
+        for(CollisionContainer each : collisions)
+        {
+            each.run();
+        }
     }
 
     public void animate()
@@ -296,6 +317,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             repaint();
             move();
             gridActive();
+            sort();
+            collisionController();
             try 
             {
                 Thread.sleep(16);
