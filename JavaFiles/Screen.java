@@ -51,7 +51,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static boolean keyControl = false;
 
-    public static double gravity = 0.048;
+    public static double gravity = 0.08;
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>();
 
