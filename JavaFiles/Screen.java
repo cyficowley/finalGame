@@ -201,7 +201,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	{
                 		for(MovingObject each : chunks.get(i).get(j).containedObjects)
 			            {
-			                each.drawMe(g);
+			                each.drawMe(g); // draws everything within active range 
 			            }
                 	}
                 }
@@ -216,8 +216,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }    
     }
 
-    public void gridActive()
-    {
+    public void gridActive() 
+    { //						This method sets the chunks near the screen active so they move and draw
     	MainObject tempScreen = new MainObject(screenX-screenWidth*.2, screenY-screenHeight*.2,screenWidth*1.4,screenHeight*1.4);
     	for(int i = 0; i < chunks.size(); i ++)
         {
@@ -253,7 +253,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         // {
         //     screenY -= 5;
         // }
-        for(int i = 0; i < chunks.size(); i ++)
+    	for(int i = 0; i < chunks.size(); i ++) // this jus moves all the blocks
         {
             for(int j = 0;  j < chunks.get(i).size(); j ++)
             {
@@ -261,7 +261,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
-                        each.moveMe();
+                        each.moveMe(); 
                     }
                 }
             }
@@ -270,21 +270,17 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     }
 
     public void sort()
-    {
+    {//						THis sorts all the movingobjects into the right places
     	for(int i = 0; i < chunks.size(); i ++)
         {
             for(int j = 0; j < chunks.get(i).size(); j ++)
             {
-                chunks.get(i).get(j).containedObjects.clear();
+                chunks.get(i).get(j).containedObjects.clear(); // clears out all the moving objects
             }
-        }
-    	for(MovingObject each : movingObjects)
-        {
-        	each.moveMe();
         }
         for(MovingObject each: movingObjects)
         {
-            int startXIndex = (int)((each.x -startX)/(blockWidth * blockWidth));
+            int startXIndex = (int)((each.x -startX)/(blockWidth * blockWidth)); // gets start index
             int startYIndex = (int)((each.y -startY)/(blockWidth * blockWidth));
             if(startXIndex >= 0 && startYIndex >= 0)
             {
@@ -292,7 +288,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(int j = startYIndex; j * (blockWidth* blockWidth) < each.height + each.y && j < chunks.get(i).size(); j ++)
                     {
-                        chunks.get(i).get(j).containedObjects.add(each);
+                        chunks.get(i).get(j).containedObjects.add(each); //this makes it so the movingobjects can be in multiple chunks at once
                         each.moved = false;
                         each.drawn = false;
                     }
@@ -302,7 +298,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     }
 
     public void collisionController()
-    {
+    { //								This method does all the collision stuff
     	for(int i = 0; i < chunks.size(); i ++)
         {
             for(int j = 0; j < chunks.get(i).size(); j ++)
@@ -311,14 +307,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
-                		each.collision(chunks.get(i).get(j));
+                		each.collision(chunks.get(i).get(j)); // gets all collisions between blocks and movingobjects
                 	}
                 }
             }
         }
         for(CollisionContainer each : collisions)
         {
-            each.run();
+            each.run(); // runs all the collsions
         }
         collisions.clear();
         for(int i = 0; i < chunks.size(); i ++)
@@ -329,29 +325,28 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
-                		each.collision2(chunks.get(i).get(j));
+                		each.collision2(chunks.get(i).get(j)); // gets all the collisions between multiple movingobjects
                 	}
                 }
             }
         }
         for(CollisionContainer each : collisions)
         {
-            each.run();
+            each.run(); // runs all the moving objects
         }
-        collisions.clear();
+        collisions.clear(); // removes all collisions
     }
 
     public void animate()
-    {
+    { //					main loop that runs all the important stuff
     	while(true)
         {
-            
             move();
             sort();
             collisionController();
             gridActive();
 
-			screenX = movingObjects.get(0).x + movingObjects.get(0).width/2- screenWidth/2;
+			screenX = movingObjects.get(0).x + movingObjects.get(0).width/2- screenWidth/2; // sets screenx to the temporary main character
 			screenY = movingObjects.get(0).y + movingObjects.get(0).height/2 - screenHeight/2;
             repaint();
             try 
@@ -364,7 +359,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }
         }
     }
-    
+    // dont touch below here this is just for key bindings and moustouching
     static class ADown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
             a = true;
         }}
