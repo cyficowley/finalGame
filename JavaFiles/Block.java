@@ -64,7 +64,7 @@ public class Block extends MainObject//this is going to be the base block of the
 		// {
 		// 	bla bla bla this is where we would put dirt
 		// }
-		else // this sets all the ones next to it to collisionActive:true because it is now air
+		else // this sets all the ones next to it to collisionActive:true because it is now air, just ignore the specifics here it is hard because of how the chunks are defined so you can't quite make it so that you easily access whatever is above or below because it is in seperate chunks so most of this is to deal with that
 		{
 			characteristic = new BlockCharacteristic(this);
 			if(subYIndex == 0)
@@ -119,7 +119,7 @@ public class Block extends MainObject//this is going to be the base block of the
 	public void setUp()
 	{
 		//check Above
-		int total = 0;
+		int total = 0;// this sets all the ones next to it to collisionActive:true because it is now air, just ignore the specifics here it is hard because of how the chunks are defined so you can't quite make it so that you easily access whatever is above or below because it is in seperate chunks so most of this is to deal with that
 		if(subYIndex == 0)
 		{
 			if(containingChunk.yIndex != 0)
@@ -195,5 +195,6 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			collisionActive = true;
 		}
+		//this whole thing just checks whether or not anything is empty next to it
 	}
 }
