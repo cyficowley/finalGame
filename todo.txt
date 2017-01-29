@@ -2,4 +2,5 @@ todo
 
 a crap ton of stuff
 
-to be honest probably need to finish frame work before you guys can start doing much on code, cuz this bit is the most complicated part, and I've been working on basically this for like months.  But you can start applying graphics to lie the stones and stuff and generating them
+Mark needs to make the squares have real texutures
+I need to comment everything

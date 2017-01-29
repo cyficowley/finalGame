@@ -9,6 +9,6 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 	}
 	public void drawMe(Graphics g)
 	{}
-	public void drawMe(Graphics g, Color color)
-	{}
+	public void drawMe(Graphics g, Color color) 
+	{} // this is for specific overide things
 }
