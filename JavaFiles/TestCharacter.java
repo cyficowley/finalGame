@@ -18,17 +18,17 @@ public class TestCharacter extends MovingObject
 				{
 					if(each.touched.fixed == true &&each.direction == 1)
 					{
-						yVelocity -= 7; //you jump only if touching a fixed block from bottom
+						yVelocity -= 6; //you jump only if touching a fixed block from bottom
 					}
 				}
 			}
 			if(Screen.d)
 			{
-				xVelocity = 3;
+				xVelocity = 4;
 			}
 			if(Screen.a)
 			{
-				xVelocity = -3;
+				xVelocity = -4;
 			}
 		}
 		super.moveMe();
