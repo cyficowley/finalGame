@@ -50,8 +50,7 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 	@Override
 	public void drawMe(Graphics2D g)
 	{
-		g.setPaint(tp1);
-		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
+		g.drawImage(img,(int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth,null);
 	}
 	@Override
 	public void drawMe(Graphics2D g, Color color)
