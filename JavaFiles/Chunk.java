@@ -12,7 +12,7 @@ public class Chunk extends MainObject// this will be like a chunk in minecraft s
 	ArrayList<MovingObject> containedObjects = new ArrayList<MovingObject>(); // all the moving objects within this chunk
 	public Chunk(int xIndex, int yIndex)
 	{
-		super(xIndex * Screen.blockWidth * Screen.blockWidth, yIndex * Screen.blockWidth * Screen.blockWidth, Screen.blockWidth * Screen.blockWidth,Screen.blockWidth * Screen.blockWidth); //makes it a mainobject
+		super(xIndex * Screen.blockWidth * 20, yIndex * Screen.blockWidth * 20, Screen.blockWidth * 20,Screen.blockWidth * 20); //makes it a mainobject
 		this.xIndex = xIndex;
 		this.yIndex = yIndex;
 		for (int i = 0; i < chunkSize; i ++) {
