@@ -47,7 +47,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static int startX = 0; // the starting x and y of the screen
     public static int startY = 0;
-    public static double blockWidth = 50; // width in pixels of a block
+    public static double blockWidth = 40; // width in pixels of a block
 
     public static double gravity = 0.048; // gravity
 
@@ -175,7 +175,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(2).get(1).blocks[i][j].rebuild(0);
             }
         }
-        movingObjects.add(new TestCharacter(chunks.get(1).get(1).x +1,chunks.get(1).get(1).y +1, 50,50)); 
+        movingObjects.add(new TestCharacter(chunks.get(1).get(1).x +1,chunks.get(1).get(1).y +1, 72,108)); 
         animate();
     }
 
@@ -347,16 +347,15 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public void animate()
     { //					main loop that runs all the important stuff
     	while(true)
-        {
+        {      
+            move();
             sort();
             collisionController();
             gridActive();
 
 			screenX = movingObjects.get(0).x + movingObjects.get(0).width/2- screenWidth/2; // sets screenx to the temporary main character
 			screenY = movingObjects.get(0).y + movingObjects.get(0).height/2 - screenHeight/2;
-            repaint();      
-            move();
-            try
+            repaint();            try
             {
                 Thread.sleep(16);
             } 
