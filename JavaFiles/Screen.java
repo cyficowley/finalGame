@@ -175,12 +175,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         animate();
     }
 
-	public void paintComponent(Graphics g)
+	public void paintComponent(Graphics gTemp)
     {
         if(started)
         {
         	time = System.currentTimeMillis(); // gets time when started drawing
-            super.paintComponent(g);
+            super.paintComponent(gTemp);
+            Graphics2D g = (Graphics2D)gTemp;
             int chunksDrawn = 0;
             for(int i = 0; i < chunks.size(); i ++)
             {

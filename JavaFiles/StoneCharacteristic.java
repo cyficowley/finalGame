@@ -1,18 +1,26 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
 
 public class StoneCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
-	static BufferedImage img;
+	BufferedImage img;
+	TexturePaint tp;
 	static BufferedImage img1;
 	static BufferedImage img2;
 	static BufferedImage img3;
+	static TexturePaint tp0;
+	static TexturePaint tp1;
+	static TexturePaint tp2;
+
 	public static boolean hasLoaded = false;
 	int rand;
 	public StoneCharacteristic(Block block)
@@ -28,23 +36,25 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 
 		if(rand == 0){
 			img = img1;
+			tp = tp0;
 		}
 		if(rand == 1){
 			img = img2;
+			tp = tp1;
 		}
 		if(rand == 2){
 			img = img3;
+			tp = tp2;
 		}
 	}
 	@Override
-	public void drawMe(Graphics g)
+	public void drawMe(Graphics2D g)
 	{
-		//g.setColor(color); // make this not fill a rect but draw the image
-		//g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
-		g.drawImage(img, (int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY),(int)(Screen.blockWidth),(int)(Screen.blockWidth), null);
+		g.setPaint(tp1);
+		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
 	}
 	@Override
-	public void drawMe(Graphics g, Color color)
+	public void drawMe(Graphics2D g, Color color)
 	{
 		g.setColor(color); // leave this one
 		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
@@ -64,5 +74,9 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 		try{
 			img3 = ImageIO.read(new File("images/stone_3.png"));
 		} catch (IOException e) {}
+
+		tp0 = new TexturePaint(img1, new Rectangle(0,0,(int)Screen.blockWidth, (int)Screen.blockWidth));
+		tp1 = new TexturePaint(img2, new Rectangle(0,0,(int)Screen.blockWidth, (int)Screen.blockWidth));
+		tp2 = new TexturePaint(img3, new Rectangle(0,0,(int)Screen.blockWidth, (int)Screen.blockWidth));
 	}
 }

@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.awt.Color;
 public class Block extends MainObject//this is going to be the base block of the worlds, a crap ton of these will make up the world
@@ -31,7 +32,7 @@ public class Block extends MainObject//this is going to be the base block of the
 			characteristic = new BlockCharacteristic(this); // any thing that is empty should make it just a plain block characteristic
 		}
 	}
-	public void drawMe(Graphics g)
+	public void drawMe(Graphics2D g)
 	{
 		x = xIndex * Screen.blockWidth;
 		y = yIndex * Screen.blockWidth;

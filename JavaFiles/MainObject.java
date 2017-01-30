@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.awt.Graphics2D;
 public class MainObject //everything must be a main object so we can put everything in a giant arraylist and access everything easily
 {
 	double x; // also it will make it easy to do collision between anything
