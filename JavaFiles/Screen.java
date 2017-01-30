@@ -189,9 +189,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }
         }
         movingObjects.add(new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108)); 
-        movingObjects.add(new MovingObject(40*20 +10,40 * 20 + 10, 72,72)); 
-        movingObjects.add(new MovingObject(40*20 +10,40 * 20 + 100, 72,72)); 
-        movingObjects.add(new MovingObject(40*20 +10,40 * 20 + 210, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(0).x +1,chunks.get(1).get(0).y + 10, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(0).x +1,chunks.get(1).get(0).y + 100, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(0).x +1,chunks.get(1).get(0).y + 210, 72,72)); 
         animate();
     }
 
@@ -285,6 +285,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
                         each.moveMe();
+                        System.out.println(each.y);
                     }
                 }
             }
