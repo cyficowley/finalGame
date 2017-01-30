@@ -5,13 +5,15 @@ public class WorldGenerator
 	static int dirtLevel = 10;
 	static int stoneLevel = 30;
 	static Block pastBlock;//types == {0 : air; 1 : stone; 2 : lightDirt; 3 : darkDirt; 4 : Grass;}
+	static double divizor = 5;
+	static double multiplyer = 3;
 	public static void run(Block block)
 	{
-		if(block.yIndex < (int)(Math.sin(block.xIndex /5.0)* 3) + dirtLevel)
+		if(block.yIndex < (int)(Math.sin(block.xIndex /divizor)* multiplyer) + dirtLevel)
 		{
 			block.rebuild(0);
 		}
-		else if(block.yIndex == (int)(Math.sin(block.xIndex/5.0)* 3) + dirtLevel)
+		else if(block.yIndex == (int)(Math.sin(block.xIndex/divizor)* multiplyer) + dirtLevel)
 		{
 			block.rebuild(4);
 		}
