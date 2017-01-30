@@ -49,7 +49,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static int startY = 0;
     public static double blockWidth = 40; // width in pixels of a block
 
-    public static double gravity = 0.1; // gravity
+    public static double gravity = 0.15; // gravity
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
@@ -175,10 +175,20 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(2).get(1).blocks[i][j].rebuild(0);
             }
         }
-        movingObjects.add(new TestCharacter(chunks.get(1).get(1).x +1,chunks.get(1).get(1).y +1, 72,108)); 
-        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +1, 72,72)); 
-        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +200, 72,72)); 
-        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +401, 72,72)); 
+        for(int i = 2; i < 3; i ++)
+        {
+            for(int j = 0; j < chunks.get(i).size(); j ++)
+            {
+                for(int k = 10; k < 14; k ++)
+                {
+                    for(int l = 0; l < 20; l ++)
+                    {
+                        chunks.get(i).get(j).blocks[k][l].rebuild(0);
+                    }
+                }
+            }
+        }
+        movingObjects.add(new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108)); 
         animate();
     }
 

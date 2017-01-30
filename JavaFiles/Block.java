@@ -27,6 +27,18 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			characteristic = new StoneCharacteristic(this);
 		}
+		else if(type == 2)
+		{
+			characteristic = new DirtCharacteristic(this);
+		}
+		else if(type == 3)
+		{
+			characteristic = new LightDirtCharacteristic(this);
+		}
+		else if(type == 4)
+		{
+			characteristic = new GrassCharacteristic(this);
+		}
 		else
 		{
 			characteristic = new BlockCharacteristic(this); // any thing that is empty should make it just a plain block characteristic
@@ -44,10 +56,6 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			characteristic.drawMe(g, Color.green);
 		}
-		else if(collisionActive)
-		{
-			characteristic.drawMe(g, Color.red);
-		}
 		else
 		{
 			characteristic.drawMe(g);
@@ -60,6 +68,18 @@ public class Block extends MainObject//this is going to be the base block of the
 		if(type == 1)
 		{
 			characteristic = new StoneCharacteristic(this);
+		}
+		else if(type == 2)
+		{
+			characteristic = new DirtCharacteristic(this);
+		}
+		else if(type == 3)
+		{
+			characteristic = new LightDirtCharacteristic(this);
+		}
+		else if(type == 4)
+		{
+			characteristic = new GrassCharacteristic(this);
 		}
 		// else if( type == 2)
 		// {
