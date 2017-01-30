@@ -49,7 +49,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static int startY = 0;
     public static double blockWidth = 40; // width in pixels of a block
 
-    public static double gravity = 0.048; // gravity
+    public static double gravity = 0.1; // gravity
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
@@ -176,6 +176,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }
         }
         movingObjects.add(new TestCharacter(chunks.get(1).get(1).x +1,chunks.get(1).get(1).y +1, 72,108)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +1, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +200, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +401, 72,72)); 
         animate();
     }
 
