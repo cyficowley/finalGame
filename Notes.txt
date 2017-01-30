@@ -17,3 +17,6 @@ Vertical top down or side view?
 Cyrus - Coding for background stuff like how the blocks and character works and everything
 Mark- making story populating world doing some pixel art stuff
 Chris - lots of the art, code, populating, top layer code and stuff probably
+
+
+test
