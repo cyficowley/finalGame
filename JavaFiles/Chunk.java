@@ -36,13 +36,13 @@ public class Chunk extends MainObject// this will be like a chunk in minecraft s
 		for (int i = 0; i < chunkSize; i ++) {
 			for(int j = 0; j < chunkSize;  j ++)
 			{
-				blocks[i][j].setUp();
+				blocks[i][j].setUp();//sets up
 			}
 		}
 		for (int i = 0; i < chunkSize; i ++) {
 			for(int j = 0; j < chunkSize;  j ++)
 			{
-				WorldGenerator.run(blocks[i][j]);
+				WorldGenerator.run(blocks[i][j]);// generatesz world
 			}
 		}
 	}
