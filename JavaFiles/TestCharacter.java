@@ -18,7 +18,7 @@ public class TestCharacter extends MovingObject
 				{
 					if(each.touched.fixed == true &&each.direction == 1)
 					{
-						yVelocity -= 5; //you jump only if touching a fixed block from bottom
+						yVelocity -= 7; //you jump only if touching a fixed block from bottom
 					}
 				}
 			}
