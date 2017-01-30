@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.awt.Color;
 public class TestCharacter extends MovingObject
@@ -13,11 +14,11 @@ public class TestCharacter extends MovingObject
 		if(!moved){ // makes it so you can only jump once even if in multiple chunks
 			if(Screen.space || Screen.w)
 			{
-				if(touched.size() > 0)
+				for(TouchData each : touched)
 				{
-					if(touched.get(0).touched.fixed == true &&touched.get(0).direction == 1)
+					if(each.touched.fixed == true &&each.direction == 1)
 					{
-						yVelocity -= 3; //you jump only if touching a fixed block from bottom
+						yVelocity -= 5; //you jump only if touching a fixed block from bottom
 					}
 				}
 			}

@@ -30,7 +30,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static double screenX = 0; //  the x and y of the viewpoint of the screen
     public static double screenY = 0;
 
-    public static String data = "Drawing"; // just some data that will display on the screen 
+    public static String data = "Drawing"; // just some data that will display on the screen
 
     public static double mouseX= 0; // the x and y of the mouse, will get everytime the mouse is moved
     public static double mouseY= 0;
@@ -46,10 +46,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static boolean space;
 
     public static int startX = 0; // the starting x and y of the screen
-    public static int startY = 0; 
-    public static double blockWidth = 20; // width in pixels of a block
+    public static int startY = 0;
+    public static double blockWidth = 40; // width in pixels of a block
 
-    public static double gravity = 0.048; // gravity
+    public static double gravity = 0.1; // gravity
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
@@ -168,19 +168,29 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(1).get(1).blocks[i][j].rebuild(0); // makes the chunk in chunkindex 1,1 empty
             }
         }
-        movingObjects.add(new TestCharacter(401,401, 50,50)); // for testing
-        movingObjects.add(new MovingObject(500,460, 50,50)); // adds 4 objects so that it does stuff and we can see stuff 
-        movingObjects.add(new MovingObject(500,520, 50,50));
-        movingObjects.add(new MovingObject(500,580, 50,50));
+        for(int i = 0; i < 20; i ++)
+        {
+            for(int j = 5;  j < 19; j ++)
+            {
+                chunks.get(2).get(1).blocks[i][j].rebuild(0);
+            }
+        }
+        movingObjects.add(new TestCharacter(chunks.get(1).get(1).x +1,chunks.get(1).get(1).y +1, 72,108)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +1, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +200, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(1).get(1).x +300,chunks.get(1).get(1).y +401, 72,72)); 
         animate();
     }
 
-	public void paintComponent(Graphics g)
+	public void paintComponent(Graphics gTemp)
     {
         if(started)
         {
         	time = System.currentTimeMillis(); // gets time when started drawing
-            super.paintComponent(g);
+            super.paintComponent(gTemp);
+            Graphics2D g = (Graphics2D)gTemp;
+
+            
             int chunksDrawn = 0;
             for(int i = 0; i < chunks.size(); i ++)
             {
@@ -201,22 +211,22 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	{
                 		for(MovingObject each : chunks.get(i).get(j).containedObjects)
 			            {
-			                each.drawMe(g); // draws everything within active range 
+			                each.drawMe(g); // draws everything within active range
 			            }
                 	}
                 }
             }
-            
+
             data += (" " +(Integer.toString(chunksDrawn)));
             g.setColor(Color.red);
             g.setFont(ariel);
             data += (" " + Long.toString(System.currentTimeMillis() - time)); // this will draw the chunks active and the time taken to draw it
             g.drawString(data,(int)screenWidth - 100,50);
             data = "";
-        }    
+        }
     }
 
-    public void gridActive() 
+    public void gridActive()
     { //						This method sets the chunks near the screen active so they move and draw
     	MainObject tempScreen = new MainObject(screenX-screenWidth*.2, screenY-screenHeight*.2,screenWidth*1.4,screenHeight*1.4);
     	for(int i = 0; i < chunks.size(); i ++)
@@ -261,12 +271,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
-                        each.moveMe(); 
+                        each.moveMe();
                     }
                 }
             }
         }
-            
+
     }
 
     public void sort()
@@ -280,13 +290,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }
         for(MovingObject each: movingObjects)
         {
-            int startXIndex = (int)((each.x -startX)/(blockWidth * blockWidth)); // gets start index
-            int startYIndex = (int)((each.y -startY)/(blockWidth * blockWidth));
+            int startXIndex = (int)((each.x)/(blockWidth *20)); // gets start index
+            int startYIndex = (int)((each.y)/(blockWidth *20));
             if(startXIndex >= 0 && startYIndex >= 0)
             {
-                for(int i = startXIndex; i * (blockWidth* blockWidth) < each.width + each.x && i <chunks.size(); i ++)
+                for(int i = startXIndex; i * (blockWidth*20) < each.width + each.x && i <chunks.size(); i ++)
                 {
-                    for(int j = startYIndex; j * (blockWidth* blockWidth) < each.height + each.y && j < chunks.get(i).size(); j ++)
+                    for(int j = startYIndex; j * (blockWidth*20) < each.height + each.y && j < chunks.get(i).size(); j ++)
                     {
                         chunks.get(i).get(j).containedObjects.add(each); //this makes it so the movingobjects can be in multiple chunks at once
                         each.moved = false;
@@ -340,7 +350,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public void animate()
     { //					main loop that runs all the important stuff
     	while(true)
-        {
+        {      
             move();
             sort();
             collisionController();
@@ -348,15 +358,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 			screenX = movingObjects.get(0).x + movingObjects.get(0).width/2- screenWidth/2; // sets screenx to the temporary main character
 			screenY = movingObjects.get(0).y + movingObjects.get(0).height/2 - screenHeight/2;
-            repaint();
-            try 
+            repaint();            try
             {
                 Thread.sleep(16);
             } 
-            catch(InterruptedException ex) 
+            catch(InterruptedException ex)
             {
                 Thread.currentThread().interrupt();
-            }
+            }     
         }
     }
     // dont touch below here this is just for key bindings and moustouching
@@ -392,11 +401,11 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }}
 
 
-    public void mousePressed(MouseEvent e) 
+    public void mousePressed(MouseEvent e)
     {
         mouseDown = true;
     }
-    public void mouseReleased(MouseEvent e) 
+    public void mouseReleased(MouseEvent e)
     {
         mouseDown = false;
     }

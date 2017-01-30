@@ -3,7 +3,6 @@ public class Runner
 {
 	public static void main(String args[])
 	{
-
 		JFrame frame = new JFrame("FinalGame");
     	Screen canvas = new Screen();
 	    frame.add(canvas);
