@@ -9,6 +9,8 @@ public class Chunk extends MainObject// this will be like a chunk in minecraft s
 	Block[][] blocks = new Block[chunkSize][chunkSize]; // 20 by 20, they are all squares
 	boolean active = true;
 
+	boolean blocksActive = true;
+
 	ArrayList<MovingObject> containedObjects = new ArrayList<MovingObject>(); // all the moving objects within this chunk
 	public Chunk(int xIndex, int yIndex)
 	{

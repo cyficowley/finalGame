@@ -151,7 +151,6 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
         screenWidth = getWidth();
         screenHeight = getHeight();
-        System.out.println(screenWidth);
         started = true; //starts drawing
 
         for(int i = 0; i < chunks.size(); i ++)
@@ -189,9 +188,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }
         }
         movingObjects.add(new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108)); 
-        movingObjects.add(new MovingObject(chunks.get(1).get(0).x +1,chunks.get(1).get(0).y + 10, 72,72)); 
-        movingObjects.add(new MovingObject(chunks.get(1).get(0).x +1,chunks.get(1).get(0).y + 100, 72,72)); 
-        movingObjects.add(new MovingObject(chunks.get(1).get(0).x +1,chunks.get(1).get(0).y + 210, 72,72)); 
+        movingObjects.add(new MovingObject(903.565369586355,1369.15, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
+        movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
         animate();
     }
 
@@ -203,7 +202,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             super.paintComponent(gTemp);
             Graphics2D g = (Graphics2D)gTemp;
 
-            
+            // System.out.println(chunks.get(1).get(2).containedObjects.size());
+            // System.out.println("                            " + movingObjects.get(1).y);
+            // System.out.println("                                                    " + chunks.get(1).get(2).blocksActive);
             int chunksDrawn = 0;
             for(int i = 0; i < chunks.size(); i ++)
             {
@@ -229,6 +230,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	}
                 }
             }
+
 
             data += (" " +(Integer.toString(chunksDrawn)));
             g.setColor(Color.red);
@@ -285,7 +287,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
                         each.moveMe();
-                        System.out.println(each.y);
+                        if(each.equals(movingObjects.get(1)))
+                        {
+                            System.out.println(i +"                  "+ j);
+                        }
                     }
                 }
             }
@@ -306,6 +311,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         {
             int startXIndex = (int)((each.x)/(blockWidth *20)); // gets start index
             int startYIndex = (int)((each.y)/(blockWidth *20));
+            each.active = false;
             if(startXIndex >= 0 && startYIndex >= 0)
             {
                 for(int i = startXIndex; i * (blockWidth*20) < each.width + each.x && i <chunks.size(); i ++)
@@ -315,6 +321,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                         chunks.get(i).get(j).containedObjects.add(each); //this makes it so the movingobjects can be in multiple chunks at once
                         each.moved = false;
                         each.drawn = false;
+                        chunks.get(i).get(j).blocksActive=true;
                     }
                 }
             }
@@ -327,7 +334,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         {
             for(int j = 0; j < chunks.get(i).size(); j ++)
             {
-                if(chunks.get(i).get(j).active)
+                if(chunks.get(i).get(j).blocksActive)
                 {
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
@@ -372,7 +379,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 			screenX = movingObjects.get(0).x + movingObjects.get(0).width/2- screenWidth/2; // sets screenx to the temporary main character
 			screenY = movingObjects.get(0).y + movingObjects.get(0).height/2 - screenHeight/2;
-            repaint();            try
+            repaint();            
+            try
             {
                 Thread.sleep(16);
             } 

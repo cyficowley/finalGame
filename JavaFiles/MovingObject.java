@@ -12,6 +12,7 @@ public class MovingObject extends MainObject
 	double mass;
 	boolean moved = false;
 	boolean drawn = false;
+	boolean active = false;
 	public MovingObject(double x, double y, double width, double height)
 	{
 		super(x,y,width,height);
