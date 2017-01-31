@@ -22,6 +22,15 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 	static BufferedImage img1;
 	static BufferedImage img2;
 	static BufferedImage img3;
+	static BufferedImage img4;
+	static BufferedImage img5;
+	static BufferedImage img6;
+	static BufferedImage img7;
+	static BufferedImage img8;
+	static BufferedImage img9;
+	static BufferedImage img10;
+	static BufferedImage img11;
+	static BufferedImage img12;
 	public static boolean hasLoaded = false;
 	int rand;
 	public LightDirtCharacteristic(Block block)
@@ -44,6 +53,34 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 		if(rand == 2){
 			img = img3;
 		}
+		if(rand == 3){
+			img = img4;
+		}
+		if(rand == 4){
+			img = img5;
+		}
+		if(rand == 5){
+			img = img6;
+		}
+		if(rand == 6){
+			img = img7;
+		}
+		if(rand == 7){
+			img = img8;
+		}
+		if(rand == 8){
+			img = img9;
+		}
+		if(rand == 9){
+			img = img10;
+		}
+		if(rand == 10){
+			img = img11;
+		}
+		if(rand == 11){
+			img = img12;
+
+		}
 	}
 	@Override
 	public void drawMe(Graphics2D g)
@@ -61,16 +98,53 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 		img1 = null;
 		img2 = null;
 		img3 = null;
+		img4 = null;
+		img5 = null;
+		img6 = null;
+		img7 = null;
+		img8 = null;
+		img9 = null;
+		img10 = null;
+		img11 = null;
+		img12 = null;
 
 		try{
 			img1 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")));
 		} catch (IOException e) {}
 		try{
-			img2 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")));
+			img2 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
 		} catch (IOException e) {}
 		try{
-			img3 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")));
+			img3 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
 		} catch (IOException e) {}
+		try{
+			img4 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
+		} catch (IOException e) {}
+		try{
+			img5 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")));
+		} catch (IOException e) {}
+		try{
+			img6 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
+		} catch (IOException e) {}
+		try{
+			img7 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
+		} catch (IOException e) {}
+		try{
+			img8 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
+		} catch (IOException e) {}
+		try{
+			img9 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")));
+		} catch (IOException e) {}
+		try{
+			img10 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
+		} catch (IOException e) {}
+		try{
+			img11 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
+		} catch (IOException e) {}
+		try{
+			img12 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
+		} catch (IOException e) {}
+
 	}
 	private BufferedImage toCompatibleImage(BufferedImage image)
 	{
