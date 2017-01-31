@@ -16,7 +16,7 @@ public class Block extends MainObject//this is going to be the base block of the
 	ArrayList<TouchData> touched= new ArrayList<TouchData>(); // all the movingobjects touch
 	public Block(int type, int xIndex, int yIndex, int subXIndex, int subYIndex, Chunk chunk)
 	{
-		super(Screen.startX - xIndex * Screen.blockWidth,Screen.startY - yIndex * Screen.blockWidth, Screen.blockWidth, Screen.blockWidth, true); //sets it up as a main object
+		super(xIndex * Screen.blockWidth,yIndex * Screen.blockWidth, Screen.blockWidth, Screen.blockWidth, true); //sets it up as a main object
 		this.type = type;
 		containingChunk = chunk; // the chunk this block is in
 		this.xIndex = xIndex;

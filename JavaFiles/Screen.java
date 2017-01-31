@@ -36,7 +36,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static double mouseY= 0;
     public static boolean mouseDown= false; // whether mouse is pressed
 
-    Font ariel = new Font("Ariel", Font.PLAIN, 20); // current font to draw on the screen
+    Font ariel = new Font("Ariel", Font.PLAIN, 15); // current font to draw on the screen
     boolean started = false;
 
     public static boolean a; // if a is down and so down
@@ -188,7 +188,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }
         }
         movingObjects.add(new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108)); 
-        movingObjects.add(new MovingObject(903.565369586355,1369.15, 72,72)); 
+        movingObjects.add(new MovingObject(1500,1500, 72,72)); 
         movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
         movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
         animate();
@@ -201,10 +201,6 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         	time = System.currentTimeMillis(); // gets time when started drawing
             super.paintComponent(gTemp);
             Graphics2D g = (Graphics2D)gTemp;
-
-            // System.out.println(chunks.get(1).get(2).containedObjects.size());
-            // System.out.println("                            " + movingObjects.get(1).y);
-            // System.out.println("                                                    " + chunks.get(1).get(2).blocksActive);
             int chunksDrawn = 0;
             for(int i = 0; i < chunks.size(); i ++)
             {
@@ -230,13 +226,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	}
                 }
             }
-
-
-            data += (" " +(Integer.toString(chunksDrawn)));
             g.setColor(Color.red);
             g.setFont(ariel);
-            data += (" " + Long.toString(System.currentTimeMillis() - time)); // this will draw the chunks active and the time taken to draw it
-            g.drawString(data,(int)screenWidth - 100,50);
+            g.drawString(data,(int)20,50);
             data = "";
         }
     }
@@ -287,10 +279,6 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
                         each.moveMe();
-                        if(each.equals(movingObjects.get(1)))
-                        {
-                            System.out.println(i +"                  "+ j);
-                        }
                     }
                 }
             }
@@ -339,7 +327,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
                 		each.collision(chunks.get(i).get(j)); // gets all collisions between blocks and movingobjects
-                	}
+                    }
                 }
             }
         }
