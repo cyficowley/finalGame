@@ -160,33 +160,6 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(i).get(j).setUp(); // this sets up all the chunks
             }
         }
-        for(int i = 0; i < 20; i ++)
-        {
-            for(int j = 0;  j < 20; j ++)
-            {
-                chunks.get(1).get(1).blocks[i][j].rebuild(0); // makes the chunk in chunkindex 1,1 empty
-            }
-        }
-        for(int i = 0; i < 20; i ++)
-        {
-            for(int j = 5;  j < 19; j ++)
-            {
-                chunks.get(2).get(1).blocks[i][j].rebuild(0);
-            }
-        }
-        for(int i = 2; i < 3; i ++)
-        {
-            for(int j = 0; j < chunks.get(i).size(); j ++)
-            {
-                for(int k = 10; k < 14; k ++)
-                {
-                    for(int l = 0; l < 20; l ++)
-                    {
-                        chunks.get(i).get(j).blocks[k][l].rebuild(0);
-                    }
-                }
-            }
-        }
         movingObjects.add(new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108)); 
         movingObjects.add(new MovingObject(1500,1500, 72,72)); 
         movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
