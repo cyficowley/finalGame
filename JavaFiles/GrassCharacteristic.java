@@ -111,38 +111,16 @@ public class GrassCharacteristic extends BlockCharacteristic // copy this exampl
 
 		try{
 			img1 = toCompatibleImage(ImageIO.read(new File("images/grass_1.png")));
-		} catch (IOException e) {}
-		try{
 			img2 = rotate90(toCompatibleImage(ImageIO.read(new File("images/grass_1.png"))));
-		} catch (IOException e) {}
-		try{
 			img3 = rotate180(toCompatibleImage(ImageIO.read(new File("images/grass_1.png"))));
-		} catch (IOException e) {}
-		try{
 			img4 = rotate270(toCompatibleImage(ImageIO.read(new File("images/grass_1.png"))));
-		} catch (IOException e) {}
-		try{
 			img5 = toCompatibleImage(ImageIO.read(new File("images/grass_2.png")));
-		} catch (IOException e) {}
-		try{
 			img6 = rotate90(toCompatibleImage(ImageIO.read(new File("images/grass_2.png"))));
-		} catch (IOException e) {}
-		try{
 			img7 = rotate180(toCompatibleImage(ImageIO.read(new File("images/grass_2.png"))));
-		} catch (IOException e) {}
-		try{
 			img8 = rotate270(toCompatibleImage(ImageIO.read(new File("images/grass_2.png"))));
-		} catch (IOException e) {}
-		try{
 			img9 = toCompatibleImage(ImageIO.read(new File("images/grass_3.png")));
-		} catch (IOException e) {}
-		try{
 			img10 = rotate90(toCompatibleImage(ImageIO.read(new File("images/grass_3.png"))));
-		} catch (IOException e) {}
-		try{
 			img11 = rotate180(toCompatibleImage(ImageIO.read(new File("images/grass_3.png"))));
-		} catch (IOException e) {}
-		try{
 			img12 = rotate270(toCompatibleImage(ImageIO.read(new File("images/grass_3.png"))));
 		} catch (IOException e) {}
 

@@ -110,38 +110,16 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 
 		try{
 			img1 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")));
-		} catch (IOException e) {}
-		try{
 			img2 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
-		} catch (IOException e) {}
-		try{
 			img3 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
-		} catch (IOException e) {}
-		try{
 			img4 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
-		} catch (IOException e) {}
-		try{
 			img5 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")));
-		} catch (IOException e) {}
-		try{
 			img6 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
-		} catch (IOException e) {}
-		try{
 			img7 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
-		} catch (IOException e) {}
-		try{
 			img8 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
-		} catch (IOException e) {}
-		try{
 			img9 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")));
-		} catch (IOException e) {}
-		try{
 			img10 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
-		} catch (IOException e) {}
-		try{
 			img11 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
-		} catch (IOException e) {}
-		try{
 			img12 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
 		} catch (IOException e) {}
 
