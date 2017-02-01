@@ -37,7 +37,7 @@ public class DirtCharacteristic extends BlockCharacteristic // copy this example
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
 
-		rand = (int)(Math.random() * (3));
+		rand = (int)(Math.random() * (12));
 
 		if(hasLoaded == false){
 			loadImg();
