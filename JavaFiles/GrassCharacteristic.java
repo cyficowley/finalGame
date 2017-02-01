@@ -69,9 +69,7 @@ public class GrassCharacteristic extends BlockCharacteristic // copy this exampl
 	private BufferedImage toCompatibleImage(BufferedImage image)
 	{
 	    // obtain the current system graphical settings
-	    GraphicsConfiguration gfx_config = GraphicsEnvironment.
-	        getLocalGraphicsEnvironment().getDefaultScreenDevice().
-	        getDefaultConfiguration();
+	    GraphicsConfiguration gfx_config = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
 	    /*
 	     * if image is already compatible and optimized for current system 
