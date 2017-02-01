@@ -68,52 +68,24 @@ public class Block extends MainObject//this is going to be the base block of the
 		else // this sets all the ones next to it to collisionActive:true because it is now air, just ignore the specifics here it is hard because of how the chunks are defined so you can't quite make it so that you easily access whatever is above or below because it is in seperate chunks so most of this is to deal with that
 		{
 			characteristic = new BlockCharacteristic(this);
-			if(subYIndex == 0)
+			if(yIndex != 0)
 			{
-				if(containingChunk.yIndex != 0)
-				{
-					Screen.chunks.get(containingChunk.xIndex).get(containingChunk.yIndex -1).blocks[subXIndex][containingChunk.chunkSize -1].collisionActive = true;
-				}	
-			}
-			else
-			{
-				containingChunk.blocks[subXIndex][subYIndex -1].collisionActive = true;
+				Screen.getBlock(xIndex, yIndex -1).collisionActive = true;
 			}
 			//check Left
-			if(subXIndex == 0)
+			if(xIndex != 0)
 			{
-				if(containingChunk.xIndex != 0)
-				{
-					Screen.chunks.get(containingChunk.xIndex -1).get(containingChunk.yIndex).blocks[containingChunk.chunkSize -1][subYIndex].collisionActive = true;
-				}
-			}
-			else
-			{
-				containingChunk.blocks[subXIndex -1][subYIndex].collisionActive = true;
+				Screen.getBlock(xIndex -1, yIndex).collisionActive = true;
 			}
 			//check right
-			if(subXIndex == containingChunk.chunkSize -1)
+			if(xIndex != Screen.chunks.size()*20-1)
 			{
-				if(containingChunk.xIndex != Screen.currentXChunks -1)
-				{
-					Screen.chunks.get(containingChunk.xIndex +1).get(containingChunk.yIndex).blocks[0][subYIndex].collisionActive = true;
-				}
-			}
-			else
-			{
-				containingChunk.blocks[subXIndex +1][subYIndex].collisionActive = true;
+				Screen.getBlock(xIndex +1, yIndex).collisionActive = true;
 			}
 			// check below
-			if(subYIndex == containingChunk.chunkSize -1)
+			if(xIndex != Screen.chunks.get(0).size()*20-1)
 			{
-				if(containingChunk.yIndex != Screen.currentYChunks -1)
-				{
-					Screen.chunks.get(containingChunk.xIndex).get(containingChunk.yIndex +1).blocks[subXIndex][0].collisionActive = true;
-				}
-			}
-			else
-			{
-				containingChunk.blocks[subXIndex][subYIndex +1].collisionActive = true;
+				Screen.getBlock(xIndex, yIndex+1).collisionActive = true;
 			}
 		}
 	}
@@ -121,73 +93,33 @@ public class Block extends MainObject//this is going to be the base block of the
 	{
 		//check Above
 		int total = 0;// this sets all the ones next to it to collisionActive:true because it is now air, just ignore the specifics here it is hard because of how the chunks are defined so you can't quite make it so that you easily access whatever is above or below because it is in seperate chunks so most of this is to deal with that
-		if(subYIndex == 0)
+		if(yIndex != 0)
 		{
-			if(containingChunk.yIndex != 0)
-			{
-				if(Screen.chunks.get(containingChunk.xIndex).get(containingChunk.yIndex -1).blocks[subXIndex][containingChunk.chunkSize -1].type != 0)
-				{
-					total ++;
-				}
-			}	
-		}
-		else
-		{
-			if(containingChunk.blocks[subXIndex][subYIndex -1].type != 0)
+			if(Screen.getBlock(xIndex, yIndex -1).type !=0)
 			{
 				total ++;
 			}
 		}
 		//check Left
-		if(subXIndex == 0)
+		if(xIndex != 0)
 		{
-			if(containingChunk.xIndex != 0)
-			{
-				if(Screen.chunks.get(containingChunk.xIndex -1).get(containingChunk.yIndex).blocks[containingChunk.chunkSize -1][subYIndex].type != 0)
-				{
-					total ++;
-				}
-			}
-		}
-		else
-		{
-			if(containingChunk.blocks[subXIndex -1][subYIndex].type != 0)
+			if(Screen.getBlock(xIndex -1, yIndex).type !=0)
 			{
 				total ++;
 			}
 		}
 		//check right
-		if(subXIndex == containingChunk.chunkSize -1)
+		if(xIndex != Screen.chunks.size()*20-1)
 		{
-			if(containingChunk.xIndex != Screen.currentXChunks -1)
-			{
-				if(Screen.chunks.get(containingChunk.xIndex +1).get(containingChunk.yIndex).blocks[0][subYIndex].type != 0)
-				{
-					total ++;
-				}
-			}
-		}
-		else
-		{
-			if(containingChunk.blocks[subXIndex +1][subYIndex].type != 0)
+			if(Screen.getBlock(xIndex +1, yIndex).type !=0)
 			{
 				total ++;
 			}
 		}
 		// check below
-		if(subYIndex == containingChunk.chunkSize -1)
+		if(yIndex != Screen.chunks.get(0).size()*20-1)
 		{
-			if(containingChunk.yIndex != Screen.currentYChunks -1)
-			{
-				if(Screen.chunks.get(containingChunk.xIndex).get(containingChunk.yIndex +1).blocks[subXIndex][0].type != 0)
-				{
-					total ++;
-				}
-			}
-		}
-		else
-		{
-			if(containingChunk.blocks[subXIndex][subYIndex +1].type != 0)
+			if(Screen.getBlock(xIndex, yIndex+1).type !=0)
 			{
 				total ++;
 			}
