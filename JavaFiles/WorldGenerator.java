@@ -64,7 +64,7 @@ public class WorldGenerator
 		{
 			block.rebuild(4);
 		}
-		else if(block.yIndex < stoneLevel)
+		else if(block.yIndex < (int)(-Math.pow((Math.cos((block.xIndex-startXIndex) * 2 * Math.PI / length + Math.PI) +1),power) * amplitude/1.5 + stoneLevel))
 		{
 			if(Math.random() * (stoneLevel - dirtLevel) < block.yIndex - dirtLevel)
 			{
