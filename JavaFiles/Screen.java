@@ -351,6 +351,16 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             }     
         }
     }
+
+    public static Block getBlock(int xIndex, int yIndex)
+    { //                                                returns the block corresponding to the x and y index you submitted
+        if(xIndex >= 0 && xIndex < chunks.size()*20 && yIndex >= 0 && yIndex < chunks.get(0).size()*20)
+        {
+            return chunks.get(xIndex / 20).get(yIndex/20).blocks[xIndex %20][yIndex %20];
+        }
+        System.out.println("I returned null" + yIndex);
+        return null;
+    }
     // dont touch below here this is just for key bindings and moustouching
     static class ADown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
             a = true;
