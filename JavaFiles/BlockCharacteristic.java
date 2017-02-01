@@ -23,47 +23,43 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 
 	public BufferedImage rotate90(BufferedImage image)
 	{
+		int width = image.getWidth();
+		int height = image.getHeight();
 
-
-
-			int width = image.getWidth();
-    		int height = image.getHeight();
-
-			BufferedImage biFlip = new BufferedImage(height, width, image.getType());
-			for(int i=0; i<width; i++)
-	        	for(int j=0; j<height; j++)
-		            biFlip.setRGB(height-1-j, width-1-i, image.getRGB(i, j));
-		    return biFlip;
+		BufferedImage biFlip = new BufferedImage(height, width, image.getType());
+		for(int i=0; i<width; i++)
+        	for(int j=0; j<height; j++)
+	            biFlip.setRGB(height-1-j, width-1-i, image.getRGB(i, j));
+	    return biFlip;
 	}
 
 	public BufferedImage rotate180(BufferedImage image)
-		
-		{
-			//rotate 180
-			int width = image.getWidth();
-    		int height = image.getHeight();
+	{
+		//rotate 180
+		int width = image.getWidth();
+		int height = image.getHeight();
 
-			BufferedImage biFlip = new BufferedImage(height, width, image.getType());
-			for(int i=0; i<width; i++)
-	        	for(int j=0; j<height; j++)
-		            biFlip.setRGB(height-1-j, i, image.getRGB(i, j));
-		    return biFlip;
+		BufferedImage biFlip = new BufferedImage(height, width, image.getType());
+		for(int i=0; i<width; i++)
+        	for(int j=0; j<height; j++)
+	            biFlip.setRGB(height-1-j, i, image.getRGB(i, j));
+	    return biFlip;
 			
-		}
+	}
 
-		public BufferedImage rotate270(BufferedImage image)
-		{
-			//rotate 270
-			int width = image.getWidth();
-    		int height = image.getHeight();
+	public BufferedImage rotate270(BufferedImage image)
+	{
+		//rotate 270
+		int width = image.getWidth();
+		int height = image.getHeight();
 
-			BufferedImage biFlip = new BufferedImage(height, width, image.getType());
-			for(int i=0; i<width; i++)
-	        	for(int j=0; j<height; j++)
-		            biFlip.setRGB(height-1-j, width-1-i, image.getRGB(j, i));
-		    return biFlip;
+		BufferedImage biFlip = new BufferedImage(height, width, image.getType());
+		for(int i=0; i<width; i++)
+        	for(int j=0; j<height; j++)
+	            biFlip.setRGB(height-1-j, width-1-i, image.getRGB(j, i));
+	    return biFlip;
 			
-		}
+	}
 
 
 

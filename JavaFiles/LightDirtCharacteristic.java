@@ -14,73 +14,27 @@ import java.awt.RenderingHints;
 import java.awt.Transparency; 
 import java.net.URL; 
 import javax.swing.ImageIcon; 
+import java.util.ArrayList;
 
 public class LightDirtCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
 	BufferedImage img;
-	static BufferedImage img1;
-	static BufferedImage img2;
-	static BufferedImage img3;
-	static BufferedImage img4;
-	static BufferedImage img5;
-	static BufferedImage img6;
-	static BufferedImage img7;
-	static BufferedImage img8;
-	static BufferedImage img9;
-	static BufferedImage img10;
-	static BufferedImage img11;
-	static BufferedImage img12;
+	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
 	int rand;
 	public LightDirtCharacteristic(Block block)
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
 
-		rand = (int)(Math.random() * (12));
+		rand = (int)(Math.random() * imageArray.size());
 
 		if(hasLoaded == false){
 			loadImg();
 			hasLoaded = true;
 		}
 
-		if(rand == 0){
-			img = img1;
-		}
-		if(rand == 1){
-			img = img2;
-		}
-		if(rand == 2){
-			img = img3;
-		}
-		if(rand == 3){
-			img = img4;
-		}
-		if(rand == 4){
-			img = img5;
-		}
-		if(rand == 5){
-			img = img6;
-		}
-		if(rand == 6){
-			img = img7;
-		}
-		if(rand == 7){
-			img = img8;
-		}
-		if(rand == 8){
-			img = img9;
-		}
-		if(rand == 9){
-			img = img10;
-		}
-		if(rand == 10){
-			img = img11;
-		}
-		if(rand == 11){
-			img = img12;
-
-		}
+		img = imageArray.get(rand);
 	}
 	@Override
 	public void drawMe(Graphics2D g)
@@ -94,33 +48,21 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
 	}
 
-	public void loadImg(){
-		img1 = null;
-		img2 = null;
-		img3 = null;
-		img4 = null;
-		img5 = null;
-		img6 = null;
-		img7 = null;
-		img8 = null;
-		img9 = null;
-		img10 = null;
-		img11 = null;
-		img12 = null;
-
+	public void loadImg()
+	{
 		try{
-			img1 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")));
-			img2 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
-			img3 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
-			img4 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
-			img5 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")));
-			img6 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
-			img7 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
-			img8 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
-			img9 = toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")));
-			img10 = rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
-			img11 = rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
-			img12 = rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")))));
 		} catch (IOException e) {}
 
 	}
