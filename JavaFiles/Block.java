@@ -39,6 +39,10 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			characteristic = new GrassCharacteristic(this);
 		}
+		else if(type == 5)
+		{
+			characteristic = new DarkDirtCharacteristic(this);
+		}
 		else
 		{
 			characteristic = new BlockCharacteristic(this); // any thing that is empty should make it just a plain block characteristic
@@ -80,6 +84,10 @@ public class Block extends MainObject//this is going to be the base block of the
 		else if(type == 4)
 		{
 			characteristic = new GrassCharacteristic(this);
+		}
+		else if(type == 5)
+		{
+			characteristic = new DarkDirtCharacteristic(this);
 		}
 		// else if( type == 2)
 		// {
