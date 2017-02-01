@@ -32,7 +32,7 @@ public class WorldGenerator
 				}
 				else // large hill
 				{
-					amplitude = Math.pow(Math.random(),.7) *18;
+					amplitude = Math.pow(Math.random(),.7) *14;
 					power = (Math.random() + .3)/(Math.random() + .3);
 					length = 10 + amplitude *2;
 				}

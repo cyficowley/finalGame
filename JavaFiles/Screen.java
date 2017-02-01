@@ -47,7 +47,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static int startX = 0; // the starting x and y of the screen
     public static int startY = 0;
-    public static double blockWidth = 10; // width in pixels of a block
+    public static double blockWidth = 40; // width in pixels of a block
 
     public static double gravity = 0.15; // gravity
 
