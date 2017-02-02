@@ -37,11 +37,11 @@ public class TestCharacter extends MovingObject
 			}
 			if(Screen.d)
 			{
-				xVelocity = 3;
+				xVelocity = 4;
 			}
 			if(Screen.a)
 			{
-				xVelocity = -3;
+				xVelocity = -4;
 			}
 		}
 		super.moveMe();

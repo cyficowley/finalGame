@@ -16,7 +16,7 @@ public class Block extends MainObject//this is going to be the base block of the
 	ArrayList<TouchData> touched= new ArrayList<TouchData>(); // all the movingobjects touch
 	public Block(int type, int xIndex, int yIndex, int subXIndex, int subYIndex, Chunk chunk)
 	{
-		super(Screen.startX - xIndex * Screen.blockWidth,Screen.startY - yIndex * Screen.blockWidth, Screen.blockWidth, Screen.blockWidth, true); //sets it up as a main object
+		super(xIndex * Screen.blockWidth,yIndex * Screen.blockWidth, Screen.blockWidth, Screen.blockWidth, true); //sets it up as a main object
 		this.type = type;
 		containingChunk = chunk; // the chunk this block is in
 		this.xIndex = xIndex;
@@ -26,6 +26,18 @@ public class Block extends MainObject//this is going to be the base block of the
 		if(type == 1)
 		{
 			characteristic = new StoneCharacteristic(this);
+		}
+		else if(type == 2)
+		{
+			characteristic = new DirtCharacteristic(this);
+		}
+		else if(type == 3)
+		{
+			characteristic = new LightDirtCharacteristic(this);
+		}
+		else if(type == 4)
+		{
+			characteristic = new GrassCharacteristic(this);
 		}
 		else
 		{
@@ -44,10 +56,6 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			characteristic.drawMe(g, Color.green);
 		}
-		else if(collisionActive)
-		{
-			characteristic.drawMe(g, Color.red);
-		}
 		else
 		{
 			characteristic.drawMe(g);
@@ -61,6 +69,18 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			characteristic = new StoneCharacteristic(this);
 		}
+		else if(type == 2)
+		{
+			characteristic = new DirtCharacteristic(this);
+		}
+		else if(type == 3)
+		{
+			characteristic = new LightDirtCharacteristic(this);
+		}
+		else if(type == 4)
+		{
+			characteristic = new GrassCharacteristic(this);
+		}
 		// else if( type == 2)
 		// {
 		// 	bla bla bla this is where we would put dirt
@@ -70,22 +90,34 @@ public class Block extends MainObject//this is going to be the base block of the
 			characteristic = new BlockCharacteristic(this);
 			if(yIndex != 0)
 			{
-				Screen.getBlock(xIndex, yIndex -1).collisionActive = true;
+				if(Screen.getBlock(xIndex, yIndex -1).type != 0)
+				{
+					Screen.getBlock(xIndex, yIndex -1).collisionActive = true;
+				}
 			}
 			//check Left
 			if(xIndex != 0)
 			{
-				Screen.getBlock(xIndex -1, yIndex).collisionActive = true;
+				if(Screen.getBlock(xIndex -1, yIndex).type != 0)
+				{
+					Screen.getBlock(xIndex -1, yIndex).collisionActive = true;
+				}
 			}
 			//check right
 			if(xIndex != Screen.chunks.size()*20-1)
 			{
-				Screen.getBlock(xIndex +1, yIndex).collisionActive = true;
+				if(Screen.getBlock(xIndex+1, yIndex).type != 0)
+				{
+					Screen.getBlock(xIndex+1, yIndex).collisionActive = true;
+				}
 			}
 			// check below
 			if(xIndex != Screen.chunks.get(0).size()*20-1)
 			{
-				Screen.getBlock(xIndex, yIndex+1).collisionActive = true;
+				if(Screen.getBlock(xIndex, yIndex +1).type != 0)
+				{
+					Screen.getBlock(xIndex, yIndex +1).collisionActive = true;
+				}
 			}
 		}
 	}
