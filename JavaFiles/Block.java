@@ -90,22 +90,34 @@ public class Block extends MainObject//this is going to be the base block of the
 			characteristic = new BlockCharacteristic(this);
 			if(yIndex != 0)
 			{
-				Screen.getBlock(xIndex, yIndex -1).collisionActive = true;
+				if(Screen.getBlock(xIndex, yIndex -1).type != 0)
+				{
+					Screen.getBlock(xIndex, yIndex -1).collisionActive = true;
+				}
 			}
 			//check Left
 			if(xIndex != 0)
 			{
-				Screen.getBlock(xIndex -1, yIndex).collisionActive = true;
+				if(Screen.getBlock(xIndex -1, yIndex).type != 0)
+				{
+					Screen.getBlock(xIndex -1, yIndex).collisionActive = true;
+				}
 			}
 			//check right
 			if(xIndex != Screen.chunks.size()*20-1)
 			{
-				Screen.getBlock(xIndex +1, yIndex).collisionActive = true;
+				if(Screen.getBlock(xIndex+1, yIndex).type != 0)
+				{
+					Screen.getBlock(xIndex+1, yIndex).collisionActive = true;
+				}
 			}
 			// check below
 			if(xIndex != Screen.chunks.get(0).size()*20-1)
 			{
-				Screen.getBlock(xIndex, yIndex+1).collisionActive = true;
+				if(Screen.getBlock(xIndex, yIndex +1).type != 0)
+				{
+					Screen.getBlock(xIndex, yIndex +1).collisionActive = true;
+				}
 			}
 		}
 	}

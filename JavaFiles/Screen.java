@@ -62,6 +62,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static int currentXChunks = 10; //the current number of chunks in the x direction
     public static int currentYChunks = 10; //the current number of chunks in the y direction
 
+    TestCharacter mc;
+
     public Screen()
     {
         setFocusable(true); //setup stuff
@@ -160,10 +162,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(i).get(j).setUp(); // this sets up all the chunks
             }
         }
-        movingObjects.add(new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108)); 
+        mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108);
+        movingObjects.add(mc); 
         // movingObjects.add(new MovingObject(1500,1500, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
+        
         animate();
     }
 
@@ -257,11 +261,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 }
             }
         }
-
     }
 
     public void sort()
-    {//						THis sorts all the movingobjects into the right places
+    {//						THis sorts all the movingObjects into the right places
     	for(int i = 0; i < chunks.size(); i ++)
         {
             for(int j = 0; j < chunks.get(i).size(); j ++)
@@ -280,7 +283,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(int j = startYIndex; j * (blockWidth*20) < each.height + each.y && j < chunks.get(i).size(); j ++)
                     {
-                        chunks.get(i).get(j).containedObjects.add(each); //this makes it so the movingobjects can be in multiple chunks at once
+                        chunks.get(i).get(j).containedObjects.add(each); //this makes it so the movingObjects can be in multiple chunks at once
                         each.moved = false;
                         each.drawn = false;
                         chunks.get(i).get(j).blocksActive=true;
@@ -300,7 +303,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
-                		each.collision(chunks.get(i).get(j)); // gets all collisions between blocks and movingobjects
+                		each.collision(chunks.get(i).get(j)); // gets all collisions between blocks and movingObjects
                     }
                 }
             }
@@ -318,7 +321,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
-                		each.collision2(chunks.get(i).get(j)); // gets all the collisions between multiple movingobjects
+                		each.collision2(chunks.get(i).get(j)); // gets all the collisions between multiple movingObjects
                 	}
                 }
             }
@@ -328,6 +331,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
             each.run(); // runs all the moving objects
         }
         collisions.clear(); // removes all collisions
+        if(mouseDown)
+        {
+            Block temp = getBlock((int)((mouseX + screenX)/blockWidth),(int)((mouseY + screenY)/blockWidth));
+            if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
+            {
+                temp.rebuild(0);
+            }
+        }
     }
 
     public void animate()
