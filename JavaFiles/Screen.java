@@ -167,7 +167,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         // movingObjects.add(new MovingObject(1500,1500, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
-        
+        WorldGenerator.finalChanges();
         animate();
     }
 

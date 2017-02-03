@@ -6,8 +6,11 @@ public class WorldGenerator
 	static int dirtLevel = 60;
 	static int stoneLevel = 70;
 	static Block pastBlock;//types == {0 : air; 1 : stone; 2 : lightDirt; 3 : darkDirt; 4 : Grass;}
-	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a length
+	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a direction, a length
 	static boolean ranOnce = false;
+	public ArrayList<double[]> cavernSeeding = new ArrayList<double[]>(); // x, y, height, width of the cavern
+
+	public ArrayList<double> stoneLevels = new ArrayList<double>(); // x, y, height, width of the cavern
 	public static void run(Block block)
 	{
 		if(!ranOnce)
@@ -56,17 +59,20 @@ public class WorldGenerator
 				break;
 			}
 		}
-		if(block.yIndex < (int)(-Math.pow((Math.cos((block.xIndex-startXIndex) * 2 * Math.PI / length + Math.PI) +1),power) * amplitude + dirtLevel))
+		double dirt = -Math.pow((Math.cos((block.xIndex-startXIndex) * 2 * Math.PI / length + Math.PI) +1),power) * amplitude + dirtLevel;
+		double stone = -Math.pow((Math.cos((block.xIndex-startXIndex) * 2 * Math.PI / length + Math.PI) +1),power) * amplitude/1.5 + stoneLevel;
+		if(block.yIndex < (int)(dirt))
 		{
 			block.rebuild(0);
 		}
-		else if(block.yIndex < (int)(-Math.pow((Math.cos((block.xIndex-startXIndex) * 2 * Math.PI / length + Math.PI) +1),power) * amplitude + dirtLevel+1))
+		else if(block.yIndex < (int)(dirt+1))
 		{
 			block.rebuild(4);
+			stoneLevels.add(stone); // so it only runs once
 		}
-		else if(block.yIndex < (int)(-Math.pow((Math.cos((block.xIndex-startXIndex) * 2 * Math.PI / length + Math.PI) +1),power) * amplitude/1.5 + stoneLevel))
+		else if(block.yIndex < (int)(stone))
 		{
-			if(Math.random() * (stoneLevel - dirtLevel) < block.yIndex - dirtLevel)
+			if(Math.random() * (stone - dirt) < block.yIndex - dirt)
 			{
 				block.rebuild(2);
 			}
@@ -80,5 +86,26 @@ public class WorldGenerator
 			block.rebuild(1);
 		}
 		pastBlock = block;
+	}
+	public static void finalChanges()
+	{
+		for(int i = 0; i < stoneLevels.size(); i ++)
+		{
+			if(Math.random() < .03)
+			{
+				double[] tempArray = new double[4];
+				int maxYIndex = Screen.chunks.get(0).get(0).size() *20;
+				tempArray[0] = i;
+				tempArray[1] = (int)((maxYIndex - stoneLevels) * Math.random() + stoneLevels);
+				tempArray[2] = 3 + Math.random() * 4;
+				tempArray[3] = 2 * Math.PI * Math.random();
+				tempArray[4] = 7 * Math.random() + 4;
+				cavernSeeding.add(tempArray);
+			}
+		}
+		for(double[] each : cavernSeeding)
+		{
+			// fill it with empty space
+		}
 	}
 }
