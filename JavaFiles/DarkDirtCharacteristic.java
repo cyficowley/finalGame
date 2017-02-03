@@ -16,14 +16,15 @@ import java.net.URL;
 import javax.swing.ImageIcon; 
 import java.util.ArrayList;
 
-public class LightDirtCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
+public class DarkDirtCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
 	BufferedImage img;
 	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
 	int rand;
-	public LightDirtCharacteristic(Block block)
+
+	public DarkDirtCharacteristic(Block block)
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
 
@@ -36,6 +37,7 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 
 		img = imageArray.get(rand);
 	}
+
 	@Override
 	public void drawMe(Graphics2D g)
 	{
@@ -51,18 +53,18 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 	public void loadImg()
 	{
 		try{
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_1.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_2.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/light_dirt_3.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_1.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_1.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_1.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_1.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_2.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_2.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_2.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_2.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_3.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_3.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_3.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dark_dirt_3.png")))));
 		} catch (IOException e) {}
 
 	}
@@ -97,3 +99,6 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 	}
 }
  
+
+
+
