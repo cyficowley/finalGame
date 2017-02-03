@@ -47,7 +47,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static int startX = 0; // the starting x and y of the screen
     public static int startY = 0;
-    public static double blockWidth = 40; // width in pixels of a block
+    public static double blockWidth = 15; // width in pixels of a block
 
     public static double gravity = 0.15; // gravity
 
@@ -334,9 +334,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         if(mouseDown)
         {
             Block temp = getBlock((int)((mouseX + screenX)/blockWidth),(int)((mouseY + screenY)/blockWidth));
-            if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
+            if(temp !=null)
             {
-                temp.rebuild(0);
+                if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
+                {
+                    temp.rebuild(0);
+                }
             }
         }
     }
@@ -364,13 +367,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }
     }
 
-    public static Block getBlock(int xIndex, int yIndex)
+    public static Block getBlock(double xIndex, double yIndex)
     { //                                                returns the block corresponding to the x and y index you submitted
-        if(xIndex >= 0 && xIndex < chunks.size()*20 && yIndex >= 0 && yIndex < chunks.get(0).size()*20)
+        int xIndexInt = (int)xIndex;
+        int yIndexInt = (int)yIndex;
+        if(xIndexInt >= 0 && xIndexInt < chunks.size()*20 && yIndexInt >= 0 && yIndexInt < chunks.get(0).size()*20)
         {
-            return chunks.get(xIndex / 20).get(yIndex/20).blocks[xIndex %20][yIndex %20];
+            return chunks.get(xIndexInt / 20).get(yIndexInt/20).blocks[xIndexInt %20][yIndexInt %20];
         }
-        System.out.println("I returned null" + yIndex);
         return null;
     }
     // dont touch below here this is just for key bindings and moustouching

@@ -6,11 +6,11 @@ public class WorldGenerator
 	static int dirtLevel = 60;
 	static int stoneLevel = 70;
 	static Block pastBlock;//types == {0 : air; 1 : stone; 2 : lightDirt; 3 : darkDirt; 4 : Grass;}
-	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a direction, a length
+	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a power,
 	static boolean ranOnce = false;
-	public ArrayList<double[]> cavernSeeding = new ArrayList<double[]>(); // x, y, height, width of the cavern
+	static ArrayList<double[]> cavernSeeding = new ArrayList<double[]>(); // x, y, width of the cavern, direction, 
 
-	public ArrayList<double> stoneLevels = new ArrayList<double>(); // x, y, height, width of the cavern
+	static ArrayList<Double> stoneLevels = new ArrayList<Double>(); // x, y, height, width of the cavern, length
 	public static void run(Block block)
 	{
 		if(!ranOnce)
@@ -93,19 +93,44 @@ public class WorldGenerator
 		{
 			if(Math.random() < .03)
 			{
-				double[] tempArray = new double[4];
-				int maxYIndex = Screen.chunks.get(0).get(0).size() *20;
+				double[] tempArray = new double[6];
+				int maxYIndex = Screen.chunks.get(0).size() *20;
 				tempArray[0] = i;
-				tempArray[1] = (int)((maxYIndex - stoneLevels) * Math.random() + stoneLevels);
-				tempArray[2] = 3 + Math.random() * 4;
+				tempArray[1] = (int)((maxYIndex - stoneLevels.get(i)) * Math.random() + stoneLevels.get(i));
+				tempArray[2] = 4 + Math.random() * 4;
 				tempArray[3] = 2 * Math.PI * Math.random();
-				tempArray[4] = 7 * Math.random() + 4;
+				tempArray[4] = 3 + Math.pow(Math.random(),4)* 20;// x, y, width of the cavern, direction, length
 				cavernSeeding.add(tempArray);
 			}
 		}
 		for(double[] each : cavernSeeding)
-		{
-			// fill it with empty space
+		{	
+			ArrayList<Block> gonnaBeDetroyed = new ArrayList<Block>();
+			for(double k = 0; k < each[4]; k ++)	
+			{								
+				double startX = each[0]- Math.cos(each[3]) * k-each[2];// x, y, width of the cavern, direction, length
+				double endX = each[0]-Math.cos(each[3]) * k+each[2];
+				double startY = each[1]-Math.sin(each[3]) * k-each[2];
+				double endY = each[1]- Math.sin(each[3]) * k+each[2];
+				for(double i = startX; i <= endX; i++)
+				{
+					for(double j = startY; j <= endY; j ++)
+					{
+						Block tempBlock = Screen.getBlock(i,j);
+						if(tempBlock !=null)
+						{
+							if(Math.sqrt((double)Math.pow(startX +each[2]- tempBlock.xIndex,2) + (double)Math.pow(startY +each[2]- tempBlock.yIndex,2)) <= each[2])
+							{
+								gonnaBeDetroyed.add(tempBlock);
+							}
+						}
+					}
+				}
+			}
+			for(Block each2: gonnaBeDetroyed)
+			{
+				each2.rebuild(0);
+			}
 		}
 	}
 }
