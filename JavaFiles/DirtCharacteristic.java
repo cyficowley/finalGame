@@ -14,36 +14,27 @@ import java.awt.RenderingHints;
 import java.awt.Transparency; 
 import java.net.URL; 
 import javax.swing.ImageIcon; 
+import java.util.ArrayList;
 
 public class DirtCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
 	BufferedImage img;
-	static BufferedImage img1;
-	static BufferedImage img2;
-	static BufferedImage img3;
+	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
 	int rand;
 	public DirtCharacteristic(Block block)
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
 
-		rand = (int)(Math.random() * (3));
+		rand = (int)(Math.random() * imageArray.size());
 
 		if(hasLoaded == false){
 			loadImg();
 			hasLoaded = true;
 		}
 
-		if(rand == 0){
-			img = img1;
-		}
-		if(rand == 1){
-			img = img2;
-		}
-		if(rand == 2){
-			img = img3;
-		}
+		img = imageArray.get(rand);
 	}
 	@Override
 	public void drawMe(Graphics2D g)
@@ -57,20 +48,23 @@ public class DirtCharacteristic extends BlockCharacteristic // copy this example
 		g.fillRect((int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY), (int)Screen.blockWidth, (int)Screen.blockWidth);
 	}
 
-	public void loadImg(){
-		img1 = null;
-		img2 = null;
-		img3 = null;
+	public void loadImg()
+	{
+		try{
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png")))));
+		} catch (IOException e) {}
 
-		try{
-			img1 = toCompatibleImage(ImageIO.read(new File("images/dirt_1.png")));
-		} catch (IOException e) {}
-		try{
-			img2 = toCompatibleImage(ImageIO.read(new File("images/dirt_2.png")));
-		} catch (IOException e) {}
-		try{
-			img3 = toCompatibleImage(ImageIO.read(new File("images/dirt_3.png")));
-		} catch (IOException e) {}
 	}
 	private BufferedImage toCompatibleImage(BufferedImage image)
 	{
