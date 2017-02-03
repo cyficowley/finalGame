@@ -8,9 +8,9 @@ public class WorldGenerator
 	static Block pastBlock;//types == {0 : air; 1 : stone; 2 : lightDirt; 3 : darkDirt; 4 : Grass;}
 	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a direction, a length
 	static boolean ranOnce = false;
-	public ArrayList<double[]> cavernSeeding = new ArrayList<double[]>(); // x, y, height, width of the cavern
+	static ArrayList<double[]> cavernSeeding = new ArrayList<double[]>(); // x, y, height, width of the cavern
 
-	public ArrayList<double> stoneLevels = new ArrayList<double>(); // x, y, height, width of the cavern
+	static ArrayList<Double> stoneLevels = new ArrayList<Double>(); // x, y, height, width of the cavern
 	public static void run(Block block)
 	{
 		if(!ranOnce)
@@ -93,10 +93,10 @@ public class WorldGenerator
 		{
 			if(Math.random() < .03)
 			{
-				double[] tempArray = new double[4];
-				int maxYIndex = Screen.chunks.get(0).get(0).size() *20;
+				double[] tempArray = new double[5];
+				int maxYIndex = Screen.chunks.get(0).size() * 20;
 				tempArray[0] = i;
-				tempArray[1] = (int)((maxYIndex - stoneLevels) * Math.random() + stoneLevels);
+				tempArray[1] = (int)((maxYIndex - stoneLevel) * Math.random() + stoneLevel);
 				tempArray[2] = 3 + Math.random() * 4;
 				tempArray[3] = 2 * Math.PI * Math.random();
 				tempArray[4] = 7 * Math.random() + 4;
