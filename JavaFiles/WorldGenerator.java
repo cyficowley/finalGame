@@ -9,7 +9,6 @@ public class WorldGenerator
 	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a power,
 	static boolean ranOnce = false;
 	static ArrayList<double[]> cavernSeeding = new ArrayList<double[]>(); // x, y, width of the cavern, direction, 
-
 	static ArrayList<Double> stoneLevels = new ArrayList<Double>(); // x, y, height, width of the cavern, length
 	public static void run(Block block)
 	{
