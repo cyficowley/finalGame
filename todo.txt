@@ -1,6 +1,32 @@
-todo
+TODO:
 
-a crap ton of stuff
 
-Mark needs to make the squares have real texutures
-I need to comment everything
+We need a legit story/what are we going to do with the game, so that we can decide what to do next
+
+
+For each idea write if the following are needed::
+INVENTORY
+BREAKING BLOCKS
+CUSTOM MAPS
+WORLD GENERATION
+ENAMIES
+
+Write story ideas below:
+
+
+Straight up terraria, you mine you fight bosses:
+NEEDS:: ALL
+STORY:: no idea I haven't actually thought about it these are all examples
+
+Just exploring rpg
+NEEDS:: INVNETORY, CUSTOM MAPS, ENEMIES
+STORY:: whatever someone feels like writing we can have multiple types of these
+
+parqour thingy
+NEEDS:: CUSTOM MAPS
+STORY:: none
+
+vertical dungeon crawler
+NEEDS:: CUSTOM MAPS OR GENERATED MAPS, INVENTORY, ENEMIES
+STORY:: could be none, we'd need like main bosses and stuff but not a main story
+
