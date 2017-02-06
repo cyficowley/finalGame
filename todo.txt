@@ -23,7 +23,7 @@ NEEDS:: INVNETORY, CUSTOM MAPS, ENEMIES
 STORY:: whatever someone feels like writing we can have multiple types of these
 
 parqour thingy
-NEEDS:: CUSTOM MAPS
+NEEDS:: CUSTOM MAPS, CREATIVE JUMPING ELEMENTS
 STORY:: none
 
 vertical dungeon crawler
