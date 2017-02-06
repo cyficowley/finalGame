@@ -96,7 +96,7 @@ public class WorldGenerator
 				int maxYIndex = Screen.chunks.get(0).size() *20;
 				tempArray[0] = i;
 				tempArray[1] = (int)((maxYIndex - stoneLevels.get(i)) * Math.random() + stoneLevels.get(i));
-				tempArray[2] = 4 + Math.random() * 4;
+				tempArray[2] = 2 + Math.random() * 7;
 				tempArray[3] = 2 * Math.PI * Math.random();
 				tempArray[4] = 3 + Math.pow(Math.random(),4)* 20;// x, y, width of the cavern, direction, length
 				cavernSeeding.add(tempArray);

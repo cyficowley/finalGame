@@ -47,11 +47,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static int startX = 0; // the starting x and y of the screen
     public static int startY = 0;
-    public static double blockWidth = 15; // width in pixels of a block
+    public static double blockWidth = 40; // width in pixels of a block
 
     public static double gravity = 0.15; // gravity
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
+
+    static Block fakeBlock = new Block(0, 0,0,0,0, new Chunk(0,0));
 
     long time;
 
@@ -375,7 +377,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         {
             return chunks.get(xIndexInt / 20).get(yIndexInt/20).blocks[xIndexInt %20][yIndexInt %20];
         }
-        return null;
+        return fakeBlock;
     }
     // dont touch below here this is just for key bindings and moustouching
     static class ADown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
