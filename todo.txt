@@ -39,3 +39,11 @@ You could have a minecraft element in that you can prepare for the waves  by dig
 maybe lay traps from the inventory, you could upgrade your characters speed, jump, damage, health etc
 I like this idea -Cyrus
 
+
+
+
+GAME prototype idea:
+Player starts on randomly generated world, factions that fight eachother
+-collects items/resources/elements to build a space thingy / spaceship
+End goal of each planet = build a space port
+We need to make crafting and invetory and all the items
