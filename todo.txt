@@ -9,7 +9,7 @@ INVENTORY
 BREAKING BLOCKS
 CUSTOM MAPS
 WORLD GENERATION
-ENAMIES
+ENEMIES
 
 Write story ideas below:
 
@@ -29,4 +29,8 @@ STORY:: none
 vertical dungeon crawler
 NEEDS:: CUSTOM MAPS OR GENERATED MAPS, INVENTORY, ENEMIES
 STORY:: could be none, we'd need like main bosses and stuff but not a main story
+
+Wave based enemy game
+NEEDS:: COuld do all?
+STORY:: idk but like you have to survive increasingly difficult waves of enemies coming from different places. You could have a minecraft element in that you can prepare for the waves  by digging out caves and crap, maybe lay traps from the inventory, you could upgrade your characters speed, jump, damage, health etc idk
 
