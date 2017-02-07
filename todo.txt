@@ -1,5 +1,9 @@
 TODO:
-
+How to save and load things
+write an inventory
+come up with things to deal with items
+crafting
+how to break blocks good
 
 We need a legit story/what are we going to do with the game, so that we can decide what to do next
 
@@ -12,7 +16,6 @@ WORLD GENERATION
 ENEMIES
 
 Write story ideas below:
-
 
 Straight up terraria, you mine you fight bosses:
 NEEDS:: ALL
