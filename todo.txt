@@ -17,6 +17,34 @@ ENEMIES
 
 Write story ideas below:
 
+
+
+
+GAME prototype idea:
+Player starts on randomly generated world, factions that fight eachother
+-collects items/resources/elements to build a space thingy / spaceship
+End goal of each planet = build a space port
+We need to make crafting and invetory and all the items
+
+WE NEED 30 block types(we alreay have dirt, stone, and air)
+-ill start making more of them
+  - for now we will have, URANIUM, GOLD, IRON, COAL, AlUMINUM, TUNGSTEN, SILVER, PLUTONIUM, COPPER, NICKLE, ZINC, SILICON
+  
+I WILL WORK ON AN INVENTORY SYSTEM, PLUS ITS GUI AND CRAFTING/BUILDING
+
+WE NEED NPCS*****
+
+ALSO, WORLD GEN NEEDS WATER, AND FIXES
+
+
+
+
+
+
+
+
+OLD STUDFDF
+
 Straight up terraria, you mine you fight bosses:
 NEEDS:: ALL
 STORY:: no idea I haven't actually thought about it these are all examples
@@ -43,10 +71,3 @@ maybe lay traps from the inventory, you could upgrade your characters speed, jum
 I like this idea -Cyrus
 
 
-
-
-GAME prototype idea:
-Player starts on randomly generated world, factions that fight eachother
--collects items/resources/elements to build a space thingy / spaceship
-End goal of each planet = build a space port
-We need to make crafting and invetory and all the items
