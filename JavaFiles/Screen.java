@@ -53,6 +53,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
+    static Block fakeBlock = new Block(0, 0,0,0,0, new Chunk(0,0));
+
     long time;
 
     public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks, in a 2d arraylist
@@ -167,7 +169,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         // movingObjects.add(new MovingObject(1500,1500, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
-        
+        WorldGenerator.finalChanges();
         animate();
     }
 
@@ -334,9 +336,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         if(mouseDown)
         {
             Block temp = getBlock((int)((mouseX + screenX)/blockWidth),(int)((mouseY + screenY)/blockWidth));
-            if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
+            if(temp !=null)
             {
-                temp.rebuild(0);
+                if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
+                {
+                    temp.rebuild(0);
+                }
             }
         }
     }
@@ -364,14 +369,15 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }
     }
 
-    public static Block getBlock(int xIndex, int yIndex)
+    public static Block getBlock(double xIndex, double yIndex)
     { //                                                returns the block corresponding to the x and y index you submitted
-        if(xIndex >= 0 && xIndex < chunks.size()*20 && yIndex >= 0 && yIndex < chunks.get(0).size()*20)
+        int xIndexInt = (int)xIndex;
+        int yIndexInt = (int)yIndex;
+        if(xIndexInt >= 0 && xIndexInt < chunks.size()*20 && yIndexInt >= 0 && yIndexInt < chunks.get(0).size()*20)
         {
-            return chunks.get(xIndex / 20).get(yIndex/20).blocks[xIndex %20][yIndex %20];
+            return chunks.get(xIndexInt / 20).get(yIndexInt/20).blocks[xIndexInt %20][yIndexInt %20];
         }
-        System.out.println("I returned null" + yIndex);
-        return null;
+        return fakeBlock;
     }
     // dont touch below here this is just for key bindings and moustouching
     static class ADown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
