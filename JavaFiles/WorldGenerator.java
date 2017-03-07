@@ -4,9 +4,16 @@ public class WorldGenerator
 	static int spawnPointX = 5;
 	static int spawnPointY= 0;
 	static int dirtLevel = 60;
+<<<<<<< HEAD
 	static int stoneLevel = 70;
 	static Block pastBlock;//types == {0 : air; 1 : stone; 2 : lightDirt; 3 : darkDirt; 4 : Grass;}
 	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a power,
+=======
+	static int darkDirtLevel = 70;
+	static int stoneLevel = 80;
+	static Block pastBlock;//types == {0 : air; 1 : stone; 2 : lightDirt; 3 : mediumDirt; 4 : Grass; 5: darkDirt}
+	static ArrayList<double[]> worldData = new ArrayList<double[]>(); // each one has a startXIndex, amplitude, a length
+>>>>>>> master
 	static boolean ranOnce = false;
 	static ArrayList<double[]> cavernSeeding = new ArrayList<double[]>(); // x, y, width of the cavern, direction, 
 	static ArrayList<Double> stoneLevels = new ArrayList<Double>(); // x, y, height, width of the cavern, length
@@ -71,14 +78,32 @@ public class WorldGenerator
 		}
 		else if(block.yIndex < (int)(stone))
 		{
+<<<<<<< HEAD
 			if(Math.random() * (stone - dirt) < block.yIndex - dirt)
+=======
+			if(block.yIndex < darkDirtLevel)
+>>>>>>> master
 			{
-				block.rebuild(2);
+				if(Math.random() * (darkDirtLevel - dirtLevel) < block.yIndex - dirtLevel)
+				{
+					block.rebuild(2);
+				}
+				else
+				{
+					block.rebuild(3);
+				}
 			}
 			else
 			{
-				block.rebuild(3);
-			}
+				if(Math.random() * (stoneLevel - darkDirtLevel) < block.yIndex - darkDirtLevel)
+				{
+					block.rebuild(5);
+				}
+				else
+				{
+					block.rebuild(2);
+				}
+			}	
 		}
 		else
 		{
