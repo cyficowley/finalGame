@@ -1,7 +1,15 @@
 #######
 
 Items/Methods that have to be coded:
+(write your name, what branch you are working in, and whether the feature is done or not next to each one you are working on)
 
+ex: * breaking blocks (Cyrus, master, not done)
 
+* breaking blocks ()
+* inventory ()
+* making better main dude look ()
+* better work gen ()
+* more materials ()
+* crafting interface ()
 
 #######
