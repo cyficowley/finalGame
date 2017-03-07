@@ -63,8 +63,6 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 
 
 
-
-
 		
 			
 	
