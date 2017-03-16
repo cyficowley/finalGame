@@ -11,5 +11,7 @@ ex: * breaking blocks (Cyrus, master, not done)
 * better work gen ()
 * more materials ()
 * crafting interface ()
+* enemies ()
+* weapons ()
 
 #######
