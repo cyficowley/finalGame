@@ -7,19 +7,23 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class TestCharacter extends MovingObject
+public class TestCharacter extends Enemy
 {
 	private BufferedImage characterDefault;
 
-	public TestCharacter(double x, double y, double width, double height)
+	
+
+	public TestCharacter(double x, double y, double width, double height, double damage)
 	{
-		super(x,y,width,height); // this entire class is just temporary before we get a real main character class going
+		super(x,y,width,height, damage); // this entire class is just temporary before we get a real main character class going
 
 		try {
 		    characterDefault = ImageIO.read(new File("images/characterDefault.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		this.speed = 4;
+		this.type = "mc";
 	}
 	@Override
 	public void moveMe()
@@ -37,11 +41,25 @@ public class TestCharacter extends MovingObject
 			}
 			if(Screen.d)
 			{
-				xVelocity = 4;
+				if(xVelocity < speed)
+				{
+					xVelocity += speed/7;
+					if(xVelocity > speed)
+					{
+						xVelocity = speed;
+					}
+				}
 			}
 			if(Screen.a)
 			{
-				xVelocity = -4;
+				if(xVelocity > -speed)
+				{
+					xVelocity -= speed/7;
+					if(xVelocity < -speed)
+					{
+						xVelocity = -speed;
+					}
+				}
 			}
 		}
 		super.moveMe();
