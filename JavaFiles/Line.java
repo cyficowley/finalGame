@@ -55,6 +55,6 @@ public class Line
 			g.setColor(Color.black);
 		}
 		active = false;
-		g.drawLine((int)startX,(int)(Math.tan(angle) * startX + yInt), (int)endX,(int)(Math.tan(angle) * endX + yInt));
+		g.drawLine((int)(startX - Screen.screenX),(int)(Math.tan(angle) * startX + yInt - Screen.screenY), (int)(endX- Screen.screenX),(int)(Math.tan(angle) * endX + yInt - Screen.screenY));
 	}
 }

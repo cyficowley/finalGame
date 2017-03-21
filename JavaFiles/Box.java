@@ -57,8 +57,6 @@ public class Box
 				each.line.active = true;
 			}
 			each.line.drawMe(g);
-			g.setColor(Color.red);
-			g.fillOval((int)(each.line.centerPointX -5), (int)(each.line.centerPointY -5), 10,10);
 		}
 		active = false;
 	}

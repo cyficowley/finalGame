@@ -11,7 +11,7 @@ public class TestCharacter extends Enemy
 {
 	private BufferedImage characterDefault;
 
-	
+	Weapon weapon = new Sword(this);
 
 	public TestCharacter(double x, double y, double width, double height, double damage)
 	{
@@ -29,7 +29,7 @@ public class TestCharacter extends Enemy
 	public void moveMe()
 	{
 		if(!moved){ // makes it so you can only jump once even if in multiple chunks
-			if(Screen.space || Screen.w)
+			if(Screen.w)
 			{
 				for(TouchData each : touched)
 				{
@@ -61,6 +61,7 @@ public class TestCharacter extends Enemy
 					}
 				}
 			}
+			weapon.moveMe();
 		}
 		super.moveMe();
 	}
@@ -68,5 +69,6 @@ public class TestCharacter extends Enemy
 	@Override
 	public void drawMe(Graphics g) {
 		g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+		weapon.drawMe(g);
 	}
 }

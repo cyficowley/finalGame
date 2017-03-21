@@ -328,6 +328,16 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
                 		each.collision2(chunks.get(i).get(j)); // gets all the collisions between multiple movingObjects
+                        if(each.type.equals("mc")) //this is doing the collision between the weapon of mc and the enemies
+                        {
+                            for(MovingObject each2 : chunks.get(i).get(j).containedObjects)
+                            {
+                                if(each2.type.equals("enemy"))
+                                {
+                                    ((TestCharacter)each).weapon.collision((Enemy)each2);
+                                }
+                            }
+                        }
                 	}
                 }
             }
