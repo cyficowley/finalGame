@@ -11,6 +11,7 @@ public class Enemy extends MovingObject
 {
 
 	public double damage;
+	boolean direction; //true = right
 	double invulnerablilityCount= 0;
 	double defense = 1;
 	double angle;

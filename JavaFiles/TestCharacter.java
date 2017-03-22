@@ -28,47 +28,48 @@ public class TestCharacter extends Enemy
 	@Override
 	public void moveMe()
 	{
-		if(!moved){ // makes it so you can only jump once even if in multiple chunks
-			if(Screen.w)
+		if(Screen.w)
+		{
+			for(TouchData each : touched)
 			{
-				for(TouchData each : touched)
+				if(each.touched.fixed == true &&each.direction == 1)
 				{
-					if(each.touched.fixed == true &&each.direction == 1)
-					{
-						yVelocity -= 7; //you jump only if touching a fixed block from bottom
-					}
+					yVelocity -= 7; //you jump only if touching a fixed block from bottom
 				}
 			}
-			if(Screen.d)
+		}
+		if(Screen.d)
+		{
+			if(xVelocity < speed)
 			{
-				if(xVelocity < speed)
+				xVelocity += speed/7;
+				if(xVelocity > speed)
 				{
-					xVelocity += speed/7;
-					if(xVelocity > speed)
-					{
-						xVelocity = speed;
-					}
+					xVelocity = speed;
 				}
 			}
-			if(Screen.a)
+			direction = true;
+		}
+		if(Screen.a)
+		{
+			if(xVelocity > -speed)
 			{
-				if(xVelocity > -speed)
+				xVelocity -= speed/7;
+				if(xVelocity < -speed)
 				{
-					xVelocity -= speed/7;
-					if(xVelocity < -speed)
-					{
-						xVelocity = -speed;
-					}
+					xVelocity = -speed;
 				}
 			}
-			weapon.moveMe();
+			direction = false;
 		}
 		super.moveMe();
+		weapon.moveMe();
 	}
 
 	@Override
 	public void drawMe(Graphics g) {
 		g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
 		weapon.drawMe(g);
+		drawn = true;
 	}
 }

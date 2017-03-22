@@ -17,6 +17,8 @@ public class Weapon
 	public void drawMe(Graphics g){}
 
 	public void collision(Enemy enemy){}
+	
+	public void collision(){}
 
 	public void hit(Enemy enemy){}
 }

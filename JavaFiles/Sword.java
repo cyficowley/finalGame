@@ -8,15 +8,17 @@ public class Sword extends Weapon
 
 	double angle = Math.PI /4;
 
-	double length = 100;
+	double length = 300;
 
-	Box box;
+	Box boxRight;
+	Box boxLeft;
 
 	public Sword(TestCharacter mc)
 	{
 		super(mc);
 		this.damage = mc.damage;
-		box = new Box(length,10,mc.x + mc.width/2,mc.y + mc.height/2, mc.x + mc.width/2 -40,mc.y + mc.height/2 - length/2,0);
+		boxRight = new Box(length,10,mc.x + mc.width/2,mc.y + mc.height/2, mc.x + mc.width/2 - length/2 + 20,mc.y + mc.height/2 - 40,0);
+		boxLeft = new Box(length,10,mc.x + mc.width/2,mc.y + mc.height/2, mc.x + mc.width/2 + length/2 -20,mc.y + mc.height/2 - 40,0);
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class Sword extends Weapon
 		{
 			if(angle < Math.PI)
 			{
-				angle +=.1;
+				angle +=.15;
 			}
 			else
 			{
@@ -38,24 +40,72 @@ public class Sword extends Weapon
 				angle = Math.PI /4;
 			}
 		}
-		box.angle = angle;
-		box.centerPointX = mc.x + mc.width/2;
-		box.centerPointY = mc.y + mc.height/2;	
-		box.calculateMe();
+		if(mc.direction)
+		{
+			boxRight.angle = angle;
+			boxRight.centerPointX = mc.x + mc.width/2;
+			boxRight.centerPointY = mc.y + mc.height/2;
+			boxRight.calculateMe();
+		}
+		else
+		{
+			boxLeft.angle = -angle;
+			boxLeft.centerPointX = mc.x + mc.width/2;
+			boxLeft.centerPointY = mc.y + mc.height/2;
+			boxLeft.calculateMe();
+		}	
 	}
 
 	@Override
 	public void drawMe(Graphics g)
 	{
-		box.drawMe(g);
+		if(mc.direction)
+		{
+			boxRight.drawMe(g);
+		}
+		else
+		{
+			boxLeft.drawMe(g);
+		}
+		
+	}
+	@Override
+	public void collision()
+	{
+		for(int i = 0; i < Screen.chunks.size(); i ++)
+        {
+            for(int j = 0; j < Screen/chunks.get(i).size(); j ++)
+            {
+                if(Screen.chunks.get(i).get(j).blocksActive)
+                {
+                	for(MovingObject each : chunks.get(i).get(j).containedObjects)
+                	{
+                		if(each.type.equals("mc"))
+		                {
+		                    
+		                }
+                    }
+                }
+            }
+        }
 	}
 
 	@Override
 	public void collision(Enemy enemy)
 	{
-		if(swinging && boxMainObjectCollision(box, enemy))
+		if(mc.direction)
 		{
-			hit(enemy);
+			if(swinging && boxMainObjectCollision(boxRight, enemy))
+			{
+				hit(enemy);
+			}
+		}
+		else
+		{
+			if(swinging && boxMainObjectCollision(boxLeft, enemy))
+			{
+				hit(enemy);
+			}
 		}
 	}
 
@@ -98,6 +148,7 @@ public class Sword extends Weapon
 			enemy.xVelocity -= damage / mc.defense/4 * xMult;
 			enemy.yVelocity -= damage / enemy.defense/4;
 			enemy.invulnerablilityCount = 20;
+			System.out.println("HITTIN");
 		}
     }
 }

@@ -53,7 +53,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
-    static Block fakeBlock = new Block(0, 0,0,0,0, new Chunk(0,0));
+    static Chunk fakeChunk = new Chunk(0, 0);
+    static Block fakeBlock = new Block(0, 0,0,0,0, fakeChunk);
+
 
     long time;
 
@@ -238,22 +240,6 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public void move()
     {
-        // if(a)
-        // {
-        //     screenX -= 5;
-        // }
-        // if(d)
-        // {
-        //     screenX += 5;
-        // }
-        // if(s)
-        // {
-        //     screenY += 5;
-        // }
-        // if(w)
-        // {
-        //     screenY -= 5;
-        // }
     	for(int i = 0; i < chunks.size(); i ++) // this jus moves all the blocks
         {
             for(int j = 0;  j < chunks.get(i).size(); j ++)
@@ -262,7 +248,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
-                        each.moveMe();
+                        if(!each.moved)
+                        {
+                            each.moveMe();
+                        }
                     }
                 }
             }
@@ -328,16 +317,6 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 	for(MovingObject each : chunks.get(i).get(j).containedObjects)
                 	{
                 		each.collision2(chunks.get(i).get(j)); // gets all the collisions between multiple movingObjects
-                        if(each.type.equals("mc")) //this is doing the collision between the weapon of mc and the enemies
-                        {
-                            for(MovingObject each2 : chunks.get(i).get(j).containedObjects)
-                            {
-                                if(each2.type.equals("enemy"))
-                                {
-                                    ((TestCharacter)each).weapon.collision((Enemy)each2);
-                                }
-                            }
-                        }
                 	}
                 }
             }
@@ -362,6 +341,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         {
             each.collision();
         }
+        mc.weapon.collision();
     }
 
     public void animate()
@@ -425,6 +405,15 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }
         return fakeBlock;
     }
+    public static Chunk getChunk(double xIndex, double yIndex)
+    {
+        if(xIndex > 0 && xIndex < chunks.size() &&yIndex > 0 && yIndex < chunks.get(0).size())
+        {
+            return chunks.get((int)xIndex).get((int)yIndex);
+        }
+        return fakeChunk;
+    }
+
     // dont touch below here this is just for key bindings and moustouching
     static class ADown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
             a = true;
