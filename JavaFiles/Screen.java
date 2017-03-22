@@ -167,7 +167,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(i).get(j).setUp(); // this sets up all the chunks
             }
         }
-        mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108,25);
+        mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72, 144, 25);
         movingObjects.add(mc); 
 
 
