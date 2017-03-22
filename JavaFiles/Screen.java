@@ -49,7 +49,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static int startY = 0;
     public static double blockWidth = 40; // width in pixels of a block, default is 40
 
-    public static double gravity = 0.15; // gravity
+    public static double gravity = 0.2; // gravity
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
@@ -171,7 +171,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         movingObjects.add(mc); 
 
 
-        movingObjects.add(new BasicAiEnemy(400,20, 72,72,25)); 
+        movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
+        enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
+
+        movingObjects.add(new BasicAiEnemy(1200,20, 128,128,25)); 
         enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 

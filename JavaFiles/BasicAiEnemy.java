@@ -13,6 +13,7 @@ public class BasicAiEnemy extends Enemy
 	{
 		super(x,y,width,height, 25);
 		speed = 3;
+		fixed = true;
 	}
 	@Override
 	public void moveMe()
