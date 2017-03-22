@@ -103,7 +103,7 @@ public class Enemy extends MovingObject
 	{
 		if(xVelocity > -speed)
 		{
-			xVelocity -= speed/60;
+			x -= speed/60;
 			xVelocity -= speed/7;
 			if(xVelocity < -speed)
 			{
