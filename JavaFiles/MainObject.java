@@ -7,6 +7,7 @@ public class MainObject //everything must be a main object so we can put everyth
 	double width;
 	double height;
 	boolean fixed;
+	String type = "";
 	public MainObject(double x, double y, double width, double height)
 	{
 		this.x = x;

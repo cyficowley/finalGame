@@ -53,18 +53,21 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
-    static Block fakeBlock = new Block(0, 0,0,0,0, new Chunk(0,0));
+    static Chunk fakeChunk = new Chunk(0, 0);
+    static Block fakeBlock = new Block(0, 0,0,0,0, fakeChunk);
+
 
     long time;
 
     public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks, in a 2d arraylist
 
     public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>(); //all the moving objects
+    public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
     public static int currentXChunks = 10; //the current number of chunks in the x direction
     public static int currentYChunks = 10; //the current number of chunks in the y direction
 
-    TestCharacter mc;
+    static TestCharacter mc;
 
     public Screen()
     {
@@ -164,9 +167,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 chunks.get(i).get(j).setUp(); // this sets up all the chunks
             }
         }
-        mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108);
+        mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72,108,25);
         movingObjects.add(mc); 
-        // movingObjects.add(new MovingObject(1500,1500, 72,72)); 
+
+
+        movingObjects.add(new BasicAiEnemy(400,20, 72,72,25)); 
+        enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
         WorldGenerator.finalChanges();
@@ -234,22 +240,6 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
     public void move()
     {
-        // if(a)
-        // {
-        //     screenX -= 5;
-        // }
-        // if(d)
-        // {
-        //     screenX += 5;
-        // }
-        // if(s)
-        // {
-        //     screenY += 5;
-        // }
-        // if(w)
-        // {
-        //     screenY -= 5;
-        // }
     	for(int i = 0; i < chunks.size(); i ++) // this jus moves all the blocks
         {
             for(int j = 0;  j < chunks.get(i).size(); j ++)
@@ -258,7 +248,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 {
                     for(MovingObject each : chunks.get(i).get(j).containedObjects)
                     {
-                        each.moveMe();
+                        if(!each.moved)
+                        {
+                            each.moveMe();
+                        }
                     }
                 }
             }
@@ -344,6 +337,11 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
                 }
             }
         }
+        for(Enemy each : enemies)
+        {
+            each.collision();
+        }
+        mc.weapon.collision();
     }
 
     public void animate()
@@ -369,6 +367,34 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }
     }
 
+    public boolean boxCollision(Box one, Box two)
+    {
+        for(int i = 0; i < one.holders.length; i ++)
+        {
+            for(int j = 0; j < two.holders.length; j ++)
+            {
+                double[] temp = new double[] {(two.holders[j].line.yInt-one.holders[i].line.yInt)/(one.holders[i].line.slope-two.holders[j].line.slope), (two.holders[j].line.yInt-one.holders[i].line.yInt)/(one.holders[i].line.slope-two.holders[j].line.slope) * one.holders[i].line.slope + one.holders[i].line.yInt};
+                if(one.holders[i].line.startX < temp[0] && temp[0] < one.holders[i].line.endX && two.holders[j].line.startX < temp[0] && temp[0] < two.holders[j].line.endX)
+                {
+                    one.active = true; 
+                    two.active = true;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void boxMainObjectCollision(Box one, MainObject two)
+    {
+        Box temp = new Box(two.width, two.height, two.x + two.width/2, two.y + two.height/2, two.x + two.width/2, two.y + two.height/2,0);
+        temp.calculateMe();
+        if(boxCollision(one,temp))
+        {
+            // System.out.println("collided");
+        }
+    }
+
     public static Block getBlock(double xIndex, double yIndex)
     { //                                                returns the block corresponding to the x and y index you submitted
         int xIndexInt = (int)xIndex;
@@ -379,6 +405,15 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         }
         return fakeBlock;
     }
+    public static Chunk getChunk(double xIndex, double yIndex)
+    {
+        if(xIndex >= 0 && xIndex < chunks.size() &&yIndex >= 0 && yIndex < chunks.get(0).size())
+        {
+            return chunks.get((int)xIndex).get((int)yIndex);
+        }
+        return fakeChunk;
+    }
+
     // dont touch below here this is just for key bindings and moustouching
     static class ADown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
             a = true;

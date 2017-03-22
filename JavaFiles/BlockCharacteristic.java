@@ -58,14 +58,5 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
         	for(int j=0; j<height; j++)
 	            biFlip.setRGB(height-1-j, width-1-i, image.getRGB(j, i));
 	    return biFlip;
-			
 	}
-
-
-
-		
-			
-	
-
-
 }

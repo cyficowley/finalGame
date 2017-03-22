@@ -6,6 +6,8 @@ public class MovingObject extends MainObject
 {
 	double xVelocity=0; // velocity
 	double yVelocity=0;
+	double pastXVelocity=0; // velocity
+	double pastYVelocity=0;
 	double pastX; // the previous x value
 	double pastY;
 	ArrayList<TouchData> touched= new ArrayList<TouchData>(); //  an array of all the mainobjects this one has touched
@@ -24,6 +26,8 @@ public class MovingObject extends MainObject
 		{
 			pastY = y; 
 			pastX = x;
+			pastYVelocity = yVelocity;
+			pastXVelocity = xVelocity;
 			x += xVelocity;
 			y += yVelocity;
 			if(touched.size() > 0)
