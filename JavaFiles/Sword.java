@@ -161,8 +161,8 @@ public class Sword extends Weapon
 			{
 				xMult = -1;
 			}
-			enemy.xVelocity -= damage / mc.defense/4 * xMult;
-			enemy.yVelocity -= damage / enemy.defense/4;
+			enemy.xVelocity -= damage / mc.defense/4 * xMult * Math.pow(1000/enemy.mass, .2);
+			enemy.yVelocity -= damage / enemy.defense/4 * Math.pow(1000/enemy.mass, .2);
 			enemy.invulnerablilityCount = 20;
 			enemy.health -= damage / enemy.defense;
 		}

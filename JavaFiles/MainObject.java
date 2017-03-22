@@ -30,4 +30,9 @@ public class MainObject //everything must be a main object so we can put everyth
         else
             return false;
     }
+    public void removeMe()
+    {
+    	Screen.movingObjects.remove(this);
+    	Screen.enemies.remove(this);
+    }
 }

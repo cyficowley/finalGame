@@ -38,6 +38,10 @@ public class Enemy extends MovingObject
 			}
 		}
 		invulnerablilityCount --;
+		if(health <= 0)
+		{
+			removeMe();
+		}
 	}
 
 	public void collision()
@@ -75,16 +79,20 @@ public class Enemy extends MovingObject
 				if(mc.x + mc.width /2 > x + width/2)
 				{
 					mc.xVelocity += damage / mc.defense/4;
-					mc.yVelocity = this.pastYVelocity - damage / mc.defense/4 * mult;
+					mc.yVelocity = this.pastYVelocity - damage / mc.defense/4 * mult * 200/mc.mass;
 				}
 				else
 				{
 					mc.xVelocity -= damage / mc.defense/4;
-					mc.yVelocity = this.pastYVelocity - damage / mc.defense/4 *mult;
+					mc.yVelocity = this.pastYVelocity - damage / mc.defense/4 *mult * 200/mc.mass;
 				}
 			}
 			mc.health -= damage / mc.defense;
 			invulnerablilityCount = 20;
+			if(mc.health <= 0)
+			{
+				Screen.movingObjects.add(0, Screen.movingObjects.remove(Screen.movingObjects.indexOf(this)));
+			}
 		}
 	}
 	public void moveRight()
