@@ -1,3 +1,12 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 public class BasicAiEnemy extends Enemy
 {
 	public BasicAiEnemy(double x, double y, double width, double height, double damage)
@@ -42,5 +51,11 @@ public class BasicAiEnemy extends Enemy
 				}
 			}
 		}
+	}
+	@Override
+	public void drawMe(Graphics g) {
+		g.setColor(Color.orange);
+		g.fillRect((int)(x - Screen.screenX), (int)(y- Screen.screenY), (int)width, (int)height); // for testing
+		super.drawMe(g);
 	}
 }

@@ -50,6 +50,6 @@ public class TestCharacter extends Enemy
 	public void drawMe(Graphics g) {
 		g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
 		weapon.drawMe(g);
-		drawn = true;
+		super.drawMe(g);
 	}
 }

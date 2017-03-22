@@ -164,7 +164,7 @@ public class Sword extends Weapon
 			enemy.xVelocity -= damage / mc.defense/4 * xMult;
 			enemy.yVelocity -= damage / enemy.defense/4;
 			enemy.invulnerablilityCount = 20;
-			System.out.println("HITTIN");
+			enemy.health -= damage / enemy.defense;
 		}
     }
 }

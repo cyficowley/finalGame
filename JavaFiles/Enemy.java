@@ -10,7 +10,9 @@ import javax.imageio.ImageIO;
 public class Enemy extends MovingObject
 {
 
-	public double damage;
+	double damage;
+	double health = 100;
+	double maxHealth = 100;
 	boolean direction; //true = right
 	double invulnerablilityCount= 0; //when above 0 doens't allow more damage
 	double defense = 1;
@@ -81,6 +83,7 @@ public class Enemy extends MovingObject
 					mc.yVelocity = this.pastYVelocity - damage / mc.defense/4 *mult;
 				}
 			}
+			mc.health -= damage / mc.defense;
 			invulnerablilityCount = 20;
 		}
 	}
@@ -118,8 +121,11 @@ public class Enemy extends MovingObject
 
 	@Override
 	public void drawMe(Graphics g) {
-		g.setColor(Color.orange);
-		g.fillRect((int)(x - Screen.screenX), (int)(y- Screen.screenY), (int)width, (int)height); // for testing
+		g.setColor(Color.red);
+		g.fillRect((int)(x - width/20 - Screen.screenX), (int)(y- height/5 - Screen.screenY), (int)(width * 11/10), (int)(height/20 * 3));
+		g.setColor(Color.green);
+		g.fillRect((int)(x - width/20 - Screen.screenX), (int)(y- height/5 - Screen.screenY), (int)(width * 11/10 * health/maxHealth), (int)(height/20 * 3));
+
 		drawn = true;
 	}
 }
