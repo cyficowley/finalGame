@@ -7,7 +7,7 @@ ex: * breaking blocks (Cyrus, master, not done)
 
 * breaking blocks ()
 * inventory ()
-* making better main dude look ()
+* making better main dude look (Michael, master, not done)
 * better work gen ()
 * more materials ()
 * crafting interface ()
