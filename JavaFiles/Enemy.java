@@ -123,7 +123,7 @@ public class Enemy extends MovingObject
 	{
 		if(grounded)
 		{
-			yVelocity -= speed/4*7; //you jump only if touching a fixed block from bottom
+			yVelocity -= Math.sqrt(speed*16); //you jump only if touching a fixed block from bottom
 		}
 	}
 
