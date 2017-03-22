@@ -18,6 +18,7 @@ public class Block extends MainObject//this is going to be the base block of the
 	{
 		super(xIndex * Screen.blockWidth,yIndex * Screen.blockWidth, Screen.blockWidth, Screen.blockWidth, true); //sets it up as a main object
 		this.type = type;
+		super.type = "block";
 		containingChunk = chunk; // the chunk this block is in
 		this.xIndex = xIndex;
 		this.yIndex = yIndex;

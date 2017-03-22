@@ -28,41 +28,21 @@ public class TestCharacter extends Enemy
 	@Override
 	public void moveMe()
 	{
+		super.moveMe();
 		if(Screen.w)
 		{
-			for(TouchData each : touched)
-			{
-				if(each.touched.fixed == true &&each.direction == 1)
-				{
-					yVelocity -= 7; //you jump only if touching a fixed block from bottom
-				}
-			}
+			jump();
 		}
 		if(Screen.d)
 		{
-			if(xVelocity < speed)
-			{
-				xVelocity += speed/7;
-				if(xVelocity > speed)
-				{
-					xVelocity = speed;
-				}
-			}
+			moveRight();
 			direction = true;
 		}
 		if(Screen.a)
 		{
-			if(xVelocity > -speed)
-			{
-				xVelocity -= speed/7;
-				if(xVelocity < -speed)
-				{
-					xVelocity = -speed;
-				}
-			}
+			moveLeft();
 			direction = false;
 		}
-		super.moveMe();
 		weapon.moveMe();
 	}
 

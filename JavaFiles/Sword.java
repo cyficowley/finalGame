@@ -74,20 +74,36 @@ public class Sword extends Weapon
 	{
 		for(int i = 0; i < Screen.chunks.size(); i ++)
         {
-            for(int j = 0; j < Screen/chunks.get(i).size(); j ++)
+            for(int j = 0; j < Screen.chunks.get(i).size(); j ++)
             {
                 if(Screen.chunks.get(i).get(j).blocksActive)
                 {
-                	for(MovingObject each : chunks.get(i).get(j).containedObjects)
+                	for(MovingObject each : Screen.chunks.get(i).get(j).containedObjects)
                 	{
                 		if(each.type.equals("mc"))
 		                {
-		                    
+		                    checkAdjacents(i,j);
 		                }
                     }
                 }
             }
         }
+	}
+	public void checkAdjacents(int one, int two) 
+	{										//checks the movingobjects in the adjacent chunks to see if they are colliding with the sword
+		for(int i = -1; i < 2; i ++)
+		{
+			for(int j = -1; j < 2; j ++)
+			{
+				for(MovingObject each : Screen.getChunk(one + i, two + j).containedObjects)
+				{
+					if(each.type.equals("enemy"))
+					{
+						collision((Enemy)each);
+					}
+				}
+			}
+		}
 	}
 
 	@Override

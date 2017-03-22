@@ -67,7 +67,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     public static int currentXChunks = 10; //the current number of chunks in the x direction
     public static int currentYChunks = 10; //the current number of chunks in the y direction
 
-    TestCharacter mc;
+    static TestCharacter mc;
 
     public Screen()
     {
@@ -171,7 +171,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
         movingObjects.add(mc); 
 
 
-        movingObjects.add(new Enemy(400,20, 72,72,25)); 
+        movingObjects.add(new BasicAiEnemy(400,20, 72,72,25)); 
         enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
         // movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
@@ -407,7 +407,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
     }
     public static Chunk getChunk(double xIndex, double yIndex)
     {
-        if(xIndex > 0 && xIndex < chunks.size() &&yIndex > 0 && yIndex < chunks.get(0).size())
+        if(xIndex >= 0 && xIndex < chunks.size() &&yIndex >= 0 && yIndex < chunks.get(0).size())
         {
             return chunks.get((int)xIndex).get((int)yIndex);
         }

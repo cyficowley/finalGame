@@ -12,10 +12,11 @@ public class Enemy extends MovingObject
 
 	public double damage;
 	boolean direction; //true = right
-	double invulnerablilityCount= 0;
+	double invulnerablilityCount= 0; //when above 0 doens't allow more damage
 	double defense = 1;
 	double angle;
-	double speed;
+	double speed = 1;
+	boolean grounded = false; //if it is touching the ground
 	public Enemy(double x, double y, double width, double height, double damage)
 	{
 		super(x,y,width,height);
@@ -26,6 +27,14 @@ public class Enemy extends MovingObject
 	public void moveMe()
 	{
 		super.moveMe();
+		grounded = false;
+		for(TouchData each : touched)
+		{
+			if(each.touched.fixed == true &&each.direction == 1)
+			{
+				grounded = true;
+			}
+		}
 		invulnerablilityCount --;
 	}
 
@@ -72,9 +81,38 @@ public class Enemy extends MovingObject
 					mc.yVelocity = this.pastYVelocity - damage / mc.defense/4 *mult;
 				}
 			}
-			System.out.println(this.yVelocity);
-			System.out.println(mc.yVelocity);
 			invulnerablilityCount = 20;
+		}
+	}
+	public void moveRight()
+	{
+		if(xVelocity < speed)
+		{
+			x+=speed/60;
+			xVelocity += speed/7;
+			if(xVelocity > speed)
+			{
+				xVelocity = speed;
+			}
+		}
+	}
+	public void moveLeft()
+	{
+		if(xVelocity > -speed)
+		{
+			xVelocity -= speed/60;
+			xVelocity -= speed/7;
+			if(xVelocity < -speed)
+			{
+				xVelocity = -speed;
+			}
+		}
+	}
+	public void jump()
+	{
+		if(grounded)
+		{
+			yVelocity -= speed/4*7; //you jump only if touching a fixed block from bottom
 		}
 	}
 
