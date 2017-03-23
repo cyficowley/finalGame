@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.awt.Graphics2D;
 public class Weapon
 {
 
@@ -14,7 +15,7 @@ public class Weapon
 
 	public void moveMe(){}
 
-	public void drawMe(Graphics g){}
+	public void drawMe(Graphics2D g){}
 
 	public void collision(Enemy enemy){}
 	

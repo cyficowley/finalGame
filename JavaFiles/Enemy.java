@@ -128,12 +128,15 @@ public class Enemy extends MovingObject
 	}
 
 	@Override
-	public void drawMe(Graphics g) {
-		g.setColor(Color.red);
-		g.fillRect((int)(x - width/20 - Screen.screenX), (int)(y- height/5 - Screen.screenY), (int)(width * 11/10), (int)(height/20 * 3));
-		g.setColor(Color.green);
-		g.fillRect((int)(x - width/20 - Screen.screenX), (int)(y- height/5 - Screen.screenY), (int)(width * 11/10 * health/maxHealth), (int)(height/20 * 3));
-
+	public void drawMe(Graphics2D g) {
+		if(health < maxHealth)
+		{
+			g.setColor(Color.red);
+			g.fillRect((int)(x - width/20 - Screen.screenX), (int)(y- height/5 - Screen.screenY), (int)(width * 11/10), (int)(height/20 * 3));
+			g.setColor(Color.green);
+			g.fillRect((int)(x - width/20 - Screen.screenX), (int)(y- height/5 - Screen.screenY), (int)(width * 11/10 * health/maxHealth), (int)(height/20 * 3));
+		}
+			
 		drawn = true;
 	}
 }

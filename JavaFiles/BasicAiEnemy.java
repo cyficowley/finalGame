@@ -54,7 +54,7 @@ public class BasicAiEnemy extends Enemy
 		}
 	}
 	@Override
-	public void drawMe(Graphics g) {
+	public void drawMe(Graphics2D g) {
 		g.setColor(Color.orange);
 		g.fillRect((int)(x - Screen.screenX), (int)(y- Screen.screenY), (int)width, (int)height); // for testing
 		super.drawMe(g);

@@ -68,7 +68,7 @@ public class MovingObject extends MainObject
 			}
 		}
 	}
-	public void drawMe(Graphics g)
+	public void drawMe(Graphics2D g)
 	{
 		g.setColor(Color.blue);
 		g.fillRect((int)(x - Screen.screenX), (int)(y- Screen.screenY), (int)width, (int)height); // for testing

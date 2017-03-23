@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 public class Sword extends Weapon
 {
@@ -57,7 +58,7 @@ public class Sword extends Weapon
 	}
 
 	@Override
-	public void drawMe(Graphics g)
+	public void drawMe(Graphics2D g)
 	{
 		if(mc.direction)
 		{

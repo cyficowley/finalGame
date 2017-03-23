@@ -9,9 +9,9 @@ import javax.imageio.ImageIO;
 
 public class TestCharacter extends Enemy
 {
-	private BufferedImage characterDefault;
+	BufferedImage characterDefault;
 
-	Weapon weapon = new Sword(this);
+	Weapon weapon = new Gun(this);
 
 	public TestCharacter(double x, double y, double width, double height, double damage)
 	{
@@ -47,7 +47,7 @@ public class TestCharacter extends Enemy
 	}
 
 	@Override
-	public void drawMe(Graphics g) {
+	public void drawMe(Graphics2D g) {
 		g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
 		weapon.drawMe(g);
 		super.drawMe(g);
