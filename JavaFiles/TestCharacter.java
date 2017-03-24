@@ -55,11 +55,11 @@ public class TestCharacter extends Enemy
 	@Override
 	public void drawMe(Graphics2D g) {
 		if (Screen.d || super.xVelocity > 0.3) {
-			g.drawImage(characterRight, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+			g.drawImage(characterRight, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
 		} else if (Screen.a || super.xVelocity < -0.3) {
-			g.drawImage(characterLeft, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+			g.drawImage(characterLeft, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
 		} else {
-			g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+			g.drawImage(characterDefault, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
 		}
 		weapon.drawMe(g);
 		super.drawMe(g);
