@@ -54,9 +54,9 @@ public class TestCharacter extends Enemy
 
 	@Override
 	public void drawMe(Graphics2D g) {
-		if (direction && super.xVelocity > 0.1) {
+		if (Screen.d || super.xVelocity > 0.3) {
 			g.drawImage(characterRight, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
-		} else if (!direction && super.xVelocity < -0.1) {
+		} else if (Screen.a || super.xVelocity < -0.3) {
 			g.drawImage(characterLeft, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
 		} else {
 			g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
