@@ -14,7 +14,7 @@ public class TestCharacter extends Enemy
 	BufferedImage characterLeft;
 	BufferedImage characterBack;
 
-	Weapon weapon = new Gun(this);
+	Weapon weapon = new Sword(this);
 
 	public TestCharacter(double x, double y, double width, double height, double damage)
 	{
@@ -54,9 +54,9 @@ public class TestCharacter extends Enemy
 
 	@Override
 	public void drawMe(Graphics2D g) {
-		if (Screen.d || super.xVelocity > 0.3) {
+		if (Screen.d || (super.xVelocity > 0.3 && !Screen.a)) {
 			g.drawImage(characterRight, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
-		} else if (Screen.a || super.xVelocity < -0.3) {
+		} else if (Screen.a || (super.xVelocity < -0.3 && !Screen.d)) {
 			g.drawImage(characterLeft, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
 		} else {
 			g.drawImage(characterDefault, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
