@@ -14,7 +14,7 @@ public class Gun extends Weapon
 	double cooldown;
 	double maxCooldown;
 	double angle;
-	double speed = 15;
+	double speed = 5;
 	boolean gunDirection; //true is right
 	BufferedImage gunRight;
 	BufferedImage gunLeft;
@@ -68,7 +68,7 @@ public class Gun extends Weapon
 	}
 	public void fire()
 	{
-		bullets.add(new Bullet(speed,true,10,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+		bullets.add(new BounceBullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this, 15));
 	}
 	@Override
 	public void drawMe(Graphics2D g)

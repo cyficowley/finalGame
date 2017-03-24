@@ -27,11 +27,6 @@ public class Bullet extends MovingObject
 	@Override
 	public void moveMe()
 	{
-		if(touched.size() > 0)
-		{
-			Screen.movingObjects.remove(this);
-			gun.bullets.remove(this);
-		}
 		if(!gravity)
 		{
 			yVelocity += Screen.gravity;

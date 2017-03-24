@@ -173,11 +173,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
 		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
-
-		movingObjects.add(new BasicAiEnemy(1200,20, 128,128,25)); 
-		enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
-		movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
-		movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
+		// movingObjects.add(new BasicAiEnemy(1200,20, 128,128,25)); 
+		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
+		// movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
+		// movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
 		WorldGenerator.finalChanges();
 		animate();
 	}

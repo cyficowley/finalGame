@@ -26,7 +26,7 @@ public class Sword extends Weapon
 	{
 		super(mc);
 		try {
-			sword = ImageIO.read(new File("images/longSwordYellow.png"));
+			sword = ImageIO.read(new File("images/longSwordWhite.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
