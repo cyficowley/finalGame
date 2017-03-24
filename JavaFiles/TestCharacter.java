@@ -10,6 +10,9 @@ import javax.imageio.ImageIO;
 public class TestCharacter extends Enemy
 {
 	BufferedImage characterDefault;
+	BufferedImage characterRight;
+	BufferedImage characterLeft;
+	BufferedImage characterBack;
 
 	Weapon weapon = new Gun(this);
 
@@ -19,6 +22,9 @@ public class TestCharacter extends Enemy
 
 		try {
 		    characterDefault = ImageIO.read(new File("images/characterDefault.png"));
+		    characterRight = ImageIO.read(new File("images/characterRight.png"));
+		    characterLeft = ImageIO.read(new File("images/characterLeft.png"));
+		    characterBack = ImageIO.read(new File("images/characterBack.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -48,7 +54,14 @@ public class TestCharacter extends Enemy
 
 	@Override
 	public void drawMe(Graphics2D g) {
-		g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+		if (direction && super.xVelocity > 0.1) {
+			g.drawImage(characterRight, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+		} else if (!direction && super.xVelocity < -0.1) {
+			g.drawImage(characterLeft, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+		} else {
+			g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+		}
+
 		weapon.drawMe(g);
 		super.drawMe(g);
 	}
