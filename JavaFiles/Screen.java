@@ -21,6 +21,7 @@ import javax.swing.KeyStroke;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import javax.swing.SwingUtilities;
 
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
 { // STATIC STUFF YOU CAN ACCESS AT ANY TIME IN ANY CLASS BY SAYING SCREEN.VARIABLE
@@ -35,6 +36,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static double mouseX= 0; // the x and y of the mouse, will get everytime the mouse is moved
 	public static double mouseY= 0;
 	public static boolean mouseDown= false; // whether mouse is pressed
+	public static boolean mouseRightDown = false;
 
 	Font ariel = new Font("Ariel", Font.PLAIN, 15); // current font to draw on the screen
 	boolean started = false;
@@ -328,7 +330,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			each.run(); // runs all the moving objects
 		}
 		collisions.clear(); // removes all collisions
-		if(mouseDown)
+		if(mouseRightDown)
 		{
 			Block temp = getBlock((int)((mouseX + screenX)/blockWidth),(int)((mouseY + screenY)/blockWidth));
 			if(temp !=null)
@@ -456,11 +458,19 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	public void mousePressed(MouseEvent e)
 	{
-		mouseDown = true;
+		if(SwingUtilities.isRightMouseButton(e))
+		{
+			mouseRightDown = true;
+		}
+		else
+		{
+			mouseDown = true;
+		}
 	}
 	public void mouseReleased(MouseEvent e)
 	{
 		mouseDown = false;
+		mouseRightDown = false;
 	}
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
