@@ -21,6 +21,7 @@ import javax.swing.KeyStroke;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import javax.swing.SwingUtilities;
 
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
 { // STATIC STUFF YOU CAN ACCESS AT ANY TIME IN ANY CLASS BY SAYING SCREEN.VARIABLE
@@ -35,6 +36,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static double mouseX= 0; // the x and y of the mouse, will get everytime the mouse is moved
 	public static double mouseY= 0;
 	public static boolean mouseDown= false; // whether mouse is pressed
+	public static boolean mouseRightDown = false;
 
 	Font ariel = new Font("Ariel", Font.PLAIN, 15); // current font to draw on the screen
 	boolean started = false;
@@ -167,17 +169,16 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 				chunks.get(i).get(j).setUp(); // this sets up all the chunks
 			}
 		}
-		mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72, 144, 25);
+		mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72-9, 144 -4.5, 25);
 		movingObjects.add(mc); 
 
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
 		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
-
-		movingObjects.add(new BasicAiEnemy(1200,20, 128,128,25)); 
-		enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
-		movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
-		movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
+		// movingObjects.add(new BasicAiEnemy(1200,20, 128,128,25)); 
+		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
+		// movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
+		// movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
 		WorldGenerator.finalChanges();
 		animate();
 	}
@@ -329,7 +330,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			each.run(); // runs all the moving objects
 		}
 		collisions.clear(); // removes all collisions
-		if(mouseDown)
+		if(mouseRightDown)
 		{
 			Block temp = getBlock((int)((mouseX + screenX)/blockWidth),(int)((mouseY + screenY)/blockWidth));
 			if(temp !=null)
@@ -457,11 +458,19 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	public void mousePressed(MouseEvent e)
 	{
-		mouseDown = true;
+		if(SwingUtilities.isRightMouseButton(e))
+		{
+			mouseRightDown = true;
+		}
+		else
+		{
+			mouseDown = true;
+		}
 	}
 	public void mouseReleased(MouseEvent e)
 	{
 		mouseDown = false;
+		mouseRightDown = false;
 	}
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}

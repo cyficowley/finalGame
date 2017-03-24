@@ -68,7 +68,7 @@ public class Gun extends Weapon
 	}
 	public void fire()
 	{
-		bullets.add(new Bullet(speed,true,10,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+		bullets.add(new Bullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
 	}
 	@Override
 	public void drawMe(Graphics2D g)

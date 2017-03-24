@@ -61,7 +61,6 @@ public class TestCharacter extends Enemy
 		} else {
 			g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
 		}
-
 		weapon.drawMe(g);
 		super.drawMe(g);
 	}
