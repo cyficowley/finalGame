@@ -48,7 +48,7 @@ public class TestCharacter extends Enemy
 
 	@Override
 	public void drawMe(Graphics2D g) {
-		g.drawImage(characterDefault, (int) (x - Screen.screenX), (int) (y - Screen.screenY), (int) width, (int) height, null);
+		g.drawImage(characterDefault, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY - 4.5), (int) (width+9), (int) (height+4.5), null);
 		weapon.drawMe(g);
 		super.drawMe(g);
 	}
