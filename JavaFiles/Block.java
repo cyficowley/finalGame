@@ -57,10 +57,6 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			collisionActive = false;
 		}
-		if(touched.size() > 0)
-		{
-			characteristic.drawMe(g, Color.green);
-		}
 		else
 		{
 			characteristic.drawMe(g);

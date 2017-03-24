@@ -14,10 +14,11 @@ public class Gun extends Weapon
 	double cooldown;
 	double maxCooldown;
 	double angle;
-	double speed;
+	double speed = 15;
 	boolean gunDirection; //true is right
 	BufferedImage gunRight;
 	BufferedImage gunLeft;
+	ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public Gun(TestCharacter mc)
 	{
 		super(mc);
@@ -38,12 +39,12 @@ public class Gun extends Weapon
 	@Override
 	public void moveMe()
 	{
+		angle = Math.atan2(Screen.mouseY - Screen.screenHeight/2,Screen.mouseX - Screen.screenWidth/2);
 		if((Screen.mouseDown || Screen.space) && cooldown <0)
 		{
-			cooldown = 10;
-			//fire();
+			cooldown = maxCooldown;
+			fire();
 		}
-		angle = Math.atan2(Screen.mouseY - Screen.screenHeight/2,Screen.mouseX - Screen.screenWidth/2);
 		if(angle > -Math.PI/2 && angle < Math.PI/2)
 		{
 			gunDirection = true;
@@ -52,7 +53,7 @@ public class Gun extends Weapon
 		{
 			gunDirection = false;
 		}
-		if(cooldown > 0)
+		if(cooldown > 0 && cooldown < maxCooldown -3)
 		{
 			if(gunDirection)
 			{
@@ -65,17 +66,32 @@ public class Gun extends Weapon
 		}
 		cooldown--;
 	}
+	public void fire()
+	{
+		bullets.add(new Bullet(speed,true,10,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+	}
 	@Override
 	public void drawMe(Graphics2D g)
 	{
 		g.setColor(Color.blue);
 		if(gunDirection)
 		{
-			rotateImage(gunRight,20+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle, g);
+			rotateImage(gunRight,20+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY - 6,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle, g);
 		}
 		else
 		{
-			rotateImage(gunLeft,-70+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle-Math.PI, g);
+			rotateImage(gunLeft,-70+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY - 6,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle-Math.PI, g);
+		}
+	}
+	@Override
+	public void collision()
+	{
+		for(int i = 0; i < bullets.size(); i ++)
+		{
+			if(bullets.get(i).touched.size() != 0)
+			{
+				bullets.get(i).collision();
+			}
 		}
 	}
 	public void rotateImage(BufferedImage image,double x, double y, double angle, Graphics2D g)

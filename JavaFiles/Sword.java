@@ -1,25 +1,38 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 public class Sword extends Weapon
 {
 	boolean swinging;
 
 	double angle = Math.PI /4;
 
-	double length = 300;
+	double length = 200;
 
 	Box boxRight;
-	Box boxLeft;
+	Box boxLeft; //all swords must be 16 pixels wide, 8 in blade, 4 on each side for guard, they can be super long though
+
+	BufferedImage sword;
 
 	public Sword(TestCharacter mc)
 	{
 		super(mc);
+		try {
+			sword = ImageIO.read(new File("images/longSwordYellow.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.damage = mc.damage;
-		boxRight = new Box(length,10,mc.x + mc.width/2,mc.y + mc.height/2, mc.x + mc.width/2 - length/2 + 20,mc.y + mc.height/2 - 40,0);
-		boxLeft = new Box(length,10,mc.x + mc.width/2,mc.y + mc.height/2, mc.x + mc.width/2 + length/2 -20,mc.y + mc.height/2 - 40,0);
+		boxRight = new Box(length,20,mc.x + mc.width/2,mc.y + mc.height/2, mc.x + mc.width/2 - length/2 + 20,mc.y + mc.height/2 - 40,0);
+		boxLeft = new Box(length,20,mc.x + mc.width/2,mc.y + mc.height/2, mc.x + mc.width/2 + length/2 -20,mc.y + mc.height/2 - 40,0);
 	}
 
 	@Override
@@ -62,11 +75,11 @@ public class Sword extends Weapon
 	{
 		if(mc.direction)
 		{
-			boxRight.drawMe(g);
+			rotateImage(sword,mc.x + mc.width/2 - Screen.screenX +20, mc.y + mc.height/2 - Screen.screenY - boxRight.width + boxRight.height, mc.x + mc.width/2 - Screen.screenX, mc.y + mc.height/2 - Screen.screenY, boxRight.height+20, boxRight.width, boxRight.angle - Math.PI/2, g);
 		}
 		else
 		{
-			boxLeft.drawMe(g);
+			rotateImage(sword,mc.x + mc.width/2 - Screen.screenX -boxLeft.height*2 - 20, mc.y + mc.height/2 - Screen.screenY - boxLeft.width + boxLeft.height, mc.x + mc.width/2 - Screen.screenX, mc.y + mc.height/2 - Screen.screenY, boxLeft.height+20, boxLeft.width, boxLeft.angle + Math.PI/2, g);
 		}
 		
 	}
@@ -74,21 +87,21 @@ public class Sword extends Weapon
 	public void collision()
 	{
 		for(int i = 0; i < Screen.chunks.size(); i ++)
-        {
-            for(int j = 0; j < Screen.chunks.get(i).size(); j ++)
-            {
-                if(Screen.chunks.get(i).get(j).blocksActive)
-                {
-                	for(MovingObject each : Screen.chunks.get(i).get(j).containedObjects)
-                	{
-                		if(each.type.equals("mc"))
-		                {
-		                    checkAdjacents(i,j);
-		                }
-                    }
-                }
-            }
-        }
+		{
+			for(int j = 0; j < Screen.chunks.get(i).size(); j ++)
+			{
+				if(Screen.chunks.get(i).get(j).blocksActive)
+				{
+					for(MovingObject each : Screen.chunks.get(i).get(j).containedObjects)
+					{
+						if(each.type.equals("mc"))
+						{
+							checkAdjacents(i,j);
+						}
+					}
+				}
+			}
+		}
 	}
 	public void checkAdjacents(int one, int two) 
 	{										//checks the movingobjects in the adjacent chunks to see if they are colliding with the sword
@@ -127,34 +140,34 @@ public class Sword extends Weapon
 	}
 
 	public boolean boxMainObjectCollision(Box one, MainObject two)
-    {
-        Box temp = new Box(two.width, two.height, two.x + two.width/2, two.y + two.height/2, two.x + two.width/2, two.y + two.height/2,0);
-        temp.calculateMe();
-        return boxCollision(one,temp);
-    }
+	{
+		Box temp = new Box(two.width, two.height, two.x + two.width/2, two.y + two.height/2, two.x + two.width/2, two.y + two.height/2,0);
+		temp.calculateMe();
+		return boxCollision(one,temp);
+	}
 
-    public boolean boxCollision(Box one, Box two)
-    {
-        for(int i = 0; i < one.holders.length; i ++)
-        {
-            for(int j = 0; j < two.holders.length; j ++)
-            {
-                double[] temp = new double[] {(two.holders[j].line.yInt-one.holders[i].line.yInt)/(one.holders[i].line.slope-two.holders[j].line.slope), 
-                	(two.holders[j].line.yInt-one.holders[i].line.yInt)/(one.holders[i].line.slope-two.holders[j].line.slope) * one.holders[i].line.slope + one.holders[i].line.yInt};
-                if(one.holders[i].line.startX < temp[0] && temp[0] < one.holders[i].line.endX && two.holders[j].line.startX < temp[0] && temp[0] < two.holders[j].line.endX)
-                {
-                    one.active = true; 
-                    two.active = true;
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+	public boolean boxCollision(Box one, Box two)
+	{
+		for(int i = 0; i < one.holders.length; i ++)
+		{
+			for(int j = 0; j < two.holders.length; j ++)
+			{
+				double[] temp = new double[] {(two.holders[j].line.yInt-one.holders[i].line.yInt)/(one.holders[i].line.slope-two.holders[j].line.slope), 
+					(two.holders[j].line.yInt-one.holders[i].line.yInt)/(one.holders[i].line.slope-two.holders[j].line.slope) * one.holders[i].line.slope + one.holders[i].line.yInt};
+				if(one.holders[i].line.startX < temp[0] && temp[0] < one.holders[i].line.endX && two.holders[j].line.startX < temp[0] && temp[0] < two.holders[j].line.endX)
+				{
+					one.active = true; 
+					two.active = true;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
-    @Override
-    public void hit(Enemy enemy)
-    {
+	@Override
+	public void hit(Enemy enemy)
+	{
 		if(enemy.invulnerablilityCount < 0)
 		{
 			int xMult = 1;
@@ -162,10 +175,22 @@ public class Sword extends Weapon
 			{
 				xMult = -1;
 			}
-			enemy.xVelocity -= damage / mc.defense/4 * xMult * Math.pow(1000/enemy.mass, .2);
+			enemy.xVelocity -= damage / enemy.defense/4 * xMult * Math.pow(1000/enemy.mass, .2);
 			enemy.yVelocity -= damage / enemy.defense/4 * Math.pow(1000/enemy.mass, .2);
 			enemy.invulnerablilityCount = 20;
 			enemy.health -= damage / enemy.defense;
 		}
-    }
+	}
+
+	public void rotateImage(BufferedImage image,double x, double y, double angle, Graphics2D g)
+	{
+		rotateImage(image,x,y,image.getWidth()/2 + x, image.getHeight()/2 + y,image.getWidth(),image.getHeight(), angle,g);
+	}
+	public void rotateImage(BufferedImage image,double x, double y, double rotationX, double rotationY, double width, double height, double angle, Graphics2D g)
+	{
+		AffineTransform old = g.getTransform();
+		g.rotate(angle,rotationX , rotationY);
+		g.drawImage(image, (int)x, (int)y,(int)width,(int)height, null);
+		g.setTransform(old);
+	}
 }

@@ -19,7 +19,10 @@ public class CollisionContainer
 	{	
 		if(first)
 		{
-			if(one.collision(two))
+			if(one.type.equals("mc") && two.type.equals("bullet") ||two.type.equals("mc") && one.type.equals("bullet"))
+			{
+			}
+			else if(one.collision(two))
 			{
 				boolean oneLesser = false;
 				boolean xCollision = false;

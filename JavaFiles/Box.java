@@ -12,8 +12,12 @@ public class Box
 	double startX=10;
 	double endX=-10;
 	boolean active = false;
+	double width;
+	double height;
 	public Box(double width, double height, double centerPointX, double centerPointY, double centerBoxX, double centerBoxY, double angle)
 	{
+		this.width = width;
+		this.height = height;
 		this.centerPointX = centerPointX;
 		this.centerPointY = centerPointY;
 		this.angle = angle;
