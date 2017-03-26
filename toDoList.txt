@@ -6,8 +6,8 @@ Items/Methods that have to be coded:
 ex: * breaking blocks (Cyrus, master, not done)
 
 * breaking blocks ()
-* inventory ()
-* making better main dude look (Michael, master, not done)
+* inventory (Cyrus, InventoryTest, not done)
+* making better main dude look (Michael, master, semi done)
 * better work gen ()
 * more materials ()
 * crafting interface ()
