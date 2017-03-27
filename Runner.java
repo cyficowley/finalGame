@@ -3,8 +3,8 @@ public class Runner
 {
 	public static void main(String args[])
 	{
-		JFrame frame = new JFrame("FinalGame");
-    	Screen canvas = new Screen();
+		JFrame frame = new JFrame("swag");
+    	javaFiles.Screen canvas = new javaFiles.Screen();
 	    frame.add(canvas);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.pack();

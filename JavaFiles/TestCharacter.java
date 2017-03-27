@@ -1,3 +1,4 @@
+package javaFiles;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class TestCharacter extends Enemy
 	BufferedImage characterLeft;
 	BufferedImage characterBack;
 
-	Weapon weapon = new Sword(this);
+	public Weapon weapon = new Gun(this);
 
 	public TestCharacter(double x, double y, double width, double height, double damage)
 	{
@@ -28,7 +29,7 @@ public class TestCharacter extends Enemy
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		this.speed = 4;
+		this.speed = 3.7;
 		this.type = "mc";
 	}
 	@Override

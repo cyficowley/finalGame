@@ -1,3 +1,4 @@
+package javaFiles;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -34,7 +35,7 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 			hasLoaded = true;
 		}
 
-		img = imageArray.get(rand);
+		//img = imageArray.get(rand);
 	}
 	@Override
 	public void drawMe(Graphics2D g)
