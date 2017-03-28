@@ -226,7 +226,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			inventory.drawMe(g);
 			g.setColor(Color.red);
 			g.setFont(ariel);
-			data += (Long.toString(System.currentTimeMillis()-time));
+			data += (Long.toString((System.currentTimeMillis()-time)));
 			g.drawString(data,(int)20,50);
 			data = "";
 		}

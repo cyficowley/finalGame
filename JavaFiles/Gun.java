@@ -26,12 +26,12 @@ public class Gun extends Weapon
 		maxCooldown = 20;
 		cooldown = maxCooldown;
 		try {
-		    gunRight = ImageIO.read(new File("images/gunRight.png"));
+		    gunRight = ImageIO.read(new File("javaFiles/images/gunRight.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
 		try {
-		    gunLeft = ImageIO.read(new File("images/gunLeft.png"));
+		    gunLeft = ImageIO.read(new File("javaFiles/images/gunLeft.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}

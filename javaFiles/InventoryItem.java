@@ -18,12 +18,16 @@ public class InventoryItem extends MainObject
 	}
 	public void drawMe(Graphics2D g)
 	{
+		
+		long timeToDraw = System.nanoTime();
 		g.setColor(Color.white);
-		g.fillRoundRect((int)x, (int)y, (int)width, (int)height, 20, 20);
+		g.fillRect((int)x, (int)y, (int)width, (int)height);
 		g.setFont(ariel);
 		FontMetrics metrics = g.getFontMetrics(ariel);
 		g.setColor(Color.black);
 		g.drawString(label, (int)(x + 10), (int)(y + height - metrics.getMaxDescent()));
+		System.out.println((System.nanoTime() - timeToDraw)/1000000.0);
+
 	}
 	public void doAction()
 	{

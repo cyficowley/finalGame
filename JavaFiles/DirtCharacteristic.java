@@ -52,18 +52,18 @@ public class DirtCharacteristic extends BlockCharacteristic // copy this example
 	public void loadImg()
 	{
 		try{
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dirt_1.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dirt_2.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/dirt_3.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_1.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_1.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_1.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_1.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_2.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_2.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_2.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_2.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_3.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_3.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_3.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/dirt_3.png")))));
 		} catch (IOException e) {}
 
 	}

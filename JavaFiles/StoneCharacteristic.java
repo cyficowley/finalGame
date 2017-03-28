@@ -35,7 +35,7 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 			hasLoaded = true;
 		}
 
-		//img = imageArray.get(rand);
+		img = imageArray.get(rand);
 	}
 	@Override
 	public void drawMe(Graphics2D g)
@@ -52,19 +52,21 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 	public void loadImg()
 	{
 		try{
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/stone_1.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/stone_1.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/stone_1.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/stone_1.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/stone_2.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/stone_2.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/stone_2.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/stone_2.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/stone_3.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/stone_3.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/stone_3.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/stone_3.png")))));
-		} catch (IOException e) {}
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_1.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_1.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_1.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_1.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_2.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_2.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_2.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_2.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_3.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_3.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_3.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/stone_3.png")))));
+		} catch (IOException e) {
+			System.out.println("WEHFAWIEFIH");
+		}
 
 	}
 	private BufferedImage toCompatibleImage(BufferedImage image)

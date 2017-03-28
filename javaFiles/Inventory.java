@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.FontMetrics;
-import inventoryItems.*;
+import javaFiles.inventoryItems.*;
 public class Inventory
 {
+	long timeTotal = 0;
+	String currentTime = "";
 	boolean showing = true;
 	Font ariel = new Font("Ariel", Font.PLAIN, 36);
 	ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
@@ -20,24 +22,18 @@ public class Inventory
 
 	public Inventory()
 	{
-		items.add(new InventoryItem("pswag"));
-		items.add(new InventoryItem("pswag"));
-		items.add(new InventoryItem("pswag"));
-		items.add(new InventoryItem("pswag"));
-		items.add(new InventoryItem("pswag"));
-		items.add(new InventoryItem("pswag"));
-		items.add(new InventoryItem("pswag"));
 		items.add(new WhiteLongSword());
 		x = (int)(Screen.screenWidth /16);
 		actualY = (int)(Screen.screenHeight /16);
 		width = (int)(Screen.screenWidth /8 *7);
 		actualHeight = (int)(Screen.screenHeight /8*7);
 	}
-
+	int counter = 0;
 	public void drawMe(Graphics2D g)
 	{
 		if(showing)
 		{
+			counter ++;
 			g.setColor(backgroundColor);
 			g.fillRect(x,actualY,width,actualHeight);
 			FontMetrics metrics = g.getFontMetrics(ariel);
@@ -46,6 +42,7 @@ public class Inventory
 			g.setColor(Color.black);
 			g.setFont(ariel);
 			g.drawString("Inventory",(int)(Screen.screenWidth/2 - metrics.stringWidth("Inventory") /2), (int)(metrics.getHeight() + Screen.screenHeight /16));
+			//long temp = System.nanoTime();
 			if(showing)
 			{
 				for(int i = 0; i < items.size(); i ++)
@@ -57,6 +54,13 @@ public class Inventory
 					items.get(i).drawMe(g);
 				}
 			}
+			// timeTotal += System.nanoTime() - temp;
+			// if(counter % 60 ==0)
+			// {
+			// 	currentTime = Long.toString(timeTotal/60);
+			// 	timeTotal = 0;
+			// }
+			// Screen.data += currentTime;
 		}
 	}
 

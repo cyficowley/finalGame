@@ -22,10 +22,10 @@ public class TestCharacter extends Enemy
 		super(x,y,width,height, damage); // this entire class is just temporary before we get a real main character class going
 
 		try {
-		    characterDefault = ImageIO.read(new File("images/characterDefault.png"));
-		    characterRight = ImageIO.read(new File("images/characterRight.png"));
-		    characterLeft = ImageIO.read(new File("images/characterLeft.png"));
-		    characterBack = ImageIO.read(new File("images/characterBack.png"));
+		    characterDefault = ImageIO.read(new File("javaFiles/images/characterDefault.png"));
+		    characterRight = ImageIO.read(new File("javaFiles/images/characterRight.png"));
+		    characterLeft = ImageIO.read(new File("javaFiles/images/characterLeft.png"));
+		    characterBack = ImageIO.read(new File("javaFiles/images/characterBack.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}

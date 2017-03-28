@@ -1,4 +1,4 @@
-package inventoryItems;
+package javaFiles.inventoryItems;
 import javaFiles.*;
 public class WhiteLongSword extends InventoryItem
 {
