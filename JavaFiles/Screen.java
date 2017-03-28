@@ -26,7 +26,7 @@ import javax.swing.SwingUtilities;
 
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
 { // STATIC STUFF YOU CAN ACCESS AT ANY TIME IN ANY CLASS BY SAYING SCREEN.VARIABLE
-	Action[] actions = new Action[18]; // for key bindings
+	Action[] actions = new Action[20]; // for key bindings
 	public static double screenWidth; // the width of the screen
 	public static double screenHeight; // the hieght of the screen
 	public static double screenX = 0; //  the x and y of the viewpoint of the screen
@@ -48,6 +48,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static boolean d;
 	public static boolean w;
 	public static boolean space;
+	public static boolean i;
 
 	public static int startX = 0; // the starting x and y of the screen
 	public static int startY = 0;
@@ -162,7 +163,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		this.getActionMap().put( "doDDown", actions[16] );
 		actions[17] = new DUp();
 		this.getInputMap().put( KeyStroke.getKeyStroke( "released RIGHT" ), "doDUp" );
-		this.getActionMap().put( "doDUp", actions[17] );  //Setting up all the classes for the keybindings
+		this.getActionMap().put( "doDUp", actions[17] ); 
+		actions[18] = new IDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "I" ), "doIDown" );
+		this.getActionMap().put( "doIDown", actions[18] );
+		actions[19] = new IUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released I" ), "doIUp" );
+		this.getActionMap().put( "doIUp", actions[19] );  //Setting up all the classes for the keybindings
 
 		screenWidth = getWidth();
 		screenHeight = getHeight();
@@ -472,6 +479,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}}
 	static class SpaceUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			space = false;
+		}}
+	static class IDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
+			i = true;
+			inventory.drawMe = !inventory.drawMe;
+		}}
+	static class IUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
+			i = false;
 		}}
 
 
