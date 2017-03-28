@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class StoneCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
+	int switzerland = 1;
 	BufferedImage img;
 	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
@@ -91,7 +92,7 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 	    // actually draw the image and dispose of context no longer needed
 	    g2d.drawImage(image, 0, 0,(int)Screen.blockWidth, (int)Screen.blockWidth,null);
 	    g2d.dispose();
-
+	    //cyrus sucks a fat wang
 	    // return the new optimized image
 	    return new_image; 
 	}
