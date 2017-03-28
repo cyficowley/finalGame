@@ -66,16 +66,27 @@ public class Gun extends Weapon
 			}
 		}
 		cooldown--;
+		if(gunDirection && !mc.direction)
+		{
+			angle = Math.PI;
+		}
+		else if(!gunDirection && mc.direction)
+		{
+			angle = 0;
+		}
 	}
 	public void fire()
 	{
-		bullets.add(new Bullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+		if(gunDirection == mc.direction)
+		{
+			bullets.add(new Bullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+		}
 	}
 	@Override
 	public void drawMe(Graphics2D g)
 	{
 		g.setColor(Color.blue);
-		if(gunDirection)
+		if(mc.direction)
 		{
 			rotateImage(gunRight,20+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY - 6,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle, g);
 		}
