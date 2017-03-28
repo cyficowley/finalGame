@@ -223,7 +223,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 					}
 				}
 			}
-			inventory.drawMe(g);
+			inventory.drawInventory(g);
 			g.setColor(Color.red);
 			g.setFont(ariel);
 			data += (Long.toString((System.currentTimeMillis()-time)));
@@ -355,7 +355,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			each.collision();
 		}
 		mc.weapon.collision();
-		inventory.collision();
+		//inventory.collision();
 	}
 
 	public void animate()
