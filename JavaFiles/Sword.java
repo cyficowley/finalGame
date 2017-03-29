@@ -1,3 +1,4 @@
+package javaFiles;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,7 +27,7 @@ public class Sword extends Weapon
 	{
 		super(mc);
 		try {
-			sword = ImageIO.read(new File("images/longSwordWhite.png"));
+			sword = ImageIO.read(new File("javaFiles/images/longSwordWhite.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

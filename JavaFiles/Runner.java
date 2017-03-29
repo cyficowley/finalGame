@@ -1,9 +1,10 @@
+package javaFiles;
 import javax.swing.JFrame;
 public class Runner
 {
 	public static void main(String args[])
 	{
-		JFrame frame = new JFrame("FinalGame");
+		JFrame frame = new JFrame("swag");
     	Screen canvas = new Screen();
 	    frame.add(canvas);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

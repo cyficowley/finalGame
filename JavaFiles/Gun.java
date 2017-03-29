@@ -1,3 +1,4 @@
+package javaFiles;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,6 +19,7 @@ public class Gun extends Weapon
 	boolean gunDirection; //true is right
 	BufferedImage gunRight;
 	BufferedImage gunLeft;
+	boolean drawRight = false;
 	ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public Gun(TestCharacter mc)
 	{
@@ -25,12 +27,12 @@ public class Gun extends Weapon
 		maxCooldown = 20;
 		cooldown = maxCooldown;
 		try {
-		    gunRight = ImageIO.read(new File("images/gunRight.png"));
+		    gunRight = ImageIO.read(new File("javaFiles/images/gunRight.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
 		try {
-		    gunLeft = ImageIO.read(new File("images/gunLeft.png"));
+		    gunLeft = ImageIO.read(new File("javaFiles/images/gunLeft.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -48,10 +50,12 @@ public class Gun extends Weapon
 		if(angle > -Math.PI/2 && angle < Math.PI/2)
 		{
 			gunDirection = true;
+			drawRight = true;
 		}
 		else
 		{
 			gunDirection = false;
+			drawRight = false;
 		}
 		if(cooldown > 0 && cooldown < maxCooldown -3)
 		{
@@ -65,16 +69,29 @@ public class Gun extends Weapon
 			}
 		}
 		cooldown--;
+		if(gunDirection && Screen.a)
+		{
+			angle = Math.PI;
+			drawRight = false;
+		}
+		else if(!gunDirection && Screen.d)
+		{
+			angle = 0;
+			drawRight = true;
+		}
 	}
 	public void fire()
 	{
-		bullets.add(new Bullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+		if(gunDirection == mc.direction)
+		{
+			bullets.add(new Bullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+		}
 	}
 	@Override
 	public void drawMe(Graphics2D g)
 	{
 		g.setColor(Color.blue);
-		if(gunDirection)
+		if(drawRight)
 		{
 			rotateImage(gunRight,20+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY - 6,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle, g);
 		}

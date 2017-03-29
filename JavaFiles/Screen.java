@@ -1,3 +1,4 @@
+package javaFiles;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -25,7 +26,7 @@ import javax.swing.SwingUtilities;
 
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
 { // STATIC STUFF YOU CAN ACCESS AT ANY TIME IN ANY CLASS BY SAYING SCREEN.VARIABLE
-	Action[] actions = new Action[18]; // for key bindings
+	Action[] actions = new Action[20]; // for key bindings
 	public static double screenWidth; // the width of the screen
 	public static double screenHeight; // the hieght of the screen
 	public static double screenX = 0; //  the x and y of the viewpoint of the screen
@@ -36,6 +37,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static double mouseX= 0; // the x and y of the mouse, will get everytime the mouse is moved
 	public static double mouseY= 0;
 	public static boolean mouseDown= false; // whether mouse is pressed
+	public static boolean mouseFirstDown = false;
 	public static boolean mouseRightDown = false;
 
 	Font ariel = new Font("Ariel", Font.PLAIN, 15); // current font to draw on the screen
@@ -46,6 +48,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static boolean d;
 	public static boolean w;
 	public static boolean space;
+	public static boolean i;
 
 	public static int startX = 0; // the starting x and y of the screen
 	public static int startY = 0;
@@ -55,8 +58,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	public static ArrayList<CollisionContainer> collisions = new ArrayList<CollisionContainer>(); // arraylist comtainer for all the collisions
 
-	static Chunk fakeChunk = new Chunk(0, 0);
-	static Block fakeBlock = new Block(0, 0,0,0,0, fakeChunk);
+	public static Chunk fakeChunk = new Chunk(0, 0);
+	public static Block fakeBlock = new Block(0, 0,0,0,0, fakeChunk);
+
+	boolean changed = false;
 
 
 	long time;
@@ -66,10 +71,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>(); //all the moving objects
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
+	public static Inventory inventory;
+
 	public static int currentXChunks = 10; //the current number of chunks in the x direction
 	public static int currentYChunks = 10; //the current number of chunks in the y direction
 
-	static TestCharacter mc;
+	public static TestCharacter mc;
 
 	public Screen()
 	{
@@ -156,7 +163,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		this.getActionMap().put( "doDDown", actions[16] );
 		actions[17] = new DUp();
 		this.getInputMap().put( KeyStroke.getKeyStroke( "released RIGHT" ), "doDUp" );
-		this.getActionMap().put( "doDUp", actions[17] );  //Setting up all the classes for the keybindings
+		this.getActionMap().put( "doDUp", actions[17] ); 
+		actions[18] = new IDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "I" ), "doIDown" );
+		this.getActionMap().put( "doIDown", actions[18] );
+		actions[19] = new IUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released I" ), "doIUp" );
+		this.getActionMap().put( "doIUp", actions[19] );  //Setting up all the classes for the keybindings
 
 		screenWidth = getWidth();
 		screenHeight = getHeight();
@@ -171,6 +184,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}
 		mc = new TestCharacter(WorldGenerator.spawnPointX * blockWidth,WorldGenerator.spawnPointY * blockWidth, 72-9, 144 -4.5, 25);
 		movingObjects.add(mc); 
+		inventory = new Inventory();
 
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
@@ -190,6 +204,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			time = System.currentTimeMillis(); // gets time when started drawing
 			super.paintComponent(gTemp);
 			Graphics2D g = (Graphics2D)gTemp;
+			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			int chunksDrawn = 0;
 			for(int i = 0; i < chunks.size(); i ++)
 			{
@@ -215,9 +230,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 					}
 				}
 			}
+			inventory.drawInventory(g);
 			g.setColor(Color.red);
 			g.setFont(ariel);
-			data += (Long.toString(System.currentTimeMillis()-time));
+			data += (Long.toString((System.currentTimeMillis()-time)));
 			g.drawString(data,(int)20,50);
 			data = "";
 		}
@@ -346,6 +362,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			each.collision();
 		}
 		mc.weapon.collision();
+		//inventory.collision();
 	}
 
 	public void animate()
@@ -372,7 +389,16 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			catch(InterruptedException ex)
 			{
 				Thread.currentThread().interrupt();
-			}     
+			}
+			if(mouseDown && mouseFirstDown)
+			{
+				mouseFirstDown = false;
+			} 
+			if(mouseDown && !changed)
+			{
+				mouseFirstDown = true;
+				changed = true;
+			}
 		}
 	}
 
@@ -454,6 +480,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	static class SpaceUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			space = false;
 		}}
+	static class IDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
+			i = true;
+			inventory.drawMe = !inventory.drawMe;
+		}}
+	static class IUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
+			i = false;
+		}}
 
 
 	public void mousePressed(MouseEvent e)
@@ -470,6 +503,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public void mouseReleased(MouseEvent e)
 	{
 		mouseDown = false;
+		changed = false;
 		mouseRightDown = false;
 	}
 	public void mouseEntered(MouseEvent e) {}

@@ -1,3 +1,4 @@
+package javaFiles;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -51,18 +52,18 @@ public class GrassCharacteristic extends BlockCharacteristic // copy this exampl
 	public void loadImg()
 	{
 		try{
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/grass_1.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/grass_1.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/grass_1.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/grass_1.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/grass_2.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/grass_2.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/grass_2.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/grass_2.png")))));
-			imageArray.add(toCompatibleImage(ImageIO.read(new File("images/grass_3.png"))));
-			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("images/grass_3.png")))));
-			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("images/grass_3.png")))));
-			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("images/grass_3.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_1.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_1.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_1.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_1.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_2.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_2.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_2.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_2.png")))));
+			imageArray.add(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_3.png"))));
+			imageArray.add(rotate90(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_3.png")))));
+			imageArray.add(rotate180(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_3.png")))));
+			imageArray.add(rotate270(toCompatibleImage(ImageIO.read(new File("javaFiles/images/grass_3.png")))));
 		} catch (IOException e) {}
 
 	}

@@ -1,3 +1,4 @@
+package javaFiles;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -14,21 +15,21 @@ public class TestCharacter extends Enemy
 	BufferedImage characterLeft;
 	BufferedImage characterBack;
 
-	Weapon weapon = new Sword(this);
+	public Weapon weapon = new Gun(this);
 
 	public TestCharacter(double x, double y, double width, double height, double damage)
 	{
 		super(x,y,width,height, damage); // this entire class is just temporary before we get a real main character class going
 
 		try {
-		    characterDefault = ImageIO.read(new File("images/characterDefault.png"));
-		    characterRight = ImageIO.read(new File("images/characterRight.png"));
-		    characterLeft = ImageIO.read(new File("images/characterLeft.png"));
-		    characterBack = ImageIO.read(new File("images/characterBack.png"));
+		    characterDefault = ImageIO.read(new File("javaFiles/images/characterDefault.png"));
+		    characterRight = ImageIO.read(new File("javaFiles/images/characterRight.png"));
+		    characterLeft = ImageIO.read(new File("javaFiles/images/characterLeft.png"));
+		    characterBack = ImageIO.read(new File("javaFiles/images/characterBack.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		this.speed = 4;
+		this.speed = 3.7;
 		this.type = "mc";
 	}
 	@Override

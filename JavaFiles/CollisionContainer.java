@@ -1,3 +1,4 @@
+package javaFiles;
 public class CollisionContainer
 {
 	MovingObject one;
