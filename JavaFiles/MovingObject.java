@@ -35,7 +35,7 @@ public class MovingObject extends MainObject
 			{
 				if(touched.get(0).touched.fixed == true &&touched.get(0).direction == 1)
 				{
-					xVelocity *= .9; // slows it down if it is touching a fixed block from the bottom
+					xVelocity *= .80; // slows it down if it is touching a fixed block from the bottom
 				}
 			}
 			yVelocity += Screen.gravity;
