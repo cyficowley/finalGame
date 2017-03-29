@@ -36,6 +36,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	public static double mouseX= 0; // the x and y of the mouse, will get everytime the mouse is moved
 	public static double mouseY= 0;
+	public static MainObject mouseMainObject = new MainObject(0,0,0,0);
 	public static boolean mouseDown= false; // whether mouse is pressed
 	public static boolean mouseFirstDown = false;
 	public static boolean mouseRightDown = false;
@@ -373,7 +374,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			each.collision();
 		}
 		mc.weapon.collision();
-		//inventory.collision();
+		inventory.collision();
 	}
 
 	public void animate()
@@ -530,11 +531,15 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public void mouseMoved(MouseEvent e) {
 	   mouseY = e.getY();
 	   mouseX = e.getX();
+	   mouseMainObject.x = mouseX;
+	   mouseMainObject.y = mouseY;
 	}
 
 	public void mouseDragged(MouseEvent e) {
 	   mouseY = e.getY();
 	   mouseX = e.getX();
+	   mouseMainObject.x = mouseX;
+	   mouseMainObject.y = mouseY;
 	}
 
 	public static void closeWindow(){
