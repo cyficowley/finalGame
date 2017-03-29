@@ -19,6 +19,7 @@ public class Gun extends Weapon
 	boolean gunDirection; //true is right
 	BufferedImage gunRight;
 	BufferedImage gunLeft;
+	boolean fire = false;
 	boolean drawRight = false;
 	ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public Gun(TestCharacter mc)
@@ -41,12 +42,8 @@ public class Gun extends Weapon
 	@Override
 	public void moveMe()
 	{
+		fire = true;
 		angle = Math.atan2(Screen.mouseY - Screen.screenHeight/2,Screen.mouseX - Screen.screenWidth/2);
-		if((Screen.mouseDown || Screen.space) && cooldown <0)
-		{
-			cooldown = maxCooldown;
-			fire();
-		}
 		if(angle > -Math.PI/2 && angle < Math.PI/2)
 		{
 			gunDirection = true;
@@ -73,16 +70,23 @@ public class Gun extends Weapon
 		{
 			angle = Math.PI;
 			drawRight = false;
+			fire = false;
 		}
 		else if(!gunDirection && Screen.d)
 		{
 			angle = 0;
 			drawRight = true;
+			fire = false;
+		}
+		if((Screen.mouseDown || Screen.space) && cooldown <0)
+		{
+			cooldown = maxCooldown;
+			fire();
 		}
 	}
 	public void fire()
 	{
-		if(gunDirection == mc.direction)
+		if(fire)
 		{
 			bullets.add(new Bullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
 		}
