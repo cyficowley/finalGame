@@ -66,17 +66,20 @@ public class Gun extends Weapon
 			}
 		}
 		cooldown--;
-		if(gunDirection && Screen.a)
+		if(!Screen.d || !Screen.a)
 		{
-			angle = Math.PI;
-			drawRight = false;
-			fire = false;
-		}
-		else if(!gunDirection && Screen.d)
-		{
-			angle = 0;
-			drawRight = true;
-			fire = false;
+			if(gunDirection && Screen.a)
+			{
+				angle = Math.PI;
+				drawRight = false;
+				fire = false;
+			}
+			else if(!gunDirection && Screen.d)
+			{
+				angle = 0;
+				drawRight = true;
+				fire = false;
+			}
 		}
 		if((Screen.mouseDown || Screen.space) && cooldown <0)
 		{
