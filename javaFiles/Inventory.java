@@ -1,7 +1,7 @@
 package javaFiles;
 import java.awt.Graphics2D;
 public class Inventory{
-	boolean drawMe = false;
+	boolean visible = false;
 	public static InventoryBlock[][] inventory = new InventoryBlock[4][8];
 	public Inventory(){
 		for(int r = 0; r < inventory.length; r++){
@@ -11,7 +11,7 @@ public class Inventory{
 		}
 	}
 	public void drawInventory(Graphics2D g){
-		if(drawMe)
+		if(visible)
 		{
 			for(int r = 0; r < inventory.length; r++){
 				for(int c = 0; c < inventory[r].length; c++){

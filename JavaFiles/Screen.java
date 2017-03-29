@@ -26,7 +26,7 @@ import javax.swing.SwingUtilities;
 
 public class Screen extends JPanel implements MouseMotionListener, MouseListener
 { // STATIC STUFF YOU CAN ACCESS AT ANY TIME IN ANY CLASS BY SAYING SCREEN.VARIABLE
-	Action[] actions = new Action[20]; // for key bindings
+	Action[] actions = new Action[22]; // for key bindings
 	public static double screenWidth; // the width of the screen
 	public static double screenHeight; // the hieght of the screen
 	public static double screenX = 0; //  the x and y of the viewpoint of the screen
@@ -49,6 +49,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static boolean w;
 	public static boolean space;
 	public static boolean i;
+	public static boolean esc;
 
 	public static int startX = 0; // the starting x and y of the screen
 	public static int startY = 0;
@@ -77,6 +78,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public static int currentYChunks = 10; //the current number of chunks in the y direction
 
 	public static TestCharacter mc;
+
+	public static Menu escMenu;
 
 	public Screen()
 	{
@@ -169,7 +172,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		this.getActionMap().put( "doIDown", actions[18] );
 		actions[19] = new IUp();
 		this.getInputMap().put( KeyStroke.getKeyStroke( "released I" ), "doIUp" );
-		this.getActionMap().put( "doIUp", actions[19] );  //Setting up all the classes for the keybindings
+		this.getActionMap().put( "doIUp", actions[19] );
+		actions[20] = new EscDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "ESCAPE" ), "doEscapeDown" );
+		this.getActionMap().put( "doEscapeDown", actions[20] );
+		actions[21] = new EscUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released ESCAPE"), "doEscapeUp" );
+		this.getActionMap().put( "doEscapeUp", actions[21] );  //Setting up all the classes for the keybindings
 
 		screenWidth = getWidth();
 		screenHeight = getHeight();
@@ -186,6 +195,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		movingObjects.add(mc); 
 		inventory = new Inventory();
 
+		escMenu = new Menu((int)screenWidth/2 - (int)(0.15 * screenWidth), (int)screenHeight/2 - (int)(0.4 * screenHeight), (int)(0.3 * screenWidth), (int)(0.8 * screenHeight));
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
 		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
@@ -236,6 +246,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			data += (Long.toString((System.currentTimeMillis()-time)));
 			g.drawString(data,(int)20,50);
 			data = "";
+			escMenu.drawMe(g);
 		}
 	}
 
@@ -482,10 +493,17 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}}
 	static class IDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			i = true;
-			inventory.drawMe = !inventory.drawMe;
+			inventory.visible = !inventory.visible;
 		}}
 	static class IUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			i = false;
+		}}
+	static class EscDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
+			esc = true;
+			escMenu.visible = !escMenu.visible;
+		}}
+	static class EscUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
+			esc = false;
 		}}
 
 
