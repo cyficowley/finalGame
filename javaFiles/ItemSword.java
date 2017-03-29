@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-public class ItemGun extends InventoryObject
+public class ItemSword extends InventoryObject
 {
-	public ItemGun()
+	public ItemSword()
 	{
-		super("Gun");
+		super("Sword");
 		try {
-		    loadImage(ImageIO.read(new File("javaFiles/images/gunRight.png")));
+		    loadImage(ImageIO.read(new File("javaFiles/images/longSwordWhite.png")));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -24,6 +24,6 @@ public class ItemGun extends InventoryObject
 	public void onInInventoryClick()
 	{
 		Screen.mc.weapon.unSelected();
-		Screen.mc.weapon = new Gun(Screen.mc);
+		Screen.mc.weapon = new Sword(Screen.mc);
 	}
 }
