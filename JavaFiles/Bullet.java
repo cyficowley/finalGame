@@ -42,6 +42,13 @@ public class Bullet extends MovingObject
 			Screen.movingObjects.remove(this);
 			gun.bullets.remove(this);
 		}
+		else if(touched.get(0).touched.type.equals("bullet"))
+		{
+			Screen.movingObjects.remove(this);
+			gun.bullets.remove(this);
+			Screen.movingObjects.remove((Bullet)touched.get(0).touched);
+			gun.bullets.remove((Bullet)touched.get(0).touched);
+		}
 		else
 		{
 			Screen.movingObjects.remove(this);
