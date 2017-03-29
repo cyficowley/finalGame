@@ -19,6 +19,7 @@ public class Gun extends Weapon
 	boolean gunDirection; //true is right
 	BufferedImage gunRight;
 	BufferedImage gunLeft;
+	boolean drawRight = false;
 	ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public Gun(TestCharacter mc)
 	{
@@ -49,10 +50,12 @@ public class Gun extends Weapon
 		if(angle > -Math.PI/2 && angle < Math.PI/2)
 		{
 			gunDirection = true;
+			drawRight = true;
 		}
 		else
 		{
 			gunDirection = false;
+			drawRight = false;
 		}
 		if(cooldown > 0 && cooldown < maxCooldown -3)
 		{
@@ -66,13 +69,15 @@ public class Gun extends Weapon
 			}
 		}
 		cooldown--;
-		if(gunDirection && !mc.direction)
+		if(gunDirection && Screen.a)
 		{
 			angle = Math.PI;
+			drawRight = false;
 		}
-		else if(!gunDirection && mc.direction)
+		else if(!gunDirection && Screen.d)
 		{
 			angle = 0;
+			drawRight = true;
 		}
 	}
 	public void fire()
@@ -86,7 +91,7 @@ public class Gun extends Weapon
 	public void drawMe(Graphics2D g)
 	{
 		g.setColor(Color.blue);
-		if(mc.direction)
+		if(drawRight)
 		{
 			rotateImage(gunRight,20+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY - 6,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle, g);
 		}
