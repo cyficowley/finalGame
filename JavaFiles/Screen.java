@@ -79,7 +79,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	public static TestCharacter mc;
 
-	public static Menu escMenu;
+	public static EscapeMenu escMenu;
 
 	public Screen()
 	{
@@ -195,7 +195,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		movingObjects.add(mc); 
 		inventory = new Inventory();
 
-		escMenu = new Menu((int)screenWidth/2 - (int)(0.15 * screenWidth), (int)screenHeight/2 - (int)(0.4 * screenHeight), (int)(0.3 * screenWidth), (int)(0.8 * screenHeight));
+		escMenu = new EscapeMenu();
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
 		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));

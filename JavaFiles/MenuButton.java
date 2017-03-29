@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Font;
 import java.awt.FontMetrics;
 public class MenuButton{
-	Font arial = new Font("Arial", Font.BOLD, 16);
+	Font arial = new Font("Arial", Font.BOLD, 32);
 	public String buttonText;
 	public int x;
 	public int y;
@@ -36,6 +36,7 @@ public class MenuButton{
 			this.textY = y + (height - textHeight)/2 + textHeight;
 			setup = true;
 		}
+		g.setFont(arial);
 		g.setColor(buttonColor);
 		g.fillRect(x,y,width, height);
 		g.setColor(Color.white);
