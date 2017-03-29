@@ -15,7 +15,7 @@ public class Menu{
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		buttons.add(new MenuButton(x, y, width, 80, "Test"));
+		buttons.add(new MenuButton(x, y + height - 80, width, 80, "Quit"));
 	}
 
 	public void drawMe(Graphics2D g){
@@ -24,6 +24,7 @@ public class Menu{
 			g.fillRect(x,y,width,height);
 			for (int i = 0; i < buttons.size() ; i++ ) {
 				buttons.get(i).drawMe(g);
+				buttons.get(i).collision();
 			}
 		}
 		

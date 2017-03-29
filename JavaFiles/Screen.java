@@ -536,4 +536,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	   mouseY = e.getY();
 	   mouseX = e.getX();
 	}
+
+	public static void closeWindow(){
+		System.exit(0);
+	}
 }

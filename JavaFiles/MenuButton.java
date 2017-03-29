@@ -15,6 +15,7 @@ public class MenuButton{
 	public int textWidth;
 	public int textHeight;
 	boolean setup = false;
+	Color buttonColor = new Color(130, 130, 130);
 	
 
 	public MenuButton(int x, int y, int width, int height, String text){
@@ -35,10 +36,26 @@ public class MenuButton{
 			this.textY = y + (height - textHeight)/2 + textHeight;
 			setup = true;
 		}
-		g.setColor(Color.gray);
+		g.setColor(buttonColor);
 		g.fillRect(x,y,width, height);
 		g.setColor(Color.white);
 		g.drawString(buttonText,textX,textY);
+	}
+
+	public void collision(){
+		if(Screen.mouseX >= x
+			&& Screen.mouseX <= x + width
+			&& Screen.mouseY >= y
+			&& Screen.mouseY <= y + height)
+		{
+			if(Screen.mouseDown)
+			{
+				Screen.closeWindow();
+			}
+			buttonColor = new Color(60, 60, 60);
+		} else{
+			buttonColor = new Color(130, 130, 130);
+		}
 	}
 
 
