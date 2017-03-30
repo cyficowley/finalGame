@@ -1,18 +1,18 @@
 #######
 
 Items/Methods that have to be coded:
-(write your name, what branch you are working in, and whether the feature is done or not next to each one you are working on)
+(write your name, what branch you are working in, and whether the feature is complete or not next to each one you are working on)
 
-ex: * breaking blocks (Cyrus, master, not done)
+ex: * breaking blocks (Cyrus, master, incomplete)
 
 * breaking blocks ()
-* inventory (Cyrus -UI by Chris, InventoryTest, not done)
-* making better main dude look (Michael, master, semi done)
+* inventory (Cyrus -UI by Chris, InventoryTest, incomplete)
+* making better main dude look (Michael, master, semi complete)
 * better work gen ()
-* more materials ()
+* more materials (Shane, master, incomplete)
 * crafting interface ()
-* enemies (Cyrus, MASTER, done)
-* weapons (Cyrus, MASTER, done)
-* menu class (Chris, InventoryTest, not done)
+* enemies (Cyrus, MASTER, complete)
+* weapons (Cyrus, MASTER, complete)
+* menu class (Chris, InventoryTest, incomplete)
 
 #######
