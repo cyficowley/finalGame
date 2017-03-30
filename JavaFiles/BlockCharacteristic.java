@@ -19,6 +19,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 	int width;
 	int length;
 	boolean breakable = false;
+	BufferedImage img;
 	Block block; // this will have the characteristics of the block like the color the type the interactions you can have with it
 	static boolean loaded = false; 
 	static BufferedImage[] breaking = new BufferedImage[3];
@@ -98,6 +99,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 			percentBroken += 1/hardness;
 			if(percentBroken >1)
 			{
+				Screen.movingObjects.add(new DroppedItem(block));
 				block.rebuild(0);
 			}
 		}

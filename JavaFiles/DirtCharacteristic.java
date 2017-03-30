@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class DirtCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
-	BufferedImage img;
 	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
 	int rand;

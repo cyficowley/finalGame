@@ -38,6 +38,23 @@ public class Inventory{
 			}
 		}
 	}
+
+	public void addObject(InventoryObject input)
+	{
+		outerloop:
+		for(int r = 0; r < inventory.length; r++)
+		{
+			for(int c = 0; c < inventory[r].length; c++)
+			{
+				if(inventory[r][c].empty)
+				{
+					inventory[r][c].inventoryObject = input;
+					break outerloop;
+				}
+			}
+		}
+	}
+
 	public void collision()
 	{
 		if(visible)

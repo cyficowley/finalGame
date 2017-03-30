@@ -21,7 +21,6 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 {
 	Color color;
 	int switzerland = 1;
-	BufferedImage img;
 	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
 	int rand;
