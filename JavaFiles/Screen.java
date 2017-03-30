@@ -195,7 +195,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		movingObjects.add(mc); 
 		inventory = new Inventory();
 
-		String[] quitMenuLabels = {"Quit", "Also Quit"};
+		String[] quitMenuLabels = {"Return to Game", "Quit"};
 		escMenu = new ButtonMenu(screenWidth * 0.35, screenHeight * 0.3, screenWidth * 0.3, screenHeight * 0.4, quitMenuLabels);
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
@@ -536,6 +536,13 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	public void mouseDragged(MouseEvent e) {
 	   mouseY = e.getY();
 	   mouseX = e.getX();
+	}
+	public static void menuButtonClick(String button){
+		if(button.equals("Quit")){
+			Screen.closeWindow();
+		}else if(button.equals("Return to Game")){
+			escMenu.toggleVisible();
+		}
 	}
 
 	public static void closeWindow(){

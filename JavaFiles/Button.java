@@ -44,14 +44,10 @@ public class Button extends MainObject{
 		{
 			buttonColor = new Color(60, 60, 60);
 			if(Screen.mouseDown)
-				clickedOn();
+				Screen.menuButtonClick(buttonText);
 		} else{
 			buttonColor = new Color(130, 130, 130);
 		}
 	}
-	public void clickedOn(){
-		Screen.closeWindow();
-	}
-
 
 }
