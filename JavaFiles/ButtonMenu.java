@@ -20,6 +20,20 @@ public class ButtonMenu extends Menu{
 				buttonStrings[i]));
 		}
 	}
+	public ButtonMenu(double x, double y, double width, double height, Color color, String[] buttonStrings){
+		super(x,y,width,height);
+		this.buttonStrings = buttonStrings;
+		buttonHeight = (height - (20 * (buttonStrings.length-1)))/buttonStrings.length;
+		System.out.println("ButtonHeight: " + buttonHeight + "MenuHeight: " + height);
+		for(int i = 0; i < buttonStrings.length; i++){
+			buttons.add(new Button(x, 
+				y + i*(buttonHeight + 20),
+				width, 
+				buttonHeight,
+				buttonStrings[i],
+				color));
+		}
+	}
 	
 	@Override
 	public void drawMe(Graphics2D g){

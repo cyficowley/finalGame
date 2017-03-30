@@ -17,6 +17,13 @@ public class Menu{
 		this.width = width;
 		this.height = height;
 	}
+	public Menu(double x, double y, double width, double height, Color color){
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.menuColor = color;
+	}
 
 	public void drawMe(Graphics2D g){
 		if(visible){

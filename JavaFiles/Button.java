@@ -12,11 +12,22 @@ public class Button extends MainObject{
 	double textHeight;
 	boolean setup = false;
 	Color buttonColor = new Color(130, 130, 130);
+	Color[] buttonColorChange = new Color[2];
 	
 
 	public Button(double x, double y, double width, double height, String text){
 		super(x,y,width,height);
 		this.buttonText = text;
+		buttonColorChange[0] = buttonColor;
+		buttonColorChange[1] = buttonColor.darker();
+
+	}
+	public Button(double x, double y, double width, double height, String text, Color color){
+		super(x,y,width,height);
+		this.buttonText = text;
+		this.buttonColor = color;
+		buttonColorChange[0] = buttonColor;
+		buttonColorChange[1] = buttonColor.darker();
 	}
 
 	public void drawMe(Graphics2D g){
@@ -42,11 +53,11 @@ public class Button extends MainObject{
 			&& Screen.mouseY >= y
 			&& Screen.mouseY <= y + height)
 		{
-			buttonColor = new Color(60, 60, 60);
+			buttonColor = buttonColorChange[1];
 			if(Screen.mouseDown)
 				Screen.menuButtonClick(buttonText);
 		} else{
-			buttonColor = new Color(130, 130, 130);
+			buttonColor = buttonColorChange[0];
 		}
 	}
 

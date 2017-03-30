@@ -13,6 +13,6 @@ ex: * breaking blocks (Cyrus, master, not done)
 * crafting interface ()
 * enemies (Cyrus, MASTER, done)
 * weapons (Cyrus, MASTER, done)
-* menu class (Chris, InventoryTest, not done)
+* menu class (Chris, MenuTesting, mostly done - implementation and customizability coming)
 
 #######
