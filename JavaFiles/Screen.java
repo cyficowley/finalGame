@@ -79,7 +79,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	public static TestCharacter mc;
 
-	public static EscapeMenu escMenu;
+	public static ButtonMenu escMenu;
 
 	public Screen()
 	{
@@ -195,7 +195,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		movingObjects.add(mc); 
 		inventory = new Inventory();
 
-		escMenu = new EscapeMenu();
+		String[] quitMenuLabels = {"Quit", "Also Quit"};
+		escMenu = new ButtonMenu(screenWidth * 0.35, screenHeight * 0.3, screenWidth * 0.3, screenHeight * 0.4, quitMenuLabels);
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
 		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
@@ -500,7 +501,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}}
 	static class EscDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = true;
-			escMenu.visible = !escMenu.visible;
+			escMenu.toggleVisible();
 		}}
 	static class EscUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = false;
