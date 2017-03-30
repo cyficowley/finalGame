@@ -3,11 +3,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 public class ButtonMenu extends Menu{
-	String[] buttonStrings;
-	double buttonHeight;
-	ArrayList<Button> buttons = new ArrayList<Button>();
+	String[] buttonStrings; //contains all strings for every button needed
+	double buttonHeight; //the height of every button
+	ArrayList<Button> buttons = new ArrayList<Button>(); //arraylist of buttons, contains all buttons for each menu
 
-	public ButtonMenu(double x, double y, double width, double height, String[] buttonStrings){
+	public ButtonMenu(double x, double y, double width, double height, String[] buttonStrings){ //sets up multiple buttons for this menu with text
 		super(x,y,width,height);
 		this.buttonStrings = buttonStrings;
 		buttonHeight = (height - (20 * (buttonStrings.length-1)))/buttonStrings.length;
@@ -20,7 +20,7 @@ public class ButtonMenu extends Menu{
 				buttonStrings[i]));
 		}
 	}
-	public ButtonMenu(double x, double y, double width, double height, Color color, String[] buttonStrings){
+	public ButtonMenu(double x, double y, double width, double height, Color color, String[] buttonStrings){ //sets up multiple buttons for this menu with text and a custom color
 		super(x,y,width,height);
 		this.buttonStrings = buttonStrings;
 		buttonHeight = (height - (20 * (buttonStrings.length-1)))/buttonStrings.length;
@@ -39,10 +39,10 @@ public class ButtonMenu extends Menu{
 	public void drawMe(Graphics2D g){
 		if(visible){
 			for(int i = 0; i < buttonStrings.length; i++){
-				buttons.get(i).drawMe(g);
-				buttons.get(i).collision();
+				buttons.get(i).drawMe(g); //draws each button
+				buttons.get(i).collision(); //checks collision for each button
 			}
-			if(outlineVisibility){
+			if(outlineVisibility){ //draws an outline around the menu
 				g.setColor(Color.black);
 				g.drawRect((int)x,(int)y,(int)width,(int)height);
 			}

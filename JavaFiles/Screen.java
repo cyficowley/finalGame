@@ -501,7 +501,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}}
 	static class EscDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = true;
-			escMenu.toggleVisible();
+			escMenu.toggleVisible(); // toggles visibility of escape menu
 		}}
 	static class EscUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = false;
@@ -537,7 +537,12 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	   mouseY = e.getY();
 	   mouseX = e.getX();
 	}
-	public static void menuButtonClick(String button){
+	public static void menuButtonClick(String button){ //menu button actions
+		/* Example
+		if(button.equals(<Button Label>)){
+			<action>
+		}
+		*/
 		if(button.equals("Quit")){
 			Screen.closeWindow();
 		}else if(button.equals("Return to Game")){
@@ -545,7 +550,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}
 	}
 
-	public static void closeWindow(){
+	public static void closeWindow(){ // closes the window
 		System.exit(0);
 	}
 }
