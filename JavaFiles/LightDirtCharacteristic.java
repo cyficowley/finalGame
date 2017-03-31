@@ -29,6 +29,7 @@ public class LightDirtCharacteristic extends BlockCharacteristic // copy this ex
 		breakable = true;
 		hardness = 80;
 
+		name = "light dirt";
 		rand = (int)(Math.random() * imageArray.size());
 
 		if(hasLoaded == false){

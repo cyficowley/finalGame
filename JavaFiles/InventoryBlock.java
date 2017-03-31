@@ -10,16 +10,17 @@ public class InventoryBlock extends MainObject{
 	boolean empty = false;
 	boolean first = true;
 	int yChange = 0;
+	int maxHeight = 0;
 
 	public InventoryBlock(int x, int y){
 		super(x,y,blockSize,blockSize);
-		blockColor = new Color(0.2f, 0.2f, 0.2f, 0.3f);
+		blockColor = new Color(0.6f, 0.6f, 0.6f, 0.5f);
 		empty = true;
 	}
 
 	public InventoryBlock(int x, int y, InventoryObject inventoryObject){
 		super(x,y,blockSize,blockSize);
-		blockColor = new Color(0.2f, 0.2f, 0.2f, 0.3f);
+		blockColor = new Color(0.6f, 0.6f, 0.6f, 0.5f);
 		this.inventoryObject = inventoryObject;
 	}
 	public void drawMe(Graphics2D g , FontMetrics fontMetrics){
@@ -32,6 +33,7 @@ public class InventoryBlock extends MainObject{
 				inventoryObject.name = inventoryObject.name.substring(0, inventoryObject.name.length() -2);
 			}
 			yChange = fontMetrics.getMaxDescent();
+			maxHeight = fontMetrics.getHeight();
 			first = false;
 		}
 		if(!empty)
@@ -39,6 +41,7 @@ public class InventoryBlock extends MainObject{
 			g.drawImage(inventoryObject.image, (int)(x + blockSize/8), (int)(y + blockSize/32), (blockSize *3/4), (blockSize * 3/4), null);
 			g.setColor(Color.black);
 			g.drawString(inventoryObject.name, (int)x,(int)(y + height - yChange));
+			g.drawString(Integer.toString(inventoryObject.number),(int)x,(int)(y + maxHeight));
 		}
 
 	}

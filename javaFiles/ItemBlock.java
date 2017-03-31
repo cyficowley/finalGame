@@ -13,7 +13,7 @@ public class ItemBlock extends InventoryObject
 	BlockCharacteristic characteristic;
 	public ItemBlock(BlockCharacteristic characteristic)
 	{
-		super("Block");
+		super(characteristic.name);
 		this.characteristic = characteristic;
 		loadImage(characteristic.img);
 	}
@@ -22,5 +22,6 @@ public class ItemBlock extends InventoryObject
 	public void onInInventoryClick()
 	{
 		Screen.mc.weapon.unSelected();
+		Screen.mc.weapon = new BlockPlacer(characteristic);
 	}
 }

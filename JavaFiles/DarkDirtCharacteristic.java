@@ -27,6 +27,7 @@ public class DarkDirtCharacteristic extends BlockCharacteristic // copy this exa
 	public DarkDirtCharacteristic(Block block)
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
+		name = "dark dirt";
 		breakable = true;
 		rand = (int)(Math.random() * imageArray.size());
 

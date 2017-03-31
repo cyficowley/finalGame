@@ -30,6 +30,8 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 		breakable = true;
 		hardness = 300;
 
+		name = "stone";
+
 		rand = (int)(Math.random() * imageArray.size());
 
 		if(hasLoaded == false){

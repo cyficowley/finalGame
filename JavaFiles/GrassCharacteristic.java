@@ -28,6 +28,7 @@ public class GrassCharacteristic extends BlockCharacteristic // copy this exampl
 		super(block);
 		breakable = true;
 		hardness = 60;
+		name = "grass";
 
 		rand = (int)(Math.random() * imageArray.size());
 

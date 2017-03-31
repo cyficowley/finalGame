@@ -18,6 +18,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 	int randrotation; //integer used to determine random rotation
 	int width;
 	int length;
+	String name = "";
 	boolean breakable = false;
 	BufferedImage img;
 	Block block; // this will have the characteristics of the block like the color the type the interactions you can have with it
@@ -100,6 +101,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 			if(percentBroken >1)
 			{
 				Screen.movingObjects.add(new DroppedItem(block));
+				Screen.movingObjects.get(Screen.movingObjects.size()-1).yVelocity = -2.5;
 				block.rebuild(0);
 			}
 		}

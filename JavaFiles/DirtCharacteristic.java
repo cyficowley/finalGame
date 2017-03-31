@@ -29,6 +29,8 @@ public class DirtCharacteristic extends BlockCharacteristic // copy this example
 		breakable = true;
 		hardness = 100;
 
+		name = "dirt";
+
 		rand = (int)(Math.random() * imageArray.size());
 
 		if(hasLoaded == false){
