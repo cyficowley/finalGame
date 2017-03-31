@@ -11,13 +11,8 @@ public class ButtonMenu extends Menu{
 		super(x,y,width,height);
 		this.buttonStrings = buttonStrings;
 		buttonHeight = (height - (20 * (buttonStrings.length-1)))/buttonStrings.length;
-		System.out.println("ButtonHeight: " + buttonHeight + "MenuHeight: " + height);
 		for(int i = 0; i < buttonStrings.length; i++){
-			buttons.add(new Button(x, 
-				y + i*(buttonHeight + 20),
-				width, 
-				buttonHeight,
-				buttonStrings[i]));
+			buttons.add(new Button(x, y + i*(buttonHeight + 20), width, buttonHeight, buttonStrings[i]));
 		}
 	}
 	public ButtonMenu(double x, double y, double width, double height, Color color, String[] buttonStrings){ //sets up multiple buttons for this menu with text and a custom color

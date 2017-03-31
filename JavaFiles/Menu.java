@@ -1,7 +1,6 @@
 package javaFiles;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 public class Menu{
 	boolean visible = false; //visiblity of the menu
 	double x; // x position of the menu
