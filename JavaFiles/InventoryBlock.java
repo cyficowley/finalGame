@@ -53,7 +53,7 @@ public class InventoryBlock extends MainObject{
 	}
 	public void checkCollision()
 	{
-		if(Screen.mouseFirstDown && collision(Screen.mouseMainObject))
+		if(Screen.mouseFirstDown && collision(Screen.mouseMainObject) && !empty)
 		{
 			inventoryObject.onInInventoryClick();
 		}
