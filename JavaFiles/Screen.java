@@ -366,12 +366,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		if(mouseRightDown)
 		{
 			Block temp = getBlock((int)((mouseX + screenX)/blockWidth),(int)((mouseY + screenY)/blockWidth));
-			if(temp !=null)
+			if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
 			{
-				if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
-				{
-					temp.rebuild(0);
-				}
+				temp.characteristic.breakBlock(temp);
 			}
 		}
 		for(Enemy each : enemies)
