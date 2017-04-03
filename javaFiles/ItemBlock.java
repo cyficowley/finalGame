@@ -22,6 +22,6 @@ public class ItemBlock extends InventoryObject
 	public void onInInventoryClick()
 	{
 		Screen.mc.weapon.unSelected();
-		Screen.mc.weapon = new BlockPlacer(characteristic);
+		Screen.mc.weapon = new BlockPlacer(characteristic, this);
 	}
 }

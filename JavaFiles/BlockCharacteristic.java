@@ -19,6 +19,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 	int width;
 	int length;
 	String name = "";
+	int number = 0;
 	boolean breakable = false;
 	BufferedImage img;
 	Block block; // this will have the characteristics of the block like the color the type the interactions you can have with it
@@ -27,6 +28,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 	public BlockCharacteristic(Block block)
 	{ // we don't want to put that all into the block class so now we can make a bunch of these classes and have it be more consise
 		this.block = block;
+		this.number = block.type;
 		if(!loaded)
 		{
 			try{

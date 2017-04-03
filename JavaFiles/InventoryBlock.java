@@ -12,13 +12,13 @@ public class InventoryBlock extends MainObject{
 	int yChange = 0;
 	int maxHeight = 0;
 
-	public InventoryBlock(int x, int y){
+	public InventoryBlock(double x, double y){
 		super(x,y,blockSize,blockSize);
 		blockColor = new Color(0.6f, 0.6f, 0.6f, 0.5f);
 		empty = true;
 	}
 
-	public InventoryBlock(int x, int y, InventoryObject inventoryObject){
+	public InventoryBlock(double x, double y, InventoryObject inventoryObject){
 		super(x,y,blockSize,blockSize);
 		blockColor = new Color(0.6f, 0.6f, 0.6f, 0.5f);
 		this.inventoryObject = inventoryObject;
