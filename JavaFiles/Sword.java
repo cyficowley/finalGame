@@ -16,7 +16,7 @@ public class Sword extends Weapon
 
 	double angle = Math.PI /4;
 
-	double length = 200;
+	double length = 150;
 
 	Box boxRight;
 	Box boxLeft; //all swords must be 16 pixels wide, 8 in blade, 4 on each side for guard, they can be super long though
@@ -74,7 +74,23 @@ public class Sword extends Weapon
 	@Override
 	public void drawMe(Graphics2D g)
 	{
-		if(mc.direction)
+		boolean temp = false;
+		if(!Screen.a || !Screen.d)
+		{
+			temp = mc.direction;
+		}
+		else
+		{
+			if(mc.drawState ==-1)
+			{
+				temp = true;
+			}
+			else if(mc.drawState ==1)
+			{
+				temp = false;
+			}
+		}
+		if(temp)
 		{
 			rotateImage(sword,mc.x + mc.width/2 - Screen.screenX +20, mc.y + mc.height/2 - Screen.screenY - boxRight.width + boxRight.height, mc.x + mc.width/2 - Screen.screenX, mc.y + mc.height/2 - Screen.screenY, boxRight.height+20, boxRight.width, boxRight.angle - Math.PI/2, g);
 		}
@@ -82,7 +98,6 @@ public class Sword extends Weapon
 		{
 			rotateImage(sword,mc.x + mc.width/2 - Screen.screenX -boxLeft.height*2 - 20, mc.y + mc.height/2 - Screen.screenY - boxLeft.width + boxLeft.height, mc.x + mc.width/2 - Screen.screenX, mc.y + mc.height/2 - Screen.screenY, boxLeft.height+20, boxLeft.width, boxLeft.angle + Math.PI/2, g);
 		}
-		
 	}
 	@Override
 	public void collision()

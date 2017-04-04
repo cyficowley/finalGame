@@ -38,6 +38,44 @@ public class Inventory{
 			}
 		}
 	}
+
+	public void addObject(InventoryObject input)
+	{
+		boolean continuing = true;
+		outerloop:
+		for(int r = 0; r < inventory.length; r++)
+		{
+			for(int c = 0; c < inventory[r].length; c++)
+			{
+				if(!inventory[r][c].empty)
+				{
+					if(inventory[r][c].inventoryObject.name.equals(input.name))
+					{
+						inventory[r][c].inventoryObject.number ++;
+						continuing = false;
+						break outerloop;
+					}
+				}
+			}
+		}
+		if(continuing)
+		{
+			outerloop1:
+			for(int r = 0; r < inventory.length; r++)
+			{
+				for(int c = 0; c < inventory[r].length; c++)
+				{
+					if(inventory[r][c].empty)
+					{
+						inventory[r][c].inventoryObject = input;
+						inventory[r][c].empty = false;
+						break outerloop1;
+					}
+				}
+			}
+		}
+	}
+
 	public void collision()
 	{
 		if(visible)

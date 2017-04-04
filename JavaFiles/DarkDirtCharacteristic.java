@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class DarkDirtCharacteristic extends BlockCharacteristic // copy this example of a class for other materials
 {
 	Color color;
-	BufferedImage img;
 	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
 	int rand;
@@ -28,8 +27,11 @@ public class DarkDirtCharacteristic extends BlockCharacteristic // copy this exa
 	public DarkDirtCharacteristic(Block block)
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
-
+		name = "dark dirt";
+		breakable = true;
 		rand = (int)(Math.random() * imageArray.size());
+
+		hardness = 150;
 
 		if(hasLoaded == false){
 			loadImg();
@@ -43,6 +45,7 @@ public class DarkDirtCharacteristic extends BlockCharacteristic // copy this exa
 	public void drawMe(Graphics2D g)
 	{
 		g.drawImage(img,(int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY),null);
+		super.drawMe(g);
 	}
 	@Override
 	public void drawMe(Graphics2D g, Color color)

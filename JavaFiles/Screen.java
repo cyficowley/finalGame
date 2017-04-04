@@ -102,7 +102,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	}
 	public void initialize()
 	{
-		while(screenHeight < 600) // the while and try after it makes it so it expands and gets the screenwidth and height accuratly
+		while(screenHeight < 600) // the while and try after it makes it so it expands and gets the screenWidth and height accuratly
 		{
 			try {Thread.sleep(10);}
 			catch(InterruptedException ex) {}
@@ -248,6 +248,11 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			g.drawString(data,(int)20,50);
 			data = "";
 			escMenu.drawMe(g);
+			if(System.currentTimeMillis()-  time >= 17)
+			{
+				g.setColor(new Color(255,0,0,200));
+				g.fillRect(0,0,(int)screenWidth, (int)screenHeight);
+			}
 		}
 	}
 
@@ -361,12 +366,9 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		if(mouseRightDown)
 		{
 			Block temp = getBlock((int)((mouseX + screenX)/blockWidth),(int)((mouseY + screenY)/blockWidth));
-			if(temp !=null)
+			if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
 			{
-				if(Math.sqrt(Math.pow(mc.x + mc.width/2 - temp.x -temp.width/2,2)+ Math.pow(mc.y + mc.height/2 - temp.y -temp.height/2,2)) < blockWidth * 7)
-				{
-					temp.rebuild(0);
-				}
+				temp.characteristic.breakBlock(temp);
 			}
 		}
 		for(Enemy each : enemies)

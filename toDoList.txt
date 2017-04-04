@@ -3,8 +3,8 @@
 Items/Methods that have to be coded:
 (write your name, what branch you are working in, and whether the feature is done or not next to each one you are working on)
 
-ex: * breaking blocks (Cyrus, master, not done)
 
+<<<<<<< HEAD
 * breaking blocks (Cyrus, MASTER, done)
 * inventory (Cyrus -UI by Chris, MASTER, done)
 * making better main dude look (Michael, master, semi done)
@@ -13,6 +13,17 @@ ex: * breaking blocks (Cyrus, master, not done)
 * crafting interface () // probably implemented after we decide what we are actually doing
 * enemies (Cyrus, MASTER, done)
 * weapons (Cyrus, MASTER, done)
+=======
+* breaking blocks (Cyrus, BlockBreaking branch, not done)
+* placing blocks ()
+- inventory (Cyrus -UI by Chris, Master, done)
+* making better main dude look (Michael, master, semi done)
+* better work gen ()
+* more materials ()
+* crafting interface ()
+- enemies (Cyrus, MASTER, done)
+- weapons (Cyrus, MASTER, done)
+>>>>>>> origin/master
 * menu class (Chris, InventoryTest, not done)
 
 #######

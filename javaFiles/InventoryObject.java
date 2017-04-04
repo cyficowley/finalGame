@@ -7,6 +7,7 @@ public class InventoryObject
 {
 	BufferedImage image;
 	String name;
+	int number = 1;
 
 	public InventoryObject(String name)
 	{
