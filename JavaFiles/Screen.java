@@ -80,7 +80,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	public static TestCharacter mc;
 
-	public static Menu escMenu;
+	public static ButtonMenu escMenu;
 
 	public Screen()
 	{
@@ -196,7 +196,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		movingObjects.add(mc); 
 		inventory = new Inventory();
 
-		escMenu = new Menu((int)screenWidth/2 - (int)(0.15 * screenWidth), (int)screenHeight/2 - (int)(0.4 * screenHeight), (int)(0.3 * screenWidth), (int)(0.8 * screenHeight));
+		String[] quitMenuLabels = {"Return to Game", "Quit"};
+		escMenu = new ButtonMenu(screenWidth * 0.35, screenHeight * 0.3, screenWidth * 0.3, screenHeight * 0.4, quitMenuLabels);
 
 		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
 		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
@@ -503,7 +504,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}}
 	static class EscDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = true;
-			escMenu.visible = !escMenu.visible;
+			escMenu.toggleVisible(); // toggles visibility of escape menu
 		}}
 	static class EscUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = false;
@@ -543,8 +544,20 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	   mouseMainObject.x = mouseX;
 	   mouseMainObject.y = mouseY;
 	}
+	public static void menuButtonClick(String button){ //menu button actions
+		/* Example
+		if(button.equals(<Button Label>)){
+			<action>
+		}
+		*/
+		if(button.equals("Quit")){
+			Screen.closeWindow();
+		}else if(button.equals("Return to Game")){
+			escMenu.toggleVisible();
+		}
+	}
 
-	public static void closeWindow(){
+	public static void closeWindow(){ // closes the window
 		System.exit(0);
 	}
 }

@@ -1,32 +1,41 @@
 package javaFiles;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 public class Menu{
-	boolean visible = false;
-	private int x;
-	private int y;
-	private int width;
-	private int height;
-	public static Color menuColor = new Color(0.2f, 0.2f, 0.2f, 0.4f);
-	ArrayList<MenuButton> buttons = new ArrayList<MenuButton>();
-	public Menu(int x, int y, int width, int height){
+	boolean visible = false; //visiblity of the menu
+	double x; // x position of the menu
+	double y; // y position of the menu
+	double width; // width of the menu
+	double height; // height of the menu
+	boolean outlineVisibility = true; // outline visibility of the menu
+	Color menuColor = new Color(0.2f, 0.2f, 0.2f, 0.4f); // defualt menu color
+	
+	public Menu(double x, double y, double width, double height){ //sets up a basic menu
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		buttons.add(new MenuButton(x, y + height - 80, width, 80, "Quit"));
+	}
+	public Menu(double x, double y, double width, double height, Color color){ // sets up a menu with a custom color
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.menuColor = color;
 	}
 
-	public void drawMe(Graphics2D g){
+	public void drawMe(Graphics2D g){ // draws the menu box
 		if(visible){
 			g.setColor(menuColor);
-			g.fillRect(x,y,width,height);
-			for (int i = 0; i < buttons.size() ; i++ ) {
-				buttons.get(i).drawMe(g);
-				buttons.get(i).collision();
+			g.fillRect((int)x,(int)y,(int)width,(int)height);
+			if(outlineVisibility){ // draws the menu outline if visible
+				g.setColor(Color.black);
+				g.drawRect((int)x,(int)y,(int)width,(int)height);
 			}
 		}
-		
+	}
+
+	public void toggleVisible(){ // toggles the visibility of the menu
+		visible = !visible;
 	}
 }
