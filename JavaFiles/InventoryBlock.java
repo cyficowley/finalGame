@@ -55,7 +55,10 @@ public class InventoryBlock extends MainObject{
 	{
 		if(Screen.mouseFirstDown && collision(Screen.mouseMainObject))
 		{
-			inventoryObject.onInInventoryClick();
+			if(!empty)
+			{
+				inventoryObject.onInInventoryClick();
+			}
 		}
 	}
 }
