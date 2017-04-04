@@ -15,6 +15,8 @@ public class TestCharacter extends Enemy
 	BufferedImage characterLeft;
 	BufferedImage characterBack;
 
+	int drawState = 0; //-1 is left, 0 is no direction, 1 is right
+
 	public Weapon weapon = new Gun(this);
 
 	public TestCharacter(double x, double y, double width, double height, double damage)
@@ -56,10 +58,13 @@ public class TestCharacter extends Enemy
 	@Override
 	public void drawMe(Graphics2D g) {
 		if (Screen.d || (super.xVelocity > 0.3 && !Screen.a)) {
+			drawState = -1;
 			g.drawImage(characterRight, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
 		} else if (Screen.a || (super.xVelocity < -0.3 && !Screen.d)) {
+			drawState = 1;
 			g.drawImage(characterLeft, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
 		} else {
+			drawState = 0;
 			g.drawImage(characterDefault, (int) (x - Screen.screenX -4.5), (int) (y - Screen.screenY-4.5), (int) width+9, (int) (height+4.5), null);
 		}
 		weapon.drawMe(g);

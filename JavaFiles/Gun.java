@@ -129,4 +129,15 @@ public class Gun extends Weapon
         g.drawImage(image, (int)x, (int)y,(int)width,(int)height, null);
         g.setTransform(old);
 	}
+	public void unSelected()
+	{
+		for(int i = 0; i < Screen.movingObjects.size(); i ++)
+		{
+			if(Screen.movingObjects.get(i).type.equals("bullet"))
+			{
+				Screen.movingObjects.remove(i);
+				i --;
+			}
+		}
+	}
 }

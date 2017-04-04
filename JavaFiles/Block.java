@@ -11,6 +11,7 @@ public class Block extends MainObject//this is going to be the base block of the
 	public int yIndex;
 	public int subXIndex; // index within chunk
 	public int subYIndex;
+	boolean highlight = false;
 	boolean collisionActive; // if it is possible for stuff to collide with this block;
 	Chunk containingChunk; // the chunk that contains this blocks
 	BlockCharacteristic characteristic;
@@ -58,6 +59,11 @@ public class Block extends MainObject//this is going to be the base block of the
 		{
 			collisionActive = false;
 		}
+		else if(highlight)
+		{
+			g.setColor(Color.magenta);
+			g.fillRect((int)(xIndex * Screen.blockWidth - Screen.screenX), (int)(yIndex * Screen.blockWidth- Screen.screenY),(int)(Screen.blockWidth), (int)(Screen.blockWidth));
+		}
 		else
 		{
 			characteristic.drawMe(g);
@@ -67,6 +73,7 @@ public class Block extends MainObject//this is going to be the base block of the
 	public void rebuild(int type) 
 	{ // run this method if you are setting the block to a differnt type like empty or stone or something
 		this.type = type;
+		boolean checkIfThisAcitve = true;
 		if(type == 1)
 		{
 			characteristic = new StoneCharacteristic(this);
@@ -93,6 +100,7 @@ public class Block extends MainObject//this is going to be the base block of the
 		// }
 		else // this sets all the ones next to it to collisionActive:true because it is now air, just ignore the specifics here it is hard because of how the chunks are defined so you can't quite make it so that you easily access whatever is above or below because it is in seperate chunks so most of this is to deal with that
 		{
+			checkIfThisAcitve = false;
 			characteristic = new BlockCharacteristic(this);
 			if(yIndex != 0)
 			{
@@ -123,6 +131,40 @@ public class Block extends MainObject//this is going to be the base block of the
 				if(Screen.getBlock(xIndex, yIndex +1).type != 0)
 				{
 					Screen.getBlock(xIndex, yIndex +1).collisionActive = true;
+				}
+			}
+		}
+		if(checkIfThisAcitve)
+		{
+			if(yIndex != 0)
+			{
+				if(Screen.getBlock(xIndex, yIndex -1).type == 0)
+				{
+					collisionActive = true;
+				}
+			}
+			//check Left
+			if(xIndex != 0)
+			{
+				if(Screen.getBlock(xIndex -1, yIndex).type == 0)
+				{
+					collisionActive = true;
+				}
+			}
+			//check right
+			if(xIndex != Screen.chunks.size()*20-1)
+			{
+				if(Screen.getBlock(xIndex+1, yIndex).type == 0)
+				{
+					collisionActive = true;
+				}
+			}
+			// check below
+			if(xIndex != Screen.chunks.get(0).size()*20-1)
+			{
+				if(Screen.getBlock(xIndex, yIndex +1).type == 0)
+				{
+					collisionActive = true;
 				}
 			}
 		}

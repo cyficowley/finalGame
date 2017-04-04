@@ -21,13 +21,16 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 {
 	Color color;
 	int switzerland = 1;
-	BufferedImage img;
 	static ArrayList<BufferedImage> imageArray = new ArrayList<BufferedImage>();
 	public static boolean hasLoaded = false;
 	int rand;
 	public StoneCharacteristic(Block block)
 	{ // import randomly one of the two images here and rotate pi/2 * (int)(MAth.random() * 4) degrees then set it to the image it will draw
 		super(block);
+		breakable = true;
+		hardness = 300;
+
+		name = "stone";
 
 		rand = (int)(Math.random() * imageArray.size());
 
@@ -42,6 +45,7 @@ public class StoneCharacteristic extends BlockCharacteristic // copy this exampl
 	public void drawMe(Graphics2D g)
 	{
 		g.drawImage(img,(int)(block.xIndex * Screen.blockWidth - Screen.screenX), (int)(block.yIndex * Screen.blockWidth- Screen.screenY),null);
+		super.drawMe(g);
 	}
 	@Override
 	public void drawMe(Graphics2D g, Color color)

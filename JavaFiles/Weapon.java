@@ -23,4 +23,6 @@ public class Weapon
 	public void collision(){}
 
 	public void hit(Enemy enemy){}
+
+	public void unSelected(){}
 }
