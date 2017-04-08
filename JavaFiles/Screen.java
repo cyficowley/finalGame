@@ -113,73 +113,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		try {Thread.sleep(300);}
 			catch(InterruptedException ex) {}
 
-		actions[0] = new WDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "W" ), "doWDown" );
-		this.getActionMap().put( "doWDown", actions[0] );
-		actions[1] = new WUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released W" ), "doWUp" );
-		this.getActionMap().put( "doWUp", actions[1] );
-		actions[2] = new ADown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "A" ), "doADown" );
-		this.getActionMap().put( "doADown", actions[2] );
-		actions[3] = new AUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released A" ), "doAUp" );
-		this.getActionMap().put( "doAUp", actions[3] );
-		actions[4] = new SDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "S" ), "doSDown" );
-		this.getActionMap().put( "doSDown", actions[4] );
-		actions[5] = new SUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released S" ), "doSUp" );
-		this.getActionMap().put( "doSUp", actions[5] );
-		actions[6] = new DDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "D" ), "doDDown" );
-		this.getActionMap().put( "doDDown", actions[6] );
-		actions[7] = new DUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released D" ), "doDUp" );
-		this.getActionMap().put( "doDUp", actions[7] );
-		actions[8] = new SpaceDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "SPACE" ), "doSpaceDown" );
-		this.getActionMap().put( "doSpaceDown", actions[8] );
-		actions[9] = new SpaceUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released SPACE" ), "doSpaceUp" );
-		this.getActionMap().put( "doSpaceUp", actions[9] );
-
-		actions[10] = new WDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "UP" ), "doWDown" );
-		this.getActionMap().put( "doWDown", actions[10] );
-		actions[11] = new WUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released UP" ), "doWUp" );
-		this.getActionMap().put( "doWUp", actions[11] );
-		actions[12] = new ADown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "LEFT" ), "doADown" );
-		this.getActionMap().put( "doADown", actions[12] );
-		actions[13] = new AUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released LEFT" ), "doAUp" );
-		this.getActionMap().put( "doAUp", actions[13] );
-		actions[14] = new SDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "DOWN" ), "doSDown" );
-		this.getActionMap().put( "doSDown", actions[14] );
-		actions[15] = new SUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released DOWN" ), "doSUp" );
-		this.getActionMap().put( "doSUp", actions[15] );
-		actions[16] = new DDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "RIGHT" ), "doDDown" );
-		this.getActionMap().put( "doDDown", actions[16] );
-		actions[17] = new DUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released RIGHT" ), "doDUp" );
-		this.getActionMap().put( "doDUp", actions[17] ); 
-		actions[18] = new IDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "I" ), "doIDown" );
-		this.getActionMap().put( "doIDown", actions[18] );
-		actions[19] = new IUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released I" ), "doIUp" );
-		this.getActionMap().put( "doIUp", actions[19] );
-		actions[20] = new EscDown();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "ESCAPE" ), "doEscapeDown" );
-		this.getActionMap().put( "doEscapeDown", actions[20] );
-		actions[21] = new EscUp();
-		this.getInputMap().put( KeyStroke.getKeyStroke( "released ESCAPE"), "doEscapeUp" );
-		this.getActionMap().put( "doEscapeUp", actions[21] );  //Setting up all the classes for the keybindings
+		setKeyListener();
 
 		screenWidth = getWidth();
 		screenHeight = getHeight();
@@ -199,12 +133,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		String[] quitMenuLabels = {"Return to Game", "Quit"};
 		escMenu = new ButtonMenu(screenWidth * 0.35, screenHeight * 0.3, screenWidth * 0.3, screenHeight * 0.4, quitMenuLabels);
 
-		// movingObjects.add(new BasicAiEnemy(800,20, 72,72,25)); 
-		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
-		// movingObjects.add(new BasicAiEnemy(1200,20, 128,128,25)); 
-		// enemies.add((Enemy)movingObjects.get(movingObjects.size()-1));
-		// movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 100, 72,72)); 
-		// movingObjects.add(new MovingObject(chunks.get(3).get(0).x +100,chunks.get(3).get(0).y + 210, 72,72)); 
+		movingObjects.add(new ShootingEnemy(800,20, 72,72,25)); 
+		enemies.add((ShootingEnemy)movingObjects.get(movingObjects.size()-1));
 		WorldGenerator.finalChanges();
 		animate();
 	}
@@ -510,6 +440,76 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			esc = false;
 		}}
 
+	public void setKeyListener()
+	{
+		actions[0] = new WDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "W" ), "doWDown" );
+		this.getActionMap().put( "doWDown", actions[0] );
+		actions[1] = new WUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released W" ), "doWUp" );
+		this.getActionMap().put( "doWUp", actions[1] );
+		actions[2] = new ADown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "A" ), "doADown" );
+		this.getActionMap().put( "doADown", actions[2] );
+		actions[3] = new AUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released A" ), "doAUp" );
+		this.getActionMap().put( "doAUp", actions[3] );
+		actions[4] = new SDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "S" ), "doSDown" );
+		this.getActionMap().put( "doSDown", actions[4] );
+		actions[5] = new SUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released S" ), "doSUp" );
+		this.getActionMap().put( "doSUp", actions[5] );
+		actions[6] = new DDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "D" ), "doDDown" );
+		this.getActionMap().put( "doDDown", actions[6] );
+		actions[7] = new DUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released D" ), "doDUp" );
+		this.getActionMap().put( "doDUp", actions[7] );
+		actions[8] = new SpaceDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "SPACE" ), "doSpaceDown" );
+		this.getActionMap().put( "doSpaceDown", actions[8] );
+		actions[9] = new SpaceUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released SPACE" ), "doSpaceUp" );
+		this.getActionMap().put( "doSpaceUp", actions[9] );
+
+		actions[10] = new WDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "UP" ), "doWDown" );
+		this.getActionMap().put( "doWDown", actions[10] );
+		actions[11] = new WUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released UP" ), "doWUp" );
+		this.getActionMap().put( "doWUp", actions[11] );
+		actions[12] = new ADown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "LEFT" ), "doADown" );
+		this.getActionMap().put( "doADown", actions[12] );
+		actions[13] = new AUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released LEFT" ), "doAUp" );
+		this.getActionMap().put( "doAUp", actions[13] );
+		actions[14] = new SDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "DOWN" ), "doSDown" );
+		this.getActionMap().put( "doSDown", actions[14] );
+		actions[15] = new SUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released DOWN" ), "doSUp" );
+		this.getActionMap().put( "doSUp", actions[15] );
+		actions[16] = new DDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "RIGHT" ), "doDDown" );
+		this.getActionMap().put( "doDDown", actions[16] );
+		actions[17] = new DUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released RIGHT" ), "doDUp" );
+		this.getActionMap().put( "doDUp", actions[17] ); 
+		actions[18] = new IDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "I" ), "doIDown" );
+		this.getActionMap().put( "doIDown", actions[18] );
+		actions[19] = new IUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released I" ), "doIUp" );
+		this.getActionMap().put( "doIUp", actions[19] );
+		actions[20] = new EscDown();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "ESCAPE" ), "doEscapeDown" );
+		this.getActionMap().put( "doEscapeDown", actions[20] );
+		actions[21] = new EscUp();
+		this.getInputMap().put( KeyStroke.getKeyStroke( "released ESCAPE"), "doEscapeUp" );
+		this.getActionMap().put( "doEscapeUp", actions[21] );  //Setting up all the classes for the keybindings
+	}
 
 	public void mousePressed(MouseEvent e)
 	{
