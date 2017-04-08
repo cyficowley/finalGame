@@ -15,6 +15,8 @@ public class TestCharacter extends Enemy
 	BufferedImage characterLeft;
 	BufferedImage characterBack;
 
+	double strength =1;
+
 	int drawState = 0; //-1 is left, 0 is no direction, 1 is right
 
 	public Weapon weapon = new Gun(this);
@@ -33,6 +35,7 @@ public class TestCharacter extends Enemy
 		}
 		this.speed = 3.7;
 		this.type = "mc";
+		this.strength = 5;
 	}
 	@Override
 	public void moveMe()

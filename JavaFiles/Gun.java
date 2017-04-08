@@ -54,17 +54,6 @@ public class Gun extends Weapon
 			gunDirection = false;
 			drawRight = false;
 		}
-		if(cooldown > 0 && cooldown < maxCooldown -3)
-		{
-			if(gunDirection)
-			{
-				angle -= cooldown / maxCooldown * Math.PI/8;
-			}
-			else
-			{
-				angle += cooldown / maxCooldown * Math.PI/8;
-			}
-		}
 		cooldown--;
 		if(!Screen.d || !Screen.a)
 		{
@@ -79,6 +68,18 @@ public class Gun extends Weapon
 				angle = 0;
 				drawRight = true;
 				fire = false;
+			}
+		}
+
+		if(cooldown > 0 && cooldown < maxCooldown -3 && fire)
+		{
+			if(gunDirection)
+			{
+				angle -= cooldown / maxCooldown * Math.PI/8;
+			}
+			else
+			{
+				angle += cooldown / maxCooldown * Math.PI/8;
 			}
 		}
 		if((Screen.mouseDown || Screen.space) && cooldown <0)

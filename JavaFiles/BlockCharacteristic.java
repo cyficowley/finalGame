@@ -99,7 +99,7 @@ public class BlockCharacteristic // superClass to hold everything and make it ea
 	{
 		if(breakable)
 		{
-			percentBroken += 1/hardness;
+			percentBroken += 1/hardness * Screen.mc.strength;
 			if(percentBroken >1)
 			{
 				Screen.movingObjects.add(new DroppedItem(block));
