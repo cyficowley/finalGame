@@ -47,6 +47,7 @@ public class ShootingEnemy extends Enemy
 	@Override
 	public void drawMe(Graphics2D g)
 	{
+		g.setColor(Color.blue);
 		g.fillRect((int)(x - Screen.screenX), (int)(y - Screen.screenY), (int)(width), (int)(height));
 		super.drawMe(g);
 	}

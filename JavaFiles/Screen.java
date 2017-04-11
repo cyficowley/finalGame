@@ -68,6 +68,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	long time;
 
+	int level = 0;
+
 	public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks, in a 2d arraylist
 
 	public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>(); //all the moving objects
@@ -133,8 +135,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		String[] quitMenuLabels = {"Return to Game", "Quit"};
 		escMenu = new ButtonMenu(screenWidth * 0.35, screenHeight * 0.3, screenWidth * 0.3, screenHeight * 0.4, quitMenuLabels);
 
-		movingObjects.add(new ShootingEnemy(800,20, 72,72,25)); 
-		enemies.add((ShootingEnemy)movingObjects.get(movingObjects.size()-1));
+		// movingObjects.add(new MovingShootingEnemy(800,300, 72,72,25)); 
+		// enemies.add((MovingShootingEnemy)movingObjects.get(movingObjects.size()-1));
 		WorldGenerator.finalChanges();
 		animate();
 	}
@@ -184,6 +186,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 				g.setColor(new Color(255,0,0,200));
 				g.fillRect(0,0,(int)screenWidth, (int)screenHeight);
 			}
+			g.setColor(Color.red);
+			g.drawString("LEVEL :: " + Integer.toString(level), (int)screenWidth - 100, 50);
 		}
 	}
 
@@ -222,6 +226,33 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 						}
 					}
 				}
+			}
+		}
+		if(enemies.size() == 0)
+		{
+			level ++;
+			ArrayList<Enemy> addingEnemies = new ArrayList<>();
+			for(int i = 0; i < Math.pow(level -5, .3); i ++)
+			{
+				addingEnemies.add(new MovingShootingEnemy(0,0,64,64,Math.pow(level,.33) * 15));
+			}
+			for(int i = addingEnemies.size(); i < Math.pow(level -3, .7); i ++)
+			{
+				addingEnemies.add(new ShootingEnemy(0,0,64,64,Math.pow(level,.33) * 10));
+			}
+			for(int i = addingEnemies.size(); i < Math.pow(level, .33) +1; i ++)
+			{
+				addingEnemies.add(new BasicAiEnemy(0,0,64,64,Math.pow(level,.33) * 15));
+			}
+			for(int i = 0; i < addingEnemies.size(); i ++)
+			{
+				double xValues = blockWidth * 13;
+				xValues += (blockWidth * 55 - blockWidth *13)/(addingEnemies.size()) * (i+1);
+				addingEnemies.get(i).x = xValues;
+				addingEnemies.get(i).speed = 1.5 * Math.pow(level, .33);
+				addingEnemies.get(i).y = 200;
+				enemies.add(addingEnemies.get(i));
+				movingObjects.add(addingEnemies.get(i));
 			}
 		}
 	}
