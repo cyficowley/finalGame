@@ -465,7 +465,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}}
 	static class EscDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = true;
-			escMenu.toggleVisible(); // toggles visibility of escape menu
+			if(!inventory.visible)
+			{
+				escMenu.toggleVisible();// toggles visibility of escape menu
+			}
+			else
+			{
+				inventory.visible = false;
+			}
 		}}
 	static class EscUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = false;
