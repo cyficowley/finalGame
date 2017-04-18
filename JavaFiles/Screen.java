@@ -65,6 +65,10 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	boolean changed = false;
 
+	double frames = 0;
+	long timeLastChecked = 0;
+	double currentFramrate= 0;
+
 
 	long time;
 
@@ -89,6 +93,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		setFocusable(true); //setup stuff
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		System.setProperty("sun.java2d.opengl", "true");
 		for(int i = 0; i < currentXChunks; i ++)
 		{
 			chunks.add(new ArrayList<Chunk>());
@@ -145,7 +150,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	{
 		if(started)
 		{
+			frames++;
 			time = System.currentTimeMillis(); // gets time when started drawing
+			if(time - timeLastChecked > 5000) // updates frame rate every five seconds, should be something around 55
+			{
+				currentFramrate = frames/5;
+				timeLastChecked = time;
+				frames = 0;
+			}
 			super.paintComponent(gTemp);
 			Graphics2D g = (Graphics2D)gTemp;
 			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -177,7 +189,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			inventory.drawInventory(g);
 			g.setColor(Color.red);
 			g.setFont(ariel);
-			data += (Long.toString((System.currentTimeMillis()-time)));
+			data += (Double.toString(currentFramrate));
 			g.drawString(data,(int)20,50);
 			data = "";
 			escMenu.drawMe(g);
@@ -228,7 +240,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 				}
 			}
 		}
-		if(enemies.size() == 0)
+		if(enemies.size() == 0) //spawner for enemies in gladiator pit
 		{
 			level ++;
 			ArrayList<Enemy> addingEnemies = new ArrayList<>();

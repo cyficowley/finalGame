@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 public class ShootingEnemy extends Enemy
 {
 	double sinceShot = 0;
-	double bulletSize = 10;
+	double bulletSize = 15;
 	double bulletVelocity = 12;
 	double damage = 15;
 	double differentiation;

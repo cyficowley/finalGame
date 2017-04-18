@@ -19,6 +19,7 @@ public class Inventory{
 		}
 		inventory[0][0] = new InventoryBlock(15,15, new ItemGun());
 		inventory[0][1] = new InventoryBlock(15 + 74,15, new ItemSword());
+		inventory[0][2] = new InventoryBlock(15 + 74 *2,15, new ItemHyperGun());
 	}
 	public void drawInventory(Graphics2D g){
 		if(!first)

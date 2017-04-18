@@ -19,6 +19,8 @@ public class MovingObject extends MainObject
 	public MovingObject(double x, double y, double width, double height)
 	{
 		super(x,y,width,height);
+		pastY = y; 
+		pastX = x;
 		mass = width * height;
 	}
 	public void moveMe()

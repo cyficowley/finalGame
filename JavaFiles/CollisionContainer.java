@@ -21,8 +21,7 @@ public class CollisionContainer
 		if(first)
 		{
 			if(one.type.equals("mc") && two.type.equals("bullet") ||two.type.equals("mc") && one.type.equals("bullet")){}
-			else if(one.type.equals("enemy") && two.type.equals("enemyBullet") ||one.type.equals("enemyBullet") && two.type.equals("enemy")){
-			}
+			else if(one.type.equals("enemy") && two.type.equals("enemyBullet") ||one.type.equals("enemyBullet") && two.type.equals("enemy")){}
 			else if(one.collision(two))
 			{
 				boolean oneLesser = false;

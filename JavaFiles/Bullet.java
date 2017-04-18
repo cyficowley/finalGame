@@ -30,7 +30,7 @@ public class Bullet extends MovingObject
 	{
 		if(!gravity)
 		{
-			yVelocity += Screen.gravity;
+			yVelocity -= Screen.gravity;
 		}
 		super.moveMe();
 	}
@@ -42,13 +42,14 @@ public class Bullet extends MovingObject
 			Screen.movingObjects.remove(this);
 			gun.bullets.remove(this);
 		}
-		else if(touched.get(0).touched.type.equals("bullet"))
+		else if(touched.get(0).touched.type.equals("enemyBullet"))
 		{
 			Screen.movingObjects.remove(this);
 			gun.bullets.remove(this);
-			Screen.movingObjects.remove((Bullet)touched.get(0).touched);
-			gun.bullets.remove((Bullet)touched.get(0).touched);
+			Screen.movingObjects.remove((EnemyBullet)touched.get(0).touched);
+			gun.bullets.remove((EnemyBullet)touched.get(0).touched);
 		}
+		else if(touched.get(0).touched.type.equals("bullet")){}
 		else
 		{
 			Screen.movingObjects.remove(this);
@@ -66,7 +67,7 @@ public class Bullet extends MovingObject
 			}
 			enemy.xVelocity -= gun.damage / enemy.defense/4 * xMult * Math.pow(1000/enemy.mass, .2);
 			enemy.yVelocity -= gun.damage / enemy.defense/4 * Math.pow(1000/enemy.mass, .2);
-			enemy.invulnerablilityCount = 20;
+			enemy.invulnerablilityCount = 0;
 			enemy.health -= gun.damage / enemy.defense;
 		}
 	}

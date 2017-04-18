@@ -12,8 +12,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 public class HyperGun extends Gun
 {
-	int maxBullets = 0;
+	int maxBullets = 5;
 	int currentBullets = 0;
+	ArrayList<LittleFloatThing> littleFloatThings = new ArrayList<>();
 	public HyperGun(TestCharacter mc)
 	{
 		super(mc, false);
@@ -29,7 +30,7 @@ public class HyperGun extends Gun
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		damage = 25;
+		damage = 15;
 	}
 	@Override
 	public void moveMe()
@@ -62,55 +63,95 @@ public class HyperGun extends Gun
 				fire = false;
 			}
 		}
-
-		if(cooldown > 0 && cooldown < maxCooldown -3 && fire)
+		if((Screen.mouseDown || Screen.space))
 		{
-			if(gunDirection)
+			if(cooldown <0)
 			{
-				angle -= cooldown / maxCooldown * Math.PI/8;
-			}
-			else
-			{
-				angle += cooldown / maxCooldown * Math.PI/8;
+				cooldown = maxCooldown;
+				if(currentBullets < maxBullets)
+				{
+					currentBullets ++;
+					littleFloatThings.add(new LittleFloatThing(currentBullets, this));
+				}
 			}
 		}
-		if((Screen.mouseDown || Screen.space) && cooldown <0)
+		else
 		{
-			cooldown = maxCooldown;
-			fire();
+			if(currentBullets > 0)
+			{
+				currentBullets = 0;
+				for(LittleFloatThing each : littleFloatThings)
+				{			
+					bullets.add(new Bullet(speed,false,20,each.x, each.y,Math.atan2(Screen.mouseY +Screen.screenY - each.y,Screen.mouseX + Screen.screenX - each.x),this));
+				}
+				littleFloatThings = new ArrayList<>();
+			}
 		}
-	}
-	@Override
-	public void fire()
-	{
-		if(fire)
+		for(LittleFloatThing each : littleFloatThings)
 		{
-			bullets.add(new Bullet(speed,true,20,mc.x + mc.width/2+ Math.cos(angle) * 30, mc.y + mc.height/2 + Math.sin(angle) * 30-6,angle,this));
+			each.moveMe();
 		}
 	}
 	@Override
 	public void drawMe(Graphics2D g)
 	{
-		super.drawMe(g);
+		AffineTransform old = g.getTransform();
+		if(drawRight)
+		{
+			g.rotate(angle,mc.x + mc.width/2- Screen.screenX , mc.y  + mc.height/2- Screen.screenY);
+        	g.drawImage(gunRight, (int)(20+ mc.x + mc.width/2 - Screen.screenX), (int)(mc.y + mc.height/2 - Screen.screenY - 6),50,25, null);
+		}
+		else
+		{
+			g.rotate(angle -Math.PI,mc.x + mc.width/2- Screen.screenX , mc.y  + mc.height/2- Screen.screenY);
+        	g.drawImage(gunLeft, (int)(-70+ mc.x + mc.width/2 - Screen.screenX), (int)(mc.y + mc.height/2 - Screen.screenY - 6),50,25, null);
+		}
+		for(LittleFloatThing each : littleFloatThings)
+		{
+			each.drawMe(g);
+		}
+		
+        g.setTransform(old);
 	}
 	public class LittleFloatThing extends MainObject
 	{
 		int lifeSpan = 0;
-		public LittleFloatThing(double x, double y, double width, double height, double angleOff)
+		double trueLifeSpan = 0;
+		double pulsationRate;
+		double angle = 0;
+		double trueAngle = 0;
+		double difference = 0;
+		HyperGun hyperGun;
+		public LittleFloatThing(int number, HyperGun hyperGun)
 		{
-			super(x + Math.cos(angleOff)*4,y * Math.sin(angleOff)*4,width,height);
+			super(0,0,20,20);
+			trueAngle = number * Math.PI *4/5;
+			pulsationRate =Math.random() * .3 + .7;
+			this.hyperGun = hyperGun;
 		}
 		public void moveMe()
 		{
-			if(lifeSpan <=30)
+			trueLifeSpan ++;
+			angle = trueAngle + Math.sin(trueLifeSpan* pulsationRate / 15) /5;
+			if(lifeSpan <30)
 			{
-				x += Math.cos((double)(lifeSpan)/30 *Math.PI) +1;
+				difference += Math.cos((double)(lifeSpan)/30 *Math.PI) +1;
+				lifeSpan ++;
 			}
-			
+			if(hyperGun.drawRight)
+			{
+				x = 20+ Screen.mc.x + Screen.mc.width/2 + Math.cos(angle) * difference;
+				y = mc.y + mc.height/2 - 6 + Math.sin(angle) * difference;
+			}
+			else
+			{
+				x = -70+ Screen.mc.x + Screen.mc.width/2 + Math.cos(angle) * difference;
+				y = mc.y + mc.height/2 - 6 + Math.sin(angle) * difference;
+			}
 		}
 		public void drawMe(Graphics2D g)
 		{
-			g.setColor(Color.black);
+			g.setColor(new Color((int)(((double)lifeSpan /40.0 + Math.cos(trueLifeSpan/15 * pulsationRate)/4)*255), 0,0));
 			g.fillRect((int)(x - Screen.screenX), (int)(y- Screen.screenY), (int)width, (int)height); // for testing
 		}
 	}

@@ -19,7 +19,7 @@ public class TestCharacter extends Enemy
 
 	int drawState = 0; //-1 is left, 0 is no direction, 1 is right
 
-	public Weapon weapon = new Gun(this);
+	public Weapon weapon = new HyperGun(this);
 
 	public TestCharacter(double x, double y, double width, double height, double damage)
 	{
