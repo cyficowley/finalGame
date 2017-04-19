@@ -48,5 +48,18 @@ are we finding items to create stuff? like are we gonna be straight up teraria b
   -yes
   -kind of
 
+RPG
+=====
+
+Pregenerated maps that the character can go through different areas
+- certain maps will have random mobs that will walk around and try to kill you
+- create a map that will have towns connected to each other through different routes (kinda like pokemon)
+- npcs can be talked to which will give you quests to go do certain stuff
+  - i.e. killing certain mobs, killing a boss mob that can be found under a certain route
+  - giving certain tasks to travel between the towns
+- loot given off mobs in the world to upgrade your character
+  - weapon, shield, helmet, chestpiece, gloves, pants, shoes, necklace
+
+
 ########
 >>>>>>> origin/master
