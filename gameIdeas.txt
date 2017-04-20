@@ -1,9 +1,6 @@
-########
-
 Game Ideas
 
-<<<<<<< HEAD
-########
+
 
 Mars thing
 =======
@@ -48,8 +45,19 @@ are we finding items to create stuff? like are we gonna be straight up teraria b
   -yes
   -kind of
 
+
+***************COMMENTS FOR MARS*******************
+
+* Idk if we have enough time to pull this off as well as it would need to be done.  This has so many components that we would need to put in and I still think it is too much like other games that have been built - Cyrus
+
+
+
+
+
+
+
 RPG
-=====
+=======
 
 Pregenerated maps that the character can go through different areas
 - certain maps will have random mobs that will walk around and try to kill you
@@ -61,5 +69,26 @@ Pregenerated maps that the character can go through different areas
   - weapon, shield, helmet, chestpiece, gloves, pants, shoes, necklace
 
 
-########
->>>>>>> origin/master
+***************COMMENTS FOR RPG*******************
+
+* I think this is much more acheviable than the mars one with the time we have left, i just personally hate designing worlds and think its hard to do so if other people are down for that then I'd be ok with this, we'd have to have some sort of agreed upon style or something to make it original though - Cyrus
+
+
+
+
+
+
+
+
+
+
+Wave Based Survival Game
+=======
+Random map with pregenerated bits like little towns and houses and traps and special areas
+- entire game is centered around trying to bring an end to the "waves" which have decimated and corrupted life on Earth except for in a few places like towns with npcs and fortifications and some sort of defences
+- The waves will happen every 5 minutes or something like that
+- As you get more powerful and gather more resources and stuff certain set events will happen or people in the towns will contact you and you'll learn more about the waves and why they happen
+- You build up more and more fortifiying your personal defences and helping towns and crap through the waves and slowly learn they r coming from an alien civilization or something that feeds on people's pain, and thats why there are still people alive and not everything has been crushed.  
+- The waves will have been getting harder and harder throughout this and you are more and mroe targeted because they don't want you to figure out what is going on so try to kill you. 
+- You figure it out, build some crap or harvest stuff from bodies to teleport back to place where waves are coming from and have giant boss fight and end the waves and win, either the game ends here or you can replay it or just explore the world idk.
+-Permadeath
