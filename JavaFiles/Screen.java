@@ -262,10 +262,11 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 				xValues += (blockWidth * 55 - blockWidth *13)/(addingEnemies.size()) * (i+1);
 				addingEnemies.get(i).x = xValues;
 				addingEnemies.get(i).speed = 1.5 * Math.pow(level, .33);
-				addingEnemies.get(i).y = 200;
+				addingEnemies.get(i).y = 1000;
 				enemies.add(addingEnemies.get(i));
 				movingObjects.add(addingEnemies.get(i));
 			}
+			System.out.println(enemies.size());
 		}
 	}
 
