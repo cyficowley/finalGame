@@ -65,8 +65,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 
 	boolean changed = false;
 
+	double frames = 0;
+	long timeLastChecked = 0;
+	double currentFramrate= 0;
+
 
 	long time;
+
+	int level = 0;
 
 	public static ArrayList<ArrayList<Chunk>> chunks = new ArrayList<ArrayList<Chunk>>(); // all the chunks, in a 2d arraylist
 
@@ -87,6 +93,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		setFocusable(true); //setup stuff
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		System.setProperty("sun.java2d.opengl", "true");
 		for(int i = 0; i < currentXChunks; i ++)
 		{
 			chunks.add(new ArrayList<Chunk>());
@@ -133,8 +140,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		String[] quitMenuLabels = {"Return to Game", "Quit"};
 		escMenu = new ButtonMenu(screenWidth * 0.35, screenHeight * 0.3, screenWidth * 0.3, screenHeight * 0.4, quitMenuLabels);
 
-		movingObjects.add(new ShootingEnemy(800,20, 72,72,25)); 
-		enemies.add((ShootingEnemy)movingObjects.get(movingObjects.size()-1));
+		// movingObjects.add(new MovingShootingEnemy(800,300, 72,72,25)); 
+		// enemies.add((MovingShootingEnemy)movingObjects.get(movingObjects.size()-1));
 		WorldGenerator.finalChanges();
 		animate();
 	}
@@ -143,7 +150,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 	{
 		if(started)
 		{
+			frames++;
 			time = System.currentTimeMillis(); // gets time when started drawing
+			if(time - timeLastChecked > 5000) // updates frame rate every five seconds, should be something around 55
+			{
+				currentFramrate = frames/5;
+				timeLastChecked = time;
+				frames = 0;
+			}
 			super.paintComponent(gTemp);
 			Graphics2D g = (Graphics2D)gTemp;
 			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -175,7 +189,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			inventory.drawInventory(g);
 			g.setColor(Color.red);
 			g.setFont(ariel);
-			data += (Long.toString((System.currentTimeMillis()-time)));
+			data += (Double.toString(currentFramrate));
 			g.drawString(data,(int)20,50);
 			data = "";
 			escMenu.drawMe(g);
@@ -184,6 +198,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 				g.setColor(new Color(255,0,0,200));
 				g.fillRect(0,0,(int)screenWidth, (int)screenHeight);
 			}
+			g.setColor(Color.red);
+			g.drawString("LEVEL :: " + Integer.toString(level), (int)screenWidth - 100, 50);
 		}
 	}
 
@@ -223,6 +239,34 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 					}
 				}
 			}
+		}
+		if(enemies.size() == 0) //spawner for enemies in gladiator pit
+		{
+			level ++;
+			ArrayList<Enemy> addingEnemies = new ArrayList<>();
+			for(int i = 0; i < Math.pow(level -5, .3); i ++)
+			{
+				addingEnemies.add(new MovingShootingEnemy(0,0,64,64,Math.pow(level,.33) * 15));
+			}
+			for(int i = addingEnemies.size(); i < Math.pow(level -3, .7); i ++)
+			{
+				addingEnemies.add(new ShootingEnemy(0,0,64,64,Math.pow(level,.33) * 10));
+			}
+			for(int i = addingEnemies.size(); i < Math.pow(level, .33) +1; i ++)
+			{
+				addingEnemies.add(new BasicAiEnemy(0,0,64,64,Math.pow(level,.33) * 15));
+			}
+			for(int i = 0; i < addingEnemies.size(); i ++)
+			{
+				double xValues = blockWidth * 13;
+				xValues += (blockWidth * 55 - blockWidth *13)/(addingEnemies.size()) * (i+1);
+				addingEnemies.get(i).x = xValues;
+				addingEnemies.get(i).speed = 1.5 * Math.pow(level, .33);
+				addingEnemies.get(i).y = 1000;
+				enemies.add(addingEnemies.get(i));
+				movingObjects.add(addingEnemies.get(i));
+			}
+			System.out.println(enemies.size());
 		}
 	}
 
@@ -434,7 +478,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		}}
 	static class EscDown extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = true;
-			escMenu.toggleVisible(); // toggles visibility of escape menu
+			if(!inventory.visible)
+			{
+				escMenu.toggleVisible();// toggles visibility of escape menu
+			}
+			else
+			{
+				inventory.visible = false;
+			}
 		}}
 	static class EscUp extends AbstractAction{ public void actionPerformed( ActionEvent tf ){
 			esc = false;

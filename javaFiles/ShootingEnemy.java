@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 public class ShootingEnemy extends Enemy
 {
 	double sinceShot = 0;
-	double bulletSize = 10;
+	double bulletSize = 15;
 	double bulletVelocity = 12;
 	double damage = 15;
 	double differentiation;
@@ -47,6 +47,7 @@ public class ShootingEnemy extends Enemy
 	@Override
 	public void drawMe(Graphics2D g)
 	{
+		g.setColor(Color.blue);
 		g.fillRect((int)(x - Screen.screenX), (int)(y - Screen.screenY), (int)(width), (int)(height));
 		super.drawMe(g);
 	}

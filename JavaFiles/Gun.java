@@ -12,16 +12,16 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 public class Gun extends Weapon
 {
-	double cooldown;
-	double maxCooldown;
-	double angle;
-	double speed = 15;
-	boolean gunDirection; //true is right
-	BufferedImage gunRight;
-	BufferedImage gunLeft;
-	boolean fire = false;
-	boolean drawRight = false;
-	ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+	public double cooldown;
+	public double maxCooldown;
+	public double angle;
+	public double speed = 15;
+	public boolean gunDirection; //true is right
+	public BufferedImage gunRight;
+	public BufferedImage gunLeft;
+	public boolean fire = false;
+	public boolean drawRight = false;
+	public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	public Gun(TestCharacter mc)
 	{
 		super(mc);
@@ -37,6 +37,13 @@ public class Gun extends Weapon
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		damage = 25;
+	}
+	public Gun(TestCharacter mc, boolean dontImportPictures)
+	{
+		super(mc);
+		maxCooldown = 20;
+		cooldown = maxCooldown;
 		damage = 25;
 	}
 	@Override
@@ -98,7 +105,6 @@ public class Gun extends Weapon
 	@Override
 	public void drawMe(Graphics2D g)
 	{
-		g.setColor(Color.blue);
 		if(drawRight)
 		{
 			rotateImage(gunRight,20+ mc.x + mc.width/2 - Screen.screenX,mc.y + mc.height/2 - Screen.screenY - 6,mc.x + mc.width/2- Screen.screenX,mc.y  + mc.height/2- Screen.screenY, 50,25, angle, g);
