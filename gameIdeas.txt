@@ -86,9 +86,16 @@ Wave Based Survival Game
 =======
 Random map with pregenerated bits like little towns and houses and traps and special areas
 - entire game is centered around trying to bring an end to the "waves" which have decimated and corrupted life on Earth except for in a few places like towns with npcs and fortifications and some sort of defences
-- The waves will happen every 5 minutes or something like that
+- The waves will happen every 5 minutes or something like that, will get harder as the character advances and discovers more 
 - As you get more powerful and gather more resources and stuff certain set events will happen or people in the towns will contact you and you'll learn more about the waves and why they happen
-- You build up more and more fortifiying your personal defences and helping towns and crap through the waves and slowly learn they r coming from an alien civilization or something that feeds on people's pain, and thats why there are still people alive and not everything has been crushed.  
-- The waves will have been getting harder and harder throughout this and you are more and mroe targeted because they don't want you to figure out what is going on so try to kill you. 
-- You figure it out, build some crap or harvest stuff from bodies to teleport back to place where waves are coming from and have giant boss fight and end the waves and win, either the game ends here or you can replay it or just explore the world idk.
--Permadeath
+- You build up more and more fortifiying your personal defences and helping towns and crap through the waves and slowly learn they r coming from an alien civilization or something that feeds on people's pain, and thats why there are still people alive and not everything has been crushed.  (this explains how the waves can get harder and harder as the game goes on, they want to keep some people alive.)
+- The waves will have been getting harder and harder throughout this and you are more and more targeted by the enemies because they don't want you to figure out what is going on so try to kill you. 
+- You figure out what and why, build some crap or harvest stuff from bodies to teleport back to place where waves are coming from and have giant boss fight and end the waves and win, either the game ends here or you can replay it or just explore the world idk.
+-Permadeath, it'll make it so you take fewer risks and be more thoughtful about everything you do, but we will also need to make it very very good balanced and unglitchy so people don't randomly die.
+
+
+This is kinda like the rpg game but just more open worldy, it still would take you through a story though and there would be some parts custom designed. 
+
+
+***************COMMENTS FOR WAVES*******************
+
