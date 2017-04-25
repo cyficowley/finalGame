@@ -151,16 +151,14 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 		if(started)
 		{
 			frames++;
-			time = System.currentTimeMillis(); // gets time when started drawing
 			if(time - timeLastChecked > 5000) // updates frame rate every five seconds, should be something around 55
 			{
 				currentFramrate = frames/5;
 				timeLastChecked = time;
 				frames = 0;
 			}
-			super.paintComponent(gTemp);
 			Graphics2D g = (Graphics2D)gTemp;
-			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			super.paintComponent(g);
 			int chunksDrawn = 0;
 			for(int i = 0; i < chunks.size(); i ++)
 			{
@@ -173,6 +171,7 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 					}
 				}
 			}
+			time = System.currentTimeMillis(); // gets time when started drawing
 			for(int i = 0; i < chunks.size(); i ++)
 			{
 				for(int j = 0;  j < chunks.get(i).size(); j ++)
@@ -200,6 +199,8 @@ public class Screen extends JPanel implements MouseMotionListener, MouseListener
 			}
 			g.setColor(Color.red);
 			g.drawString("LEVEL :: " + Integer.toString(level), (int)screenWidth - 100, 50);
+			System.out.println(System.currentTimeMillis() - time);
+
 		}
 	}
 
